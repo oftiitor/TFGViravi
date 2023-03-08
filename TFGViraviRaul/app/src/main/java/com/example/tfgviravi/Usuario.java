@@ -7,17 +7,16 @@ import java.util.Date;
 public class Usuario {
 
     private int id;
-    private String nombre, apellidos, telefono;
+    private String nombre, telefono;
     private Date fehchaNacimiento;
     private String correo, contraseña;
     private int seguidores, seguidos;
     private File fotoPerfil;
     private ArrayList<Evento> eventosApuntado, eventosParticipado, eventosCreados;
 
-    public Usuario(int id, String nombre, String apellidos, String telefono, Date fehchaNacimiento, String correo, String contraseña, int seguidores, int seguidos, File fotoPerfil, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
+    public Usuario(int id, String nombre, String telefono, Date fehchaNacimiento, String correo, String contraseña, int seguidores, int seguidos, File fotoPerfil, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
         this.id = id;
         this.nombre = nombre;
-        this.apellidos = apellidos;
         this.telefono = telefono;
         this.fehchaNacimiento = fehchaNacimiento;
         this.correo = correo;
@@ -44,14 +43,6 @@ public class Usuario {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
     }
 
     public String getTelefono() {

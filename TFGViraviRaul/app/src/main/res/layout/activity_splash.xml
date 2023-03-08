@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#2B6244"
     android:backgroundTint="#2B6244"
-    tools:context=".MainActivity">
+    tools:context=".SplashActivity">
 
     <ImageView
         android:id="@+id/LogoIV"

@@ -2,7 +2,6 @@
   <library name="Gradle: androidx.databinding:viewbinding:7.2.0@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/68fcd7ae5e8ffa9813d6455ca2bf15de/transformed/viewbinding-7.2.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/68fcd7ae5e8ffa9813d6455ca2bf15de/transformed/viewbinding-7.2.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/68fcd7ae5e8ffa9813d6455ca2bf15de/transformed/viewbinding-7.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
