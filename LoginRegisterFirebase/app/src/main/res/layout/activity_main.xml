@@ -7,7 +7,7 @@
     android:background="#FFFAD0"
     tools:context=".MainActivity">
 
-    <ImageView
+    <!-- <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ifp_banner"
         tools:srcCompat="@drawable/ifp_banner"
-        />
+        /> -->
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaImagen"

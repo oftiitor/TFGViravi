@@ -1,5 +1,4 @@
 package com.example.tfgviravi;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 public class Principal extends AppCompatActivity {
 
