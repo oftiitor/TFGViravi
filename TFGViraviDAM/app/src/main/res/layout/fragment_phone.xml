@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1ECE0"
+    android:backgroundTint="#F1ECE0"
+    tools:context=".PhoneFragment">
+
+    <TextView
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="¿Cual es tu numero de telefono?"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="24sp" />
+
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:inputType="phone" />
+
+
+    <Button
+        android:id="@+id/btnPhone"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="#7A2B6244"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="continuar"
+        android:textSize="17dp"
+        />
+
+
+</FrameLayout>
