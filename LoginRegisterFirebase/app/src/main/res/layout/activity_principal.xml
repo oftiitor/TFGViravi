@@ -43,7 +43,7 @@
         android:backgroundTint="@android:color/transparent"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="REGISTRAR NUEVO ALUMNO"
+        android:text="REGISTRAR NUEVO USUARIO"
         android:textAlignment="center"
 
         android:textStyle="bold"
@@ -59,7 +59,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:foregroundTint="#000000"
-        android:hint="Nombre Completo"
+        android:hint="Nombre"
 
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@id/guiaAbajoCodigo"
@@ -68,12 +68,12 @@
         app:layout_constraintTop_toTopOf="@id/guiaArribaCodigo" />
 
     <EditText
-        android:id="@+id/ciclo"
+        android:id="@+id/fechaNacimiento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:foregroundTint="#000000"
-        android:hint="Ciclo Formativo"
+        android:hint="Fecha Nacimiento"
 
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@id/guiaAbajoNombre"
@@ -82,17 +82,33 @@
         app:layout_constraintTop_toTopOf="@id/guiaArribaNombre" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/telefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Correo Electrónico"
+        android:hint="Telefono"
         android:inputType="textPersonName"
 
         app:layout_constraintBottom_toBottomOf="@id/guiaAbajoPosicion"
         app:layout_constraintEnd_toEndOf="@id/guiaDerecha"
         app:layout_constraintStart_toStartOf="@id/guiaIzquierda"
         app:layout_constraintTop_toTopOf="@id/guiaArribaPosicion"
+
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="302dp" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textPersonName"
+
+        app:layout_constraintBottom_toBottomOf="@id/guiaAbajoPosicion2"
+        app:layout_constraintEnd_toEndOf="@id/guiaDerecha"
+        app:layout_constraintStart_toStartOf="@id/guiaIzquierda"
+        app:layout_constraintTop_toTopOf="@id/guiaArribaPosicion2"
 
         tools:layout_editor_absoluteX="100dp"
         tools:layout_editor_absoluteY="302dp" />
@@ -113,6 +129,22 @@
         tools:layout_editor_absoluteX="100dp"
         tools:layout_editor_absoluteY="371dp" />
 
+    <EditText
+        android:id="@+id/nombreUsu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nombre Usuario"
+        android:inputType="textPersonName"
+
+        app:layout_constraintBottom_toBottomOf="@id/guiaAbajoPosicion3"
+        app:layout_constraintEnd_toEndOf="@id/guiaDerecha"
+        app:layout_constraintStart_toStartOf="@id/guiaIzquierda"
+        app:layout_constraintTop_toTopOf="@id/guiaArribaPosicion3"
+
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="302dp" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaDerecha"
         android:layout_width="wrap_content"
@@ -132,77 +164,105 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.215" />
+        app:layout_constraintGuide_percent="0.10" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaTituloArriba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.27" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaTituloAbajo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.32" />
+        app:layout_constraintGuide_percent="0.20" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaArribaCodigo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.37" />
+        app:layout_constraintGuide_percent="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaAbajoCodigo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.42" />
+        app:layout_constraintGuide_percent="0.30" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaArribaNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.48" />
+        app:layout_constraintGuide_percent="0.35" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaAbajoNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.53" />
+        app:layout_constraintGuide_percent="0.40" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaArribaPosicion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.59" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaAbajoPosicion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.64" />
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guiaArribaPosicion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guiaAbajoPosicion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guiaArribaPosicion3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guiaAbajoPosicion3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaArribaDorsal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.70" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaAbajoDorsal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
+        app:layout_constraintGuide_percent="0.70" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/botonInsertarIzquierda"
@@ -223,14 +283,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.84" />
+        app:layout_constraintGuide_percent="0.87" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guiaBotonesAbajo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.90" />
+        app:layout_constraintGuide_percent="0.93" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/botonBBDDIzquierda"

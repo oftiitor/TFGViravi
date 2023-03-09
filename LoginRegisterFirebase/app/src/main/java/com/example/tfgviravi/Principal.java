@@ -1,4 +1,5 @@
 package com.example.tfgviravi;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,17 +17,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Principal extends AppCompatActivity {
 
-    TextView emailAlumno;
-    TextView passwordAlumno;
+    TextView nombre, fechaNacimiento, telefono, email, contrasenya, nombreUsuario;
     Button registrarAlumno;
 
     FirebaseAuth firebaseAuth;
     AwesomeValidation awesomeValidation;
+
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("https://tfgviravi-default-rtdb.europe-west1.firebasedatabase.app");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +47,38 @@ public class Principal extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.email, Patterns.EMAIL_ADDRESS, R.string.invalid_mail);
         awesomeValidation.addValidation(this, R.id.password, ".{6,}", R.string.invalid_password);
 
-        emailAlumno = findViewById(R.id.email);
-        passwordAlumno = findViewById(R.id.password);
+        nombre = findViewById(R.id.nombre);
+        fechaNacimiento = findViewById(R.id.fechaNacimiento);
+        telefono = findViewById(R.id.telefono);
+        email = findViewById(R.id.email);
+        contrasenya = findViewById(R.id.password);
+        nombreUsuario = findViewById(R.id.nombreUsu);
+
         registrarAlumno = findViewById(R.id.registrarAlumno);
 
         registrarAlumno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailAlumno.getText().toString();
-                String password = passwordAlumno.getText().toString();
+
+                String nom = nombre.getText().toString();
+                String fecha = fechaNacimiento.getText().toString();
+                String telf = telefono.getText().toString();
+                String e = email.getText().toString();
+                String p = contrasenya.getText().toString();
+                String nomUsu = nombreUsuario.getText().toString();
+
+                Map<String, Object> datosUsuario = new HashMap<>();
+                datosUsuario.put("nombre", nom);
+                datosUsuario.put("fechaNacimiento", fecha);
+                datosUsuario.put("telefono", telf);
+                datosUsuario.put("email", e);
+                datosUsuario.put("password", p);
+                datosUsuario.put("nombreUsuario", nomUsu);
+
+                ref.child("Usuario").push().setValue(datosUsuario);
 
                 if (awesomeValidation.validate()) {
-                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    firebaseAuth.createUserWithEmailAndPassword(e, p).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
@@ -68,6 +97,27 @@ public class Principal extends AppCompatActivity {
         });
 
     }
+
+    /*
+    public void registrarUsuario() {
+
+
+        Usuario usuario = new Usuario(
+                nombre.getText().toString(),
+                fechaNacimiento.getText().toString(),
+                telefono.getText().toString(),
+                email.getText().toString(),
+                contrasenya.getText().toString(),
+                nombreUsuario.getText().toString());
+
+        DatabaseReference usersRef = ref.child("users");
+        Map<String, Usuario> users = new HashMap<>();
+        users.put(nombreUsuario.getText().toString(), usuario);
+        usersRef.setValue(users);
+
+
+    }
+    */
 
     public void iniciarSesion(View view) {
         Intent actividad = new Intent(Principal.this, MainActivity.class);
@@ -92,15 +142,15 @@ public class Principal extends AppCompatActivity {
 
             case "ERROR_INVALID_EMAIL":
                 Toast.makeText(Principal.this, "La dirección de correo electrónico está mal formateada.", Toast.LENGTH_LONG).show();
-                emailAlumno.setError("La dirección de correo electrónico está mal formateada.");
-                emailAlumno.requestFocus();
+                email.setError("La dirección de correo electrónico está mal formateada.");
+                email.requestFocus();
                 break;
 
             case "ERROR_WRONG_PASSWORD":
                 Toast.makeText(Principal.this, "La contraseña no es válida o el usuario no tiene contraseña.", Toast.LENGTH_LONG).show();
-                passwordAlumno.setError("Contraseña incorrecta.");
-                passwordAlumno.requestFocus();
-                passwordAlumno.setText("");
+                contrasenya.setError("Contraseña incorrecta.");
+                contrasenya.requestFocus();
+                contrasenya.setText("");
                 break;
 
             case "ERROR_USER_MISMATCH":
@@ -117,8 +167,8 @@ public class Principal extends AppCompatActivity {
 
             case "ERROR_EMAIL_ALREADY_IN_USE":
                 Toast.makeText(Principal.this, "La dirección de correo electrónico ya está siendo utilizada por otra cuenta..   ", Toast.LENGTH_LONG).show();
-                emailAlumno.setError("La dirección de correo electrónico ya está siendo utilizada por otra cuenta.");
-                emailAlumno.requestFocus();
+                email.setError("La dirección de correo electrónico ya está siendo utilizada por otra cuenta.");
+                email.requestFocus();
                 break;
 
             case "ERROR_CREDENTIAL_ALREADY_IN_USE":
@@ -147,8 +197,8 @@ public class Principal extends AppCompatActivity {
 
             case "ERROR_WEAK_PASSWORD":
                 Toast.makeText(Principal.this, "La contraseña proporcionada no es válida..", Toast.LENGTH_LONG).show();
-                emailAlumno.setError("La contraseña no es válida, debe tener al menos 6 caracteres");
-                passwordAlumno.requestFocus();
+                email.setError("La contraseña no es válida, debe tener al menos 6 caracteres");
+                contrasenya.requestFocus();
                 break;
 
         }
