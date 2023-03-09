@@ -1,4 +1,4 @@
-package com.example.tfgviravidam;
+package com.example.tfgviravidam.fragmentsRegister;
 
 import android.os.Bundle;
 
@@ -10,22 +10,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.tfgviravidam.R;
 
-public class PasswordFragment extends Fragment {
+public class PhoneFragment extends Fragment {
 
     Button btn;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_password, container, false);
-        btn = view.findViewById(R.id.btnPass);
+        View view = inflater.inflate(R.layout.fragment_phone, container, false);
+        btn = view.findViewById(R.id.btnPhone);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_passwordFragment_to_usernameFragment);
+                Navigation.findNavController(view).navigate(R.id.action_phoneFragment_to_mailFragment);
             }
         });
         return view;

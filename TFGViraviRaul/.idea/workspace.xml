@@ -9,13 +9,48 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="060a4f57-e33b-43e4-929a-86c737e9c88a" name="Changes" comment="" />
+    <list default="true" id="060a4f57-e33b-43e4-929a-86c737e9c88a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/LoginActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/anim/splash.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/anim/zoom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/drawable/dise_o_sin_t_tulo__2___1_.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/drawable/fondo_de_free_sample_by_wix_eliminado.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/drawable/foto.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/drawable/rounded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/font/heebo_bold.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/font/heebo_medium.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/activity_app.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/activity_splash.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/BirthdayFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/fragmentsRegister/BirthdayFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/MailFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/fragmentsRegister/MailFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/AppActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/NameFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/fragmentsRegister/NameFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/PasswordFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/fragmentsRegister/PasswordFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/PhoneFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/fragmentsRegister/PhoneFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/UsernameFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/java/com/example/tfgviravidam/fragmentsRegister/UsernameFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/drawable/rounded_button.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/drawable/rounded_button.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_birthday.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_birthday.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_mail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_mail.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_name.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_name.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_password.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_password.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_phone.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_phone.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_username.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/layout/fragment_username.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/navigation/nav_pragh.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/navigation/nav_pragh.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/values/preloaded_fonts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../TFGViraviDAM/app/src/main/res/values/preloaded_fonts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\Alumno\.android\avd\Nexus_5X_API_29.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[f65f8c57]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -43,15 +78,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
-    <property name="cidr.known.project.marker" value="true" />
-    <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TFGViraviDAM" />
-    <property name="show.migrate.to.gradle.popup" value="false" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="android.template.-1198473517">
       <recent name="com.example.tfgviravi" />
@@ -70,6 +102,7 @@
       <option name="PM_INSTALL_OPTIONS" value="" />
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -140,6 +173,5 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

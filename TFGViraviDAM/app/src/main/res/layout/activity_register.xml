@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".SplashActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
@@ -22,16 +22,20 @@
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:background="#2B6244"
-        android:backgroundTint="#2B6244"
         android:fontFamily="@font/bebas_neue"
-        android:foregroundTint="#F1ECE0"
         android:gravity="center"
         android:text="VIRAVI"
-        android:textColor="#F1ECE0"
+        android:textColor="#000"
         android:textSize="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.027359782" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

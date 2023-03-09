@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1ECE0"
-    android:backgroundTint="#F1ECE0"
-    tools:context=".MailFragment">
+    tools:context=".fragmentsRegister.MailFragment">
 
     <TextView
         android:layout_width="347dp"
@@ -28,16 +27,19 @@
         android:ems="10"
         android:inputType="textEmailAddress" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMail"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="200dp"
-        android:backgroundTint="#7A2B6244"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="continuar"
+        android:layout_marginTop="240dp"
+        android:backgroundTint="@color/black"
+        android:text="Continuar"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textSize="17dp"
-        />
+        app:cornerRadius="25dp"
+        app:rippleColor="#CDCDCD" />
 
 </FrameLayout>
