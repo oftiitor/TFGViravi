@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_name" >
         <action
             android:id="@+id/action_nameFragment_to_birthdayFragment"
-            app:destination="@id/birthdayFragment" />
+            app:destination="@id/birthdayFragment"
+            app:enterAnim="@anim/to_rigth"
+            app:exitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/birthdayFragment"
@@ -21,7 +23,9 @@
         tools:layout="@layout/fragment_birthday" >
         <action
             android:id="@+id/action_birthdayFragment_to_phoneFragment"
-            app:destination="@id/phoneFragment" />
+            app:destination="@id/phoneFragment"
+            app:enterAnim="@anim/to_rigth"
+            app:exitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/phoneFragment"
@@ -30,7 +34,9 @@
         tools:layout="@layout/fragment_phone" >
         <action
             android:id="@+id/action_phoneFragment_to_mailFragment"
-            app:destination="@id/mailFragment" />
+            app:destination="@id/mailFragment"
+            app:enterAnim="@anim/to_rigth"
+            app:exitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/mailFragment"
@@ -39,7 +45,9 @@
         tools:layout="@layout/fragment_mail" >
         <action
             android:id="@+id/action_mailFragment_to_passwordFragment"
-            app:destination="@id/passwordFragment" />
+            app:destination="@id/passwordFragment"
+            app:enterAnim="@anim/to_rigth"
+            app:exitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/passwordFragment"
@@ -48,7 +56,9 @@
         tools:layout="@layout/fragment_password" >
         <action
             android:id="@+id/action_passwordFragment_to_usernameFragment"
-            app:destination="@id/usernameFragment" />
+            app:destination="@id/usernameFragment"
+            app:enterAnim="@anim/to_rigth"
+            app:exitAnim="@anim/to_left" />
     </fragment>
     <fragment
         android:id="@+id/usernameFragment"

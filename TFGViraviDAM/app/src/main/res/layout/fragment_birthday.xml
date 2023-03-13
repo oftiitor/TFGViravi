@@ -10,7 +10,7 @@
         android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="¿Cuando es tu cumpleaños?"
         android:textAlignment="center"
@@ -19,26 +19,43 @@
 
 
     <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txtBirth"
         android:layout_width="300dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/poppins_extrabold"
+        android:hint="DD MM YYYY"
+        android:gravity="center_horizontal"
+        android:inputType="date"
+        android:textColor="#B0000000"
+        android:textColorHint="#99B8B8B8"
+        android:textSize="30dp" />
 
-        android:hint="" />
+    <TextView
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="245dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Solo se usara para verificar la edad"
+        android:textAlignment="center"
+        android:textColor="#737373"
+        android:textSize="15sp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBirth"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="300dp"
+        android:layout_width="378dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="280dp"
         android:backgroundTint="@color/black"
         android:text="Continuar"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17dp"
-        app:cornerRadius="25dp"
+        app:cornerRadius="15dp"
         app:rippleColor="#CDCDCD" />
 
 </FrameLayout>

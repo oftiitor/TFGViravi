@@ -33,10 +33,14 @@ public class NameFragment extends Fragment {
         btn = view.findViewById(R.id.btnName);
         textView = view.findViewById(R.id.txtName);
         textView.requestFocus();
+        InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_nameFragment_to_birthdayFragment);
+                im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+
             }
         });
         return view;

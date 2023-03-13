@@ -10,7 +10,7 @@
         android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Comencemos. ¿Como te llamas?"
         android:textAlignment="center"
@@ -21,21 +21,20 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/txtName"
         android:layout_width="300dp"
-        android:layout_height="95dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="90dp"
         android:fontFamily="@font/poppins_extrabold"
-        android:gravity="center"
-        android:hint="NOMBRE"
-        android:textAlignment="center"
+        android:hint="Tu nombre"
         android:textColor="#B0000000"
         android:textColorHint="#99B8B8B8"
-        android:textSize="50dp" />
+        android:gravity="center"
+        android:textSize="30dp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnName"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="300dp"
+        android:layout_width="378dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="240dp"
@@ -44,7 +43,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17dp"
-        app:cornerRadius="25dp"
+        app:cornerRadius="15dp"
         app:rippleColor="#CDCDCD" />
 
 </FrameLayout>

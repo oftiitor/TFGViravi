@@ -6,4 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txtName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/poppins_extrabold"
+        android:hint="Nombre"
+        android:textColor="#B0000000"
+        android:textColorHint="#99B8B8B8"
+        android:textSize="50dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

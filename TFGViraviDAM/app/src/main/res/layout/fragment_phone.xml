@@ -10,37 +10,55 @@
         android:layout_width="347dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="0dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="¿Cual es tu numero de telefono?"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp" />
 
+    <TextView
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="245dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Solo se usara para verificar la cuenta"
+        android:textAlignment="center"
+        android:textColor="#737373"
+        android:textSize="15sp" />
 
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginTop="100dp"
+
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/txtPhone"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+
         android:layout_gravity="center_horizontal"
-        android:ems="10"
-        android:inputType="phone" />
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/poppins_extrabold"
+        android:inputType="phone"
+        android:text="+34 "
+        android:textColor="#B0000000"
+        android:textColorHint="#99B8B8B8"
+        android:textSize="30dp" />
 
 
     <Button
         android:id="@+id/btnPhone"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="300dp"
+        android:layout_width="378dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="280dp"
         android:backgroundTint="@color/black"
         android:text="Continuar"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17dp"
-        app:cornerRadius="25dp"
+        app:cornerRadius="15dp"
         app:rippleColor="#CDCDCD" />
 
 
