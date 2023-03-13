@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Principal extends AppCompatActivity {
+public class Principal extends AppCompatActivity {/*
 
     TextView nombre, fechaNacimiento, telefono, email, contrasenya, nombreUsuario;
     Button registrarAlumno;
@@ -34,8 +34,8 @@ public class Principal extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     AwesomeValidation awesomeValidation;
 
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("https://tfgviravi-default-rtdb.europe-west1.firebasedatabase.app");
+    // final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //DatabaseReference ref = database.getReference("https://tfgviravi-default-rtdb.europe-west1.firebasedatabase.app");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +118,7 @@ public class Principal extends AppCompatActivity {
 
     }
     */
-
+    /*
     public void iniciarSesion(View view) {
         Intent actividad = new Intent(Principal.this, MainActivity.class);
         startActivity(actividad);
@@ -203,6 +203,6 @@ public class Principal extends AppCompatActivity {
 
         }
 
-    }
+    }*/
 
 }
