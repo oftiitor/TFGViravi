@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragmentsRegister.BirthdayFragment">
+    tools:context=".PassLoginFragment">
 
     <TextView
         android:layout_width="347dp"
@@ -12,45 +12,33 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="0dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="¿Cuando es tu cumpleaños?"
+        android:text="Introduce la contraseña de tu usuario:"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp" />
 
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/txtBirth"
+        android:id="@+id/txtPassLogin"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="120dp"
         android:fontFamily="@font/poppins_extrabold"
-        android:hint="DD MM YYYY"
-        android:gravity="center_horizontal"
-        android:inputType="date"
+        android:inputType="textPassword"
         android:textColor="#B0000000"
+        android:gravity="center"
         android:textColorHint="#99B8B8B8"
         android:textSize="30dp" />
 
-    <TextView
-        android:layout_width="347dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="245dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Solo se usara para verificar la edad"
-        android:textAlignment="center"
-        android:textColor="#737373"
-        android:textSize="15sp" />
-
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBirth"
+        android:id="@+id/btnPassLogin"
         android:background="@drawable/selector_btn_property"
         android:enabled="false"
         android:layout_width="378dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="240dp"
         android:backgroundTint="@color/black"
         android:text="Continuar"
         android:textAllCaps="false"

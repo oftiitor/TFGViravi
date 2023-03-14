@@ -1,6 +1,4 @@
-package com.example.tfgviravidam.fragmentsRegister;
-
-import static androidx.core.content.ContextCompat.getSystemService;
+package com.example.tfgviravidam;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,38 +15,29 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.tfgviravidam.R;
+public class PassLoginFragment extends Fragment {
 
-
-public class NameFragment extends Fragment {
-
-
-    Button btn;
     TextView textView;
-
-
+    Button btn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_name, container, false);
-        btn = view.findViewById(R.id.btnName);
-        textView = view.findViewById(R.id.txtName);
+        View view = inflater.inflate(R.layout.fragment_pass_login, container, false);
+        btn = view.findViewById(R.id.btnPassLogin);
+        textView = view.findViewById(R.id.txtPassLogin);
         textView.requestFocus();
         InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-
         textView.addTextChangedListener(textWatcher);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_nameFragment_to_birthdayFragment);
                 im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
-
             }
         });
         return view;
-
     }
     private TextWatcher textWatcher = new TextWatcher() {
         @Override

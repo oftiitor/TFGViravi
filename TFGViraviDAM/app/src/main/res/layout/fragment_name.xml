@@ -33,13 +33,14 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnName"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:background="@drawable/selector_btn_property"
         android:layout_width="378dp"
         android:layout_height="70dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="240dp"
         android:backgroundTint="@color/black"
         android:text="Continuar"
+        android:enabled="false"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17dp"
