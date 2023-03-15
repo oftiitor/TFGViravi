@@ -6,45 +6,121 @@
     android:layout_height="match_parent"
     tools:context=".UserLoginFragment">
 
-    <TextView
-        android:layout_width="347dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="0dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Ingresa con tu nombre de usuario:"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline78"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.96" />
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/txtUserLogin"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="120dp"
-        android:fontFamily="@font/poppins_extrabold"
-        android:hint="Tu nombre"
-        android:gravity="center"
-        android:textColor="#B0000000"
-        android:textColorHint="#99B8B8B8"
-        android:textSize="30dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline79"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
 
-    <Button
-        android:id="@+id/btnUserLogin"
-        android:background="@drawable/selector_btn_property"
-        android:enabled="false"
-        android:layout_width="378dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="240dp"
-        android:backgroundTint="@color/black"
-        android:text="Continuar"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="17dp"
-        app:cornerRadius="15dp"
-        app:rippleColor="#CDCDCD" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.11" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline81"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.12" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline82"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.22" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline83"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline84"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline85"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.32" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline86"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.42" />
+
+        <Button
+            android:id="@+id/btnUserLogin"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/selector_btn_property"
+            android:backgroundTint="@color/black"
+            android:enabled="false"
+            android:text="Continuar"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            app:cornerRadius="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline86"
+            app:layout_constraintEnd_toStartOf="@+id/guideline83"
+            app:layout_constraintStart_toStartOf="@+id/guideline79"
+            app:layout_constraintTop_toTopOf="@+id/guideline85"
+            app:rippleColor="#CDCDCD" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Ingresa con tu nombre de usuario:"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline80"
+            app:layout_constraintEnd_toStartOf="@+id/guideline78"
+            app:layout_constraintStart_toStartOf="@+id/guideline84"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtUserLogin"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_extrabold"
+            android:gravity="center"
+            android:hint="Tu nombre"
+            android:textColor="#B0000000"
+            android:textColorHint="#99B8B8B8"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline82"
+            app:layout_constraintEnd_toStartOf="@+id/guideline83"
+            app:layout_constraintStart_toStartOf="@+id/guideline79"
+            app:layout_constraintTop_toTopOf="@+id/guideline81" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </FrameLayout>
