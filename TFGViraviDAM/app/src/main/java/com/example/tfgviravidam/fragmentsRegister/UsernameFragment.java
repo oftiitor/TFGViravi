@@ -1,6 +1,7 @@
 package com.example.tfgviravidam.fragmentsRegister;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +16,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tfgviravidam.AppActivity;
 import com.example.tfgviravidam.R;
+import com.example.tfgviravidam.SplashActivity;
+import com.example.tfgviravidam.ViraviActivity;
 
 public class UsernameFragment extends Fragment {
 
@@ -36,7 +40,8 @@ public class UsernameFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), ViraviActivity.class);
+                startActivity(intent);
             }
         });
 
