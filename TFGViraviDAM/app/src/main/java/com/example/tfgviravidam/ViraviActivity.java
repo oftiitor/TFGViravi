@@ -26,30 +26,38 @@ public class ViraviActivity extends AppCompatActivity {
     HomeFragment homeFragment = new HomeFragment();
     ExploreFragment exploreFragment = new ExploreFragment();
     ProfileFragment profileFragment = new ProfileFragment();
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viravi);
+        fab = findViewById(R.id.fab_home);
         BottomNavigationView navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new HomeFragment());
+            }
+        });
     }
 
     private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.homeFragment:
+                case R.id.explore:
                     loadFragment(new ExploreFragment());
                     return true;
-                case R.id.exploreFragment:
+                case R.id.profile:
                     loadFragment(new ProfileFragment());
                     return true;
-                case R.id.profileFragment:
+                default:
                     loadFragment(new HomeFragment());
-                    return true;
+                    return false;
             }
-            return false;
+
         }
     };
 

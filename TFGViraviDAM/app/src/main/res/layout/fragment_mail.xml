@@ -6,46 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".fragmentsRegister.MailFragment">
 
-    <TextView
-        android:layout_width="347dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="0dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Escribe tu correo electronico"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/txtMail"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="90dp"
-        android:fontFamily="@font/poppins_extrabold"
-        android:inputType="textEmailAddress"
-        android:hint="Tu correo"
-        android:gravity="center_horizontal"
+        <TextView
+            android:layout_width="347dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Escribe tu correo electronico"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            tools:layout_editor_absoluteX="30dp" />
 
-        android:textColor="#B0000000"
-        android:textColorHint="#99B8B8B8"
-        android:textSize="30dp" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMail"
+            android:layout_width="378dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/selector_btn_property"
+            android:backgroundTint="@color/black"
+            android:enabled="false"
+            android:text="Continuar"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17dp"
+            app:cornerRadius="15dp"
+            app:rippleColor="#CDCDCD"
+            tools:layout_editor_absoluteX="17dp"
+            tools:layout_editor_absoluteY="240dp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnMail"
-        android:background="@drawable/selector_btn_property"
-        android:enabled="false"
-        android:layout_width="378dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="240dp"
-        android:backgroundTint="@color/black"
-        android:text="Continuar"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="17dp"
-        app:cornerRadius="15dp"
-        app:rippleColor="#CDCDCD" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtMail"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_extrabold"
+            android:gravity="center_horizontal"
+            android:hint="Tu correo"
+            android:inputType="textEmailAddress"
+
+            android:textColor="#B0000000"
+            android:textColorHint="#99B8B8B8"
+            android:textSize="30dp"
+            tools:layout_editor_absoluteX="56dp"
+            tools:layout_editor_absoluteY="90dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

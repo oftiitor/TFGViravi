@@ -40,6 +40,7 @@ public class UsernameFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
                 Intent intent = new Intent(getActivity(), ViraviActivity.class);
                 startActivity(intent);
             }

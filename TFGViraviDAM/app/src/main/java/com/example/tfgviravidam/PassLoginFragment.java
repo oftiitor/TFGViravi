@@ -1,6 +1,7 @@
 package com.example.tfgviravidam;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,8 @@ public class PassLoginFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ViraviActivity.class);
+                startActivity(intent);
                 im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
             }
         });
