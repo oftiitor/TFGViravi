@@ -33,7 +33,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Comencemos. ¿Como te llamas?"
+            android:text="Comencemos. ¿Cómo te llamas?"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="24sp"

@@ -6,35 +6,25 @@ import java.util.Date;
 
 public class Usuario {
 
-    private int id;
     private String nombre, telefono;
-    private Date fehchaNacimiento;
-    private String correo, contraseña;
+    private Date fechaNacimiento;
+    private String correo, contrasenya;
     private int seguidores, seguidos;
     private File fotoPerfil;
     private ArrayList<Evento> eventosApuntado, eventosParticipado, eventosCreados;
 
-    public Usuario(int id, String nombre, String telefono, Date fehchaNacimiento, String correo, String contraseña, int seguidores, int seguidos, File fotoPerfil, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
-        this.id = id;
+    public Usuario(String nombre, Date fechaNacimiento, String telefono, String correo, String contrasenya, int seguidores, int seguidos, File fotoPerfil, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
         this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
-        this.fehchaNacimiento = fehchaNacimiento;
         this.correo = correo;
-        this.contraseña = contraseña;
+        this.contrasenya = contrasenya;
         this.seguidores = seguidores;
         this.seguidos = seguidos;
         this.fotoPerfil = fotoPerfil;
         this.eventosApuntado = eventosApuntado;
         this.eventosParticipado = eventosParticipado;
         this.eventosCreados = eventosCreados;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNombre() {
@@ -45,20 +35,20 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     public String getTelefono() {
         return telefono;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public Date getFehchaNacimiento() {
-        return fehchaNacimiento;
-    }
-
-    public void setFehchaNacimiento(Date fehchaNacimiento) {
-        this.fehchaNacimiento = fehchaNacimiento;
     }
 
     public String getCorreo() {
@@ -69,12 +59,12 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasenya() {
+        return contrasenya;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasenya(String contrasenya) {
+        this.contrasenya = contrasenya;
     }
 
     public int getSeguidores() {
