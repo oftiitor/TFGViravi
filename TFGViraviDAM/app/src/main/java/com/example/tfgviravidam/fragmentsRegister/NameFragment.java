@@ -83,7 +83,7 @@ public class NameFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            String text = textView.getText().toString().trim();
+            String text = editTextNombre.getText().toString().trim();
             btn.setEnabled(!text.isEmpty());
         }
 
