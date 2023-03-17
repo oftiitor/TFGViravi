@@ -54,7 +54,7 @@ public class UsernameFragment extends Fragment {
 
         // EditText con los ID de los fragments
 
-        EditTextNombre = EditTextNombre.findViewById(R.id.txtName);
+        EditTextNombre = getActivity().findViewById(R.id.txtName);
         EditTextFecha = EditTextFecha.findViewById(R.id.txtBirth);
         EditTextTelefono = EditTextTelefono.findViewById(R.id.txtPhone);
         EditTextEmail = EditTextEmail.findViewById(R.id.txtMail);
