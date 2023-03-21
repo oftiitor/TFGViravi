@@ -49,7 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Escribe tu correo electronico"
+            android:text="Introduce tu correo electrónico:"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="24sp"
