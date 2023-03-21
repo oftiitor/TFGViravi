@@ -4,23 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViraviActivity">
+    tools:context=".ViraviActivity"
+    android:background="#F6F6F6">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Viravi"
-        android:fontFamily="@font/bebas_neue"
-        android:textSize="70dp"
-        android:layout_gravity="center_horizontal"
-        android:textColor="#323232"></TextView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:id="@+id/frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="83dp">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView2"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_graph_viravi" />
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_gravity="bottom"
-        android:backgroundTint="#323232"
+        android:backgroundTint="#1B1B1B"
         app:fabCradleMargin="10dp"
         app:fabCradleRoundedCornerRadius="10dp"
         app:fabCradleVerticalOffset="10dp"
@@ -36,8 +49,6 @@
             android:layout_marginRight="16dp"
             android:background="@drawable/transparent_background"
             app:itemIconTint="@color/white"
-            app:itemTextAppearanceActive="@drawable/item_enabled"
-            app:itemTextAppearanceInactive="@drawable/item_disabled"
             app:itemTextColor="@color/white"
             app:menu="@menu/bottom_nav" />
 
@@ -71,18 +82,4 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.85" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="646dp"
-        android:layout_marginTop="83dp"
-        android:id="@+id/frame_layout">
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView2"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="556dp"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph_viravi" />
-    </FrameLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
