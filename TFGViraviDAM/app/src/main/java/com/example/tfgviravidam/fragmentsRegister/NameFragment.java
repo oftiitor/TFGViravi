@@ -20,7 +20,6 @@ import com.example.tfgviravidam.R;
 
 public class NameFragment extends Fragment {
 
-
     Button btn;
     EditText editTextNombre;
     String nombre;

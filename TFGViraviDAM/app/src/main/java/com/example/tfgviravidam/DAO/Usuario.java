@@ -7,13 +7,13 @@ import java.util.Date;
 public class Usuario {
 
     private String nombre, telefono;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     private String correo, contrasenya;
     private int seguidores, seguidos;
     private File fotoPerfil;
     private ArrayList<Evento> eventosApuntado, eventosParticipado, eventosCreados;
 
-    public Usuario(String nombre, Date fechaNacimiento, String telefono, String correo, String contrasenya, int seguidores, int seguidos, File fotoPerfil, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
+    public Usuario(String nombre, String fechaNacimiento, String telefono, String correo, String contrasenya, int seguidores, int seguidos /*File fotoPerfil*/, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
@@ -21,7 +21,7 @@ public class Usuario {
         this.contrasenya = contrasenya;
         this.seguidores = seguidores;
         this.seguidos = seguidos;
-        this.fotoPerfil = fotoPerfil;
+        //this.fotoPerfil = fotoPerfil;
         this.eventosApuntado = eventosApuntado;
         this.eventosParticipado = eventosParticipado;
         this.eventosCreados = eventosCreados;
@@ -35,11 +35,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -83,13 +83,13 @@ public class Usuario {
         this.seguidos = seguidos;
     }
 
-    public File getFotoPerfil() {
+    /*public File getFotoPerfil() {
         return fotoPerfil;
     }
 
     public void setFotoPerfil(File fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
-    }
+    }*/
 
     public ArrayList<Evento> getEventosApuntado() {
         return eventosApuntado;
