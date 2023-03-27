@@ -44,7 +44,9 @@ public class UsernameFragment extends Fragment {
 
     EditText EditTextNombreUsuario;
 
-    //DatabaseReference mRootreference = ("https://tfgviravi-default-rtdb.europe-west1.firebasedatabase.app/");
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    DatabaseReference mRootreference = database.getReference("Usuarios");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -82,7 +84,7 @@ public class UsernameFragment extends Fragment {
                 Toast.makeText(getActivity(), user, Toast.LENGTH_SHORT).show();
 
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 Date fechaFin;
                 try {
                     fechaFin = new Date(sdf.parse(fecha).getTime());
@@ -106,7 +108,7 @@ public class UsernameFragment extends Fragment {
     private void registrarUsuarioFirebase(String nombre, Date fechaFin, String telefono, String email, String contrasenya, String nombreUsuario) {
 
         Usuario u = new Usuario(nombre, fechaFin, telefono, email, contrasenya,user);
-        //mRootreference.child("nombreUsuario").setValue(u);
+        mRootreference.child("nombreUsuario").setValue(u);
 
     }
 

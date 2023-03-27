@@ -71,7 +71,6 @@ public class ExploreFragment extends Fragment {
         eventos.add(new Evento("Viaje a Thailandia","Viajes", "Viajes", "12/03/2023", "25/03/2023"));
         Log.i("e",eventos.toString());
 
-
         adapter=new PopularAdapter(eventos);
         recyclerViewPopular.setAdapter(adapter);
 
