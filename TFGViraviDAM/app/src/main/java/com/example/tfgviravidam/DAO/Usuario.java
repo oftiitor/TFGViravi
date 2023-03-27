@@ -6,14 +6,23 @@ import java.util.Date;
 
 public class Usuario {
 
+    private String nombreUsuario;
     private String nombre, telefono;
-    private String fechaNacimiento;
+    private Date fechaNacimiento;
+
+
+
     private String correo, contrasenya;
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
     private int seguidores, seguidos;
     private File fotoPerfil;
     private ArrayList<Evento> eventosApuntado, eventosParticipado, eventosCreados;
 
-    public Usuario(String nombre, String fechaNacimiento, String telefono, String correo, String contrasenya, int seguidores, int seguidos /*File fotoPerfil*/, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
+    public Usuario(String nombre, Date fechaNacimiento, String telefono, String correo, String contrasenya, int seguidores, int seguidos /*File fotoPerfil*/, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
@@ -27,6 +36,19 @@ public class Usuario {
         this.eventosCreados = eventosCreados;
     }
 
+    public Usuario(String nombre, Date fechaNacimiento, String telefono, String correo, String contrasenya, String nombreUsuario) {
+        this.nombre = nombre;
+        this.fechaNacimiento = fechaNacimiento;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.contrasenya = contrasenya;
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -35,11 +57,11 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

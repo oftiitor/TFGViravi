@@ -1,6 +1,5 @@
 package com.example.tfgviravidam.Adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -34,48 +32,47 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
-        holder.categoriaNombre.setText(categoriasLista.get(position).getNombre());
+        holder.nombre.setText(categoriasLista.get(position).getNombre());
         String picUrl="";
-        String color="";
 
         switch (position){
             case 0:{
-                picUrl="copa_de_champan";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.category_background1));
+                picUrl="party";
                 break;
+
             }
             case 1:{
-                picUrl="museo_britanico";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.category_background2));
+                picUrl="museum";
                 break;
+
             }
             case 2:{
-                picUrl="parque";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.category_background3));
+                picUrl="park";
                 break;
+
             }
             case 3:{
-                picUrl="passport";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.category_background4));
+                picUrl="travel";
                 break;
+
             }
             case 4:{
-                picUrl="restaurant";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.category_background5));
+                picUrl="food";
                 break;
+
             }
             case 5:{
-                picUrl="restaurant";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.category_background6));
-
+                picUrl="sport";
+                break;
             }
-            int drawableResource= holder.itemView.getContext().getResources().getIdentifier(picUrl,"drawable", holder.itemView.getContext().getPackageName());
-
-            Glide.with(holder.itemView.getContext())
-                    .load(drawableResource).
-                    into(holder.categoriaFoto);
 
         }
+        int drawableResource= holder.itemView.getContext().getResources().getIdentifier(picUrl,"drawable", holder.itemView.getContext().getPackageName());
+
+        Glide.with(holder.itemView.getContext())
+                .load(drawableResource).
+                into(holder.categoriaFoto);
+
     }
 
     @Override
@@ -83,16 +80,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return categoriasLista.size() ;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView categoriaNombre;
-
-        TextView color;
-
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView categoriaFoto;
+
+        TextView nombre;
         ConstraintLayout mainLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            categoriaNombre = itemView.findViewById(R.id.title);
+            nombre = itemView.findViewById(R.id.Nombre);
             categoriaFoto = itemView.findViewById(R.id.pic);
             mainLayout = itemView.findViewById(R.id.mainLayout);
         }

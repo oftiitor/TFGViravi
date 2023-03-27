@@ -5,13 +5,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,36 +24,15 @@ import com.example.tfgviravidam.R;
 
 public class NameFragment extends Fragment {
 
+
     Button btn;
     EditText editTextNombre;
     String nombre;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String key, @NonNull Bundle bundle) {
-                nombre = bundle.getString("bundlekey");
-            }
-        });
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_name, container, false);
-        return view;
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         btn = view.findViewById(R.id.btnName);
         editTextNombre = view.findViewById(R.id.txtName);
         editTextNombre.requestFocus();
@@ -61,15 +44,25 @@ public class NameFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Bundle bundle = new Bundle();
-                bundle.putString("bundlekey", "nombre");
-                getParentFragmentManager().setFragmentResult("key", bundle);
+                Animation fuera = AnimationUtils.loadAnimation(getContext(),R.anim.to_left);
+                Animation dentro = AnimationUtils.loadAnimation(getContext(),R.anim.to_rigth);
 
-                Navigation.findNavController(view).navigate(R.id.action_nameFragment_to_birthdayFragment);
-                im.hideSoftInputFromWindow(editTextNombre.getWindowToken(), 0);
+                //RECOGEMOS LOS DATOS Y ABRIMOS EL NUEVO FRAGMENT
+                Bundle datosAEnviar = new Bundle();
+                datosAEnviar.putString("nombre",editTextNombre.getText().toString().trim());
+                Fragment fragmento = new BirthdayFragment();
+                fragmento.setArguments(datosAEnviar);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.to_left,R.anim.to_rigth);
+                fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
 
             }
         });
+        return view;
 
     }
 

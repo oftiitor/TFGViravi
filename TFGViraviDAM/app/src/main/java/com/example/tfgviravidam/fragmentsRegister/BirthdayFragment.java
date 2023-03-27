@@ -6,7 +6,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.text.Editable;
@@ -15,6 +17,8 @@ import android.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,21 +29,12 @@ import com.example.tfgviravidam.R;
 public class BirthdayFragment extends Fragment {
 
     Button btn;
-    TextView textView;
     EditText txtFechaNacimiento;
-    String nombre, fechaNacimiento;
-    Bundle bundle = new Bundle();
+    String nombre;
 
-    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        getParentFragmentManager().setFragmentResultListener("key", this, new FragmentResultListener() {
-            @Override
-            public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                nombre = bundle.getString("Nombre");
-            }
-        });
+        // We set the listener on the child fragmentManager
 
     }
 
@@ -48,37 +43,44 @@ public class BirthdayFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_birthday, container, false);
-        return view;
-
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         btn = view.findViewById(R.id.btnBirth);
-        textView = view.findViewById(R.id.txtBirth);
-        textView.requestFocus();
+        txtFechaNacimiento = view.findViewById(R.id.txtBirth);
+        txtFechaNacimiento.requestFocus();
         InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
 
-        textView.addTextChangedListener(textWatcher);
+        Bundle datosRecuperados = getArguments();
+        nombre = datosRecuperados.getString("nombre");
+
+        txtFechaNacimiento.addTextChangedListener(textWatcher);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle datosRecuperados = getArguments();
+                nombre = datosRecuperados.getString("nombre");
 
-                txtFechaNacimiento = view.findViewById(R.id.txtBirth);
-                fechaNacimiento = txtFechaNacimiento.getText().toString().trim();
+                Animation fuera = AnimationUtils.loadAnimation(getContext(),R.anim.to_left);
+                Animation dentro = AnimationUtils.loadAnimation(getContext(),R.anim.to_rigth);
 
-                bundle.putString("Nombre", nombre);
-                bundle.putString("Fecha Nacimiento", fechaNacimiento);
-                getParentFragmentManager().setFragmentResult("key", bundle);
 
-                Navigation.findNavController(view).navigate(R.id.action_birthdayFragment_to_phoneFragment);
-                im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+                Bundle datosAEnviar = new Bundle();
+                datosAEnviar.putString("nombre",nombre);
+                datosAEnviar.putString("fecha",txtFechaNacimiento.getText().toString().trim());
+                Fragment fragmento = new PhoneFragment();
+                fragmento.setArguments(datosAEnviar);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.to_left,R.anim.to_rigth);
+                fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+                /*Navigation.findNavController(view).navigate(R.id.action_birthdayFragment_to_phoneFragment);
+                im.hideSoftInputFromWindow(textView.getWindowToken(), 0);*/
 
             }
         });
+        return view;
 
     }
 
@@ -91,7 +93,7 @@ public class BirthdayFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            String text = textView.getText().toString().trim();
+            String text = txtFechaNacimiento.getText().toString().trim();
             btn.setEnabled(!text.isEmpty());
         }
 

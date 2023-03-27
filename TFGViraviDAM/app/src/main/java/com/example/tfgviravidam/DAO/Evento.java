@@ -7,14 +7,14 @@ import java.util.Date;
 public class Evento {
 
     private int id;
-    private String nombre, descripcion, categoria;
+    private String nombre, descripcion, categoria, fecha1,fecha2,foto;
     private File imagen;
     private String direccion;
     private boolean esFavorito;
-    private Date fechaInicio, fechaFin;
+    private String fechaInicio, fechaFin;
     private ArrayList<Usuario> usuariosApuntados, usuarioCreador;
 
-    public Evento(int id, String nombre, String descripcion,String categoria, File imagen, String direccion, boolean esFavorito, Date fechaInicio, Date fechaFin, ArrayList<Usuario> usuariosApuntados, ArrayList<Usuario> usuarioCreador) {
+    /*public Evento(int id, String nombre, String descripcion,String categoria, File imagen, String direccion, boolean esFavorito, Date fechaInicio, Date fechaFin, ArrayList<Usuario> usuariosApuntados, ArrayList<Usuario> usuarioCreador) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -25,6 +25,14 @@ public class Evento {
         this.fechaFin = fechaFin;
         this.usuariosApuntados = usuariosApuntados;
         this.usuarioCreador = usuarioCreador;
+        this.categoria = categoria;
+    }*/
+
+    public Evento(String nombre,String categoria, String imagen, String fechaInicio, String fechaFin) {
+        this.nombre = nombre;
+        this.fecha1 = fechaInicio;
+        this.fecha2 = fechaFin;
+        this.foto=imagen;
         this.categoria = categoria;
     }
 
@@ -84,19 +92,19 @@ public class Evento {
         this.esFavorito = esFavorito;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public String getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
     }
 
