@@ -27,14 +27,8 @@ public class PasswordFragment extends Fragment {
 
     Button btn;
     TextView textView;
-
     String nombre,fecha,phone,mail;
-
     EditText txtPass;
-
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,10 +52,8 @@ public class PasswordFragment extends Fragment {
                 phone = datosRecuperados.getString("phone");
                 mail = datosRecuperados.getString("mail");
 
-
                 Animation fuera = AnimationUtils.loadAnimation(getContext(),R.anim.to_left);
                 Animation dentro = AnimationUtils.loadAnimation(getContext(),R.anim.to_rigth);
-
 
                 Bundle datosAEnviar = new Bundle();
                 datosAEnviar.putString("nombre",nombre);

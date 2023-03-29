@@ -39,14 +39,12 @@ public class UsernameFragment extends Fragment {
 
     Button btn;
     TextView textView;
-
     String nombre,fecha,phone,mail,contra,user;
-
     EditText EditTextNombreUsuario;
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-
     DatabaseReference mRootreference = database.getReference("Usuarios");
+
+    /*mRootreference = FirebaseDatabase.getInstance().getReference("https://tfgviravi-default-rtdb.europe-west1.firebasedatabase.app/");*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
