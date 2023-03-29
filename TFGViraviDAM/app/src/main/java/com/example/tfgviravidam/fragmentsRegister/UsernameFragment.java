@@ -108,7 +108,7 @@ public class UsernameFragment extends Fragment {
     private void registrarUsuarioFirebase(String nombre, Date fechaFin, String telefono, String email, String contrasenya, String nombreUsuario) {
 
         Usuario u = new Usuario(nombre, fechaFin, telefono, email, contrasenya,user);
-        mRootreference.child("nombreUsuario").setValue(u);
+        mRootreference.child(nombreUsuario).setValue(u);
 
     }
 
