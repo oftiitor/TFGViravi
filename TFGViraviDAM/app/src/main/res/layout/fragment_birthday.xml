@@ -36,14 +36,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.12" />
+            app:layout_constraintGuide_percent="0.15" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline91"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.22" />
+            app:layout_constraintGuide_percent="0.26" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline92"
@@ -51,6 +51,48 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline99"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.16" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline100"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline101"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.39" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline102"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.56" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline103"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.61" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline104"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline93"
@@ -64,14 +106,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.32" />
+            app:layout_constraintGuide_percent="0.38" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline95"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.42" />
+            app:layout_constraintGuide_percent="0.48" />
 
         <TextView
             android:layout_width="0dp"
@@ -87,6 +129,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/textView9"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:fontFamily="@font/poppins_semibold"
@@ -99,22 +142,70 @@
             app:layout_constraintStart_toStartOf="@+id/guideline88"
             app:layout_constraintTop_toTopOf="@+id/guideline96" />
 
+        <TextView
+            android:id="@+id/txtError"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textAlignment="center"
+            android:textColor="#E36B6B"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline92"
+            app:layout_constraintStart_toStartOf="@+id/guideline88"
+            app:layout_constraintTop_toTopOf="@+id/guideline91" />
+
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtBirth"
+            android:id="@+id/txtYear"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/poppins_extrabold"
             android:gravity="center_horizontal"
-            android:hint="DD MM YYYY"
+            android:hint="YYYY"
             android:inputType="date"
             android:textColor="#B0000000"
             android:textColorHint="#99B8B8B8"
             android:textSize="30dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline91"
-            app:layout_constraintEnd_toStartOf="@+id/guideline92"
-            app:layout_constraintStart_toStartOf="@+id/guideline88"
+            app:layout_constraintEnd_toStartOf="@+id/guideline104"
+            app:layout_constraintStart_toStartOf="@+id/guideline103"
             app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtMonth"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_extrabold"
+            android:gravity="center_horizontal"
+            android:hint="MM"
+            android:inputType="date"
+            android:textColor="#B0000000"
+            android:textColorHint="#99B8B8B8"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline91"
+            app:layout_constraintEnd_toStartOf="@+id/guideline102"
+            app:layout_constraintStart_toStartOf="@+id/guideline101"
+            app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtDay"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_extrabold"
+            android:gravity="center_horizontal"
+            android:hint="DD"
+            android:inputType="date"
+            android:textColor="#B0000000"
+            android:textColorHint="#99B8B8B8"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline91"
+            app:layout_constraintEnd_toStartOf="@+id/guideline100"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline99"
+            app:layout_constraintTop_toTopOf="@+id/guideline90"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBirth"
@@ -140,7 +231,39 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.29" />
+            app:layout_constraintGuide_percent="0.33" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_extrabold"
+            android:gravity="center"
+            android:inputType="date"
+            android:textColor="#99B8B8B8"
+            android:textSize="30dp"
+            android:text="/"
+            app:layout_constraintBottom_toTopOf="@+id/guideline91"
+            app:layout_constraintEnd_toStartOf="@+id/guideline101"
+            app:layout_constraintStart_toStartOf="@+id/guideline100"
+            app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/poppins_extrabold"
+            android:gravity="center"
+            android:inputType="date"
+            android:textColor="#99B8B8B8"
+            android:textSize="30dp"
+            android:text="/"
+            app:layout_constraintBottom_toTopOf="@+id/guideline91"
+            app:layout_constraintEnd_toStartOf="@+id/guideline103"
+            app:layout_constraintStart_toStartOf="@+id/guideline102"
+            app:layout_constraintTop_toTopOf="@+id/guideline90" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

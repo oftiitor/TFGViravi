@@ -2,6 +2,7 @@ package com.example.tfgviravidam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -30,8 +31,8 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, AppActivity.class);
-                startActivity(intent);
-                finish();
+                Bundle b = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle();
+                startActivity(intent,b);
             }
         },1800);
     }

@@ -1,5 +1,6 @@
 package com.example.tfgviravidam.fragmentsRegister;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -22,10 +23,15 @@ import android.widget.TextView;
 
 import com.example.tfgviravidam.R;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PhoneFragment extends Fragment {
 
     Button btn;
     TextView textView;
+    TextView txtError;
+
 
     String nombre,fecha;
 
@@ -34,6 +40,7 @@ public class PhoneFragment extends Fragment {
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,6 +48,8 @@ public class PhoneFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_phone, container, false);
         btn = view.findViewById(R.id.btnPhone);
         textView = view.findViewById(R.id.txtPhone);
+        txtError=view.findViewById(R.id.txtError);
+
         textView.requestFocus();
         InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
@@ -67,7 +76,7 @@ public class PhoneFragment extends Fragment {
                 fragmento.setArguments(datosAEnviar);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.to_left,R.anim.to_rigth);
+                fragmentTransaction.setCustomAnimations(R.anim.to_rigth,R.anim.to_left);
                 fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -87,7 +96,16 @@ public class PhoneFragment extends Fragment {
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             String text = textView.getText().toString().trim();
-            btn.setEnabled(!text.isEmpty());
+
+            String regex = "^(\\+34|0034|34)?[6-9]\\d{8}$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(text);
+            boolean isMatch = matcher.matches();
+            if(isMatch){
+                btn.setEnabled(!text.isEmpty());
+            }else{
+                txtError.setText("Introduce un telefono valido");
+            }
         }
 
         @Override

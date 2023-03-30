@@ -3,17 +3,17 @@
     <translate
         android:fromXDelta="0%"
         android:fromYDelta="0%"
-        android:duration="2000"
+        android:duration="1000"
         />
     <alpha
         android:fromAlpha="0.1"
         android:toAlpha="1.0"
-        android:duration="2000"
+        android:duration="1000"
         />
     <scale
-        android:duration="2000"
-        android:fromXScale="0.4"
-        android:fromYScale="0.4"
+        android:duration="1000"
+        android:fromXScale=".9"
+        android:fromYScale=".9"
         android:pivotX="50%"
         android:pivotY="50%"
         android:toXScale="1"

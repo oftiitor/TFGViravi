@@ -1,5 +1,6 @@
 package com.example.tfgviravidam.fragmentsRegister;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -22,11 +23,16 @@ import android.widget.TextView;
 
 import com.example.tfgviravidam.R;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class MailFragment extends Fragment {
 
     Button btn;
     TextView textView;
+    TextView txtError;
+
 
     String nombre,fecha,phone;
 
@@ -35,6 +41,7 @@ public class MailFragment extends Fragment {
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,6 +54,8 @@ public class MailFragment extends Fragment {
         im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         textView.addTextChangedListener(textWatcher);
         txtMail=view.findViewById(R.id.txtMail);
+        txtError=view.findViewById(R.id.txtError);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +78,7 @@ public class MailFragment extends Fragment {
                 fragmento.setArguments(datosAEnviar);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.to_left,R.anim.to_rigth);
+                fragmentTransaction.setCustomAnimations(R.anim.to_rigth,R.anim.to_left);
                 fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -90,7 +99,15 @@ public class MailFragment extends Fragment {
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             String text = textView.getText().toString().trim();
-            btn.setEnabled(!text.isEmpty());
+            String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(text);
+            boolean isMatch = matcher.matches();
+            if(isMatch){
+                btn.setEnabled(!text.isEmpty());
+            }else{
+                txtError.setText("Introduce un mail valido");
+            }
         }
 
         @Override

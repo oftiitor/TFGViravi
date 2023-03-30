@@ -82,7 +82,7 @@ public class UsernameFragment extends Fragment {
                 Toast.makeText(getActivity(), user, Toast.LENGTH_SHORT).show();
 
 
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
                 Date fechaFin;
                 try {
                     fechaFin = new Date(sdf.parse(fecha).getTime());

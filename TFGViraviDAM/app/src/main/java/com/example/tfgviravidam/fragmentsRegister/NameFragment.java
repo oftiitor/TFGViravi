@@ -44,9 +44,6 @@ public class NameFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Animation fuera = AnimationUtils.loadAnimation(getContext(),R.anim.to_left);
-                Animation dentro = AnimationUtils.loadAnimation(getContext(),R.anim.to_rigth);
-
                 //RECOGEMOS LOS DATOS Y ABRIMOS EL NUEVO FRAGMENT
                 Bundle datosAEnviar = new Bundle();
                 datosAEnviar.putString("nombre",editTextNombre.getText().toString().trim());
@@ -54,7 +51,7 @@ public class NameFragment extends Fragment {
                 fragmento.setArguments(datosAEnviar);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.to_left,R.anim.to_rigth);
+                fragmentTransaction.setCustomAnimations(R.anim.to_rigth,R.anim.to_left);
                 fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
