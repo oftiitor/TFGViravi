@@ -62,7 +62,6 @@ public class BirthdayFragment extends Fragment {
                 Animation fuera = AnimationUtils.loadAnimation(getContext(),R.anim.to_left);
                 Animation dentro = AnimationUtils.loadAnimation(getContext(),R.anim.to_rigth);
 
-
                 Bundle datosAEnviar = new Bundle();
                 datosAEnviar.putString("nombre",nombre);
                 datosAEnviar.putString("fecha",txtFechaNacimiento.getText().toString().trim());

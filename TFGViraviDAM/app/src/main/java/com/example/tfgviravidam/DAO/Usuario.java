@@ -9,15 +9,10 @@ public class Usuario {
     private String nombreUsuario;
     private String nombre, telefono;
     private Date fechaNacimiento;
-
-
-
     private String correo, contrasenya;
-
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-
     private int seguidores, seguidos;
     private File fotoPerfil;
     private ArrayList<Evento> eventosApuntado, eventosParticipado, eventosCreados;

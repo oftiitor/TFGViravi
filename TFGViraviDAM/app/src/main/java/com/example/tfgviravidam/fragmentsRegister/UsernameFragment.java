@@ -39,7 +39,7 @@ public class UsernameFragment extends Fragment {
 
     Button btn;
     TextView textView;
-    String nombre,fecha,phone,mail,contra,user;
+    String nombre, fecha, phone, mail, contra, user;
     EditText EditTextNombreUsuario;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRootreference = database.getReference("Usuarios");
@@ -89,7 +89,6 @@ public class UsernameFragment extends Fragment {
                 } catch (ParseException e) {
                     throw new RuntimeException(e);
                 }
-
 
                 registrarUsuarioFirebase(nombre, fechaFin, phone, mail, contra, user);
 
