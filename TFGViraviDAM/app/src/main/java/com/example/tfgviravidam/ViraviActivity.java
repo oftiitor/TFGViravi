@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,12 +22,14 @@ public class ViraviActivity extends AppCompatActivity {
     ExploreFragment exploreFragment = new ExploreFragment();
     ProfileFragment profileFragment = new ProfileFragment();
     FloatingActionButton fab;
+    FloatingActionButton Create;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viravi);
         fab = findViewById(R.id.fab_home);
+        Create = findViewById(R.id.btnCreate);
         BottomNavigationView navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +37,15 @@ public class ViraviActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loadFragment(new HomeFragment());
             }
+        });
+
+        Create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ViraviActivity.this, NewEventActivity.class);
+                startActivity(intent);
+            }
+
         });
     }
 

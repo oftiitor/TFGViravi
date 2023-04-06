@@ -23,13 +23,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.basgeekball.awesomevalidation.AwesomeValidation;
-import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
 import com.example.tfgviravidam.ViraviActivity;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -47,8 +44,8 @@ public class UsernameFragment extends Fragment {
     EditText EditTextNombreUsuario;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRootreference = database.getReference("Usuarios");
-    FirebaseAuth firebaseAuth;
-    AwesomeValidation awesomeValidation;
+    //FirebaseAuth firebaseAuth;
+    //AwesomeValidation awesomeValidation;
 
     /*mRootreference = FirebaseDatabase.getInstance().getReference("https://tfgviravi-default-rtdb.europe-west1.firebasedatabase.app/");*/
 
@@ -65,10 +62,10 @@ public class UsernameFragment extends Fragment {
         textView.addTextChangedListener(textWatcher);
 
         // Authentication
-        firebaseAuth = FirebaseAuth.getInstance();
+        /*firebaseAuth = FirebaseAuth.getInstance();
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.txtMail, Patterns.EMAIL_ADDRESS, R.string.invalid_mail);
-        awesomeValidation.addValidation(this, R.id.txtPass, ".{6,}", R.string.invalid_password);
+        awesomeValidation.addValidation(this, R.id.txtPass, ".{6,}", R.string.invalid_password);*/
 
         // EditText con los ID de los fragments
         EditTextNombreUsuario = view.findViewById(R.id.txtUser);

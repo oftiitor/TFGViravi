@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, AppActivity.class);
+                Intent intent = new Intent(SplashActivity.this, ViraviActivity.class);
                 Bundle b = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle();
                 startActivity(intent,b);
             }

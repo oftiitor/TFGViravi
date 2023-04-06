@@ -34,7 +34,6 @@ public class ExploreFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_explore, container, false);
         recyclerViewCategory(view);
-        recyclerViewPopular(view);
 
 
         return view;
@@ -60,19 +59,5 @@ public class ExploreFragment extends Fragment {
         recyclerViewCategory.setAdapter(adapter);
 
     }
-    private void recyclerViewPopular(View view) {
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-        recyclerViewPopular=view.findViewById(R.id.viewPopuPlans);
-        recyclerViewPopular.setLayoutManager(linearLayoutManager);
 
-        ArrayList<Evento> eventos = new ArrayList<>();
-        eventos.add(new Evento("Viaje a Thailandia","Viajes", "Viajes", "12/03/2023", "25/03/2023"));
-        eventos.add(new Evento("Viaje a Thailandia","Viajes", "Viajes", "12/03/2023", "25/03/2023"));
-        eventos.add(new Evento("Viaje a Thailandia","Viajes", "Viajes", "12/03/2023", "25/03/2023"));
-        Log.i("e",eventos.toString());
-
-        adapter=new PopularAdapter(eventos);
-        recyclerViewPopular.setAdapter(adapter);
-
-    }
 }

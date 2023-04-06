@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".NewEventActivity"
+    android:backgroundTint="#FFFFFF"
+    android:background="@color/black">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="100dp"
+
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="15dp"
+            app:cardElevation="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/btnGaleria"
+                    android:layout_width="400dp"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/resource_default"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline108"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtName"
+                    android:layout_width="250dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:hint="Nombre"
+                    android:gravity="bottom"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="30dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline109"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnGaleria" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtDesc"
+                    android:layout_width="250dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="bottom"
+                    android:hint="Descripcion"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline110"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline109" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCity"
+                    android:layout_width="150dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="bottom"
+                    android:hint="Ciudad"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline112"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline111"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline110" />
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtCategory"
+                    android:layout_width="150dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="bottom"
+                    android:hint="Categoria"
+                    android:enabled="false"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline112"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline111"
+                    app:layout_constraintTop_toTopOf="@+id/guideline110" />
+
+                <TextView
+                    android:id="@+id/txtPulsar"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline112"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline111"
+                    app:layout_constraintTop_toTopOf="@+id/guideline110"/>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtFechaIn"
+                    android:layout_width="150dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="bottom"
+                    android:hint="Fecha Inicio"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline115"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline111"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline112" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtFechaFin"
+                    android:layout_width="150dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="bottom"
+                    android:hint="Fecha Fin"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline115"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline111"
+                    app:layout_constraintTop_toTopOf="@+id/guideline112" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnVolver"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/selector_btn_property"
+                    android:backgroundTint="@color/black"
+                    android:text="Volver"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17dp"
+                    app:cornerRadius="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline111"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline115"
+                    app:rippleColor="#CDCDCD" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCrear"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/selector_btn_property"
+                    android:backgroundTint="@color/black"
+                    android:enabled="false"
+                    android:text="Crear"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="17dp"
+                    app:cornerRadius="15dp"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/guideline111"
+                    app:layout_constraintTop_toTopOf="@+id/guideline115"
+                    app:rippleColor="#CDCDCD" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline108"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.3" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline109"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.44" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline110"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.64" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline115"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.88" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline112"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.76" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline111"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.5" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

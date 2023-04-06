@@ -3,4 +3,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="invalid_mail" tools:ignore="MissingTranslation">Introduzca un correo electrónico válido.</string>
     <string name="invalid_password" tools:ignore="MissingTranslation">La contraseña debe tener al menos 6 caracteres.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
