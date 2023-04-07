@@ -1,4 +1,4 @@
-package com.example.tfgviravidam;
+package com.example.tfgviravidam.fragmentsLogin;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.example.tfgviravidam.DAO.Evento;
+import com.example.tfgviravidam.R;
 
 public class LoginActivity extends AppCompatActivity {
     @Override

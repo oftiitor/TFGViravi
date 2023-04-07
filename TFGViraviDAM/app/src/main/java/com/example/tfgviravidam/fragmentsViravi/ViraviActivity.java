@@ -1,4 +1,4 @@
-package com.example.tfgviravidam;
+package com.example.tfgviravidam.fragmentsViravi;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,9 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.tfgviravidam.fragmentsViravi.ExploreFragment;
-import com.example.tfgviravidam.fragmentsViravi.HomeFragment;
-import com.example.tfgviravidam.fragmentsViravi.ProfileFragment;
+import com.example.tfgviravidam.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

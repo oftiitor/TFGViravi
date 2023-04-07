@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,17 +22,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tfgviravidam.DAO.Evento;
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
-import com.example.tfgviravidam.ViraviActivity;
+import com.example.tfgviravidam.fragmentsViravi.ViraviActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class UsernameFragment extends Fragment {
@@ -44,10 +43,9 @@ public class UsernameFragment extends Fragment {
     EditText EditTextNombreUsuario;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRootreference = database.getReference("Usuarios");
-    //FirebaseAuth firebaseAuth;
-    //AwesomeValidation awesomeValidation;
+    FirebaseAuth firebaseAuth;
+    AwesomeValidation awesomeValidation;
 
-    /*mRootreference = FirebaseDatabase.getInstance().getReference("https://tfgviravi-default-rtdb.europe-west1.firebasedatabase.app/");*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,9 +59,8 @@ public class UsernameFragment extends Fragment {
         im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         textView.addTextChangedListener(textWatcher);
 
-        // Authentication
-        /*firebaseAuth = FirebaseAuth.getInstance();
-        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        firebaseAuth = FirebaseAuth.getInstance();
+        /*awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.txtMail, Patterns.EMAIL_ADDRESS, R.string.invalid_mail);
         awesomeValidation.addValidation(this, R.id.txtPass, ".{6,}", R.string.invalid_password);*/
 
@@ -81,27 +78,27 @@ public class UsernameFragment extends Fragment {
                 contra = datosRecuperados.getString("pass");
                 user = EditTextNombreUsuario.getText().toString().trim();
 
-                Toast.makeText(getActivity(), nombre, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), fecha, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), phone, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), mail, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), contra, Toast.LENGTH_SHORT).show();
-                Toast.makeText(getActivity(), user, Toast.LENGTH_SHORT).show();
+                Animation fuera = AnimationUtils.loadAnimation(getContext(),R.anim.to_left);
+                Animation dentro = AnimationUtils.loadAnimation(getContext(),R.anim.to_rigth);
 
+                Bundle datosAEnviar = new Bundle();
+                datosAEnviar.putString("nombre",nombre);
+                datosAEnviar.putString("fecha",fecha);
+                datosAEnviar.putString("phone",phone);
+                datosAEnviar.putString("mail",mail);
+                datosAEnviar.putString("pass",contra);
+                datosAEnviar.putString("user",user);
 
-                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                Date fechaFin;
-                try {
-                    fechaFin = new Date(sdf.parse(fecha).getTime());
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-
-                registrarUsuarioFirebase(nombre, fechaFin, phone, mail, contra, user);
+                Fragment fragmento = new PhotoFragment();
+                fragmento.setArguments(datosAEnviar);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.to_rigth,R.anim.to_left);
+                fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
                 im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
-                Intent intent = new Intent(getActivity(), ViraviActivity.class);
-                startActivity(intent);
 
             }
         });
@@ -109,12 +106,7 @@ public class UsernameFragment extends Fragment {
         return view;
     }
 
-    private void registrarUsuarioFirebase(String nombre, Date fechaFin, String telefono, String email, String contrasenya, String nombreUsuario) {
 
-        Usuario u = new Usuario(nombre, fechaFin, telefono, email, contrasenya,user);
-        mRootreference.child(nombreUsuario).setValue(u);
-
-    }
 
     private TextWatcher textWatcher = new TextWatcher() {
         @Override

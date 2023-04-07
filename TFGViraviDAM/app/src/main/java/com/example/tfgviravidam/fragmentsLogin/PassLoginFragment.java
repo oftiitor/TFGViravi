@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,7 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.tfgviravidam.R;
-import com.example.tfgviravidam.ViraviActivity;
+import com.example.tfgviravidam.fragmentsViravi.ViraviActivity;
 
 public class PassLoginFragment extends Fragment {
 

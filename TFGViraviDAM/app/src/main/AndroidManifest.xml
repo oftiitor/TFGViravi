@@ -14,20 +14,20 @@
         android:theme="@style/Theme.TFGViraviDam"
         tools:targetApi="31">
         <activity
-            android:name=".NewEventActivity"
+            android:name=".fragmentsViravi.NewEventActivity"
             android:exported="false" />
         <activity
-            android:name=".ViraviActivity"
+            android:name=".fragmentsViravi.ViraviActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".AppActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".fragmentsRegister.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".fragmentsLogin.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"

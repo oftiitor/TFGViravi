@@ -1,6 +1,5 @@
-package com.example.tfgviravidam;
+package com.example.tfgviravidam.fragmentsViravi;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +13,6 @@ import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -22,12 +20,14 @@ import android.widget.LinearLayout;
 
 import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.DAO.Usuario;
+import com.example.tfgviravidam.R;
 import com.example.tfgviravidam.databinding.ActivityNewEventBinding;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class NewEventActivity extends AppCompatActivity {
 
@@ -35,6 +35,18 @@ public class NewEventActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRootreference = database.getReference("Eventos");
+
+    StorageReference storageReference;
+
+    String storage_path = "event/*";
+
+    private static final int COD_SEL_STORAGE = 200;
+    private static final int COD_SEL_IMAGE = 300;
+
+    private Uri image_url;
+    String photo = "photo";
+    String id;
+
 
 
     @Override
@@ -49,6 +61,8 @@ public class NewEventActivity extends AppCompatActivity {
         binding.txtCity.addTextChangedListener(textWatcherYear);
         binding.txtFechaIn.addTextChangedListener(textWatcherYear);
         binding.txtFechaFin.addTextChangedListener(textWatcherYear);
+
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         initListeners();
     }
@@ -76,7 +90,7 @@ public class NewEventActivity extends AppCompatActivity {
         binding.btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                crearEvento(binding.txtCategory.getText().toString(),binding.txtCity.getText().toString(),binding.txtDesc.getText().toString(),binding.txtFechaFin.getText().toString(),binding.txtFechaIn.getText().toString(),binding.txtName.getText().toString());
+                crearEvento(binding.txtName.getText().toString(),binding.txtDesc.getText().toString(),binding.txtFechaIn.getText().toString(),binding.txtFechaFin.getText().toString(),binding.txtCity.getText().toString(),binding.txtCategory.getText().toString());
             }
         });
     }
@@ -207,10 +221,10 @@ public class NewEventActivity extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
     }
-    private void crearEvento(String nombre,String descripcion, String ciudad, String categoria, String fechaIn, String fechaFin) {
+    private void crearEvento(String nombre,String descripcion, String fechaIn, String fechaFin, String ciudad, String categoria) {
         ArrayList<Usuario> usuariosApuntados = null;
 
-        Evento e = new Evento(nombre, descripcion, ciudad, categoria, fechaIn,fechaFin,usuariosApuntados);
+        Evento e = new Evento(nombre, descripcion, fechaIn, fechaFin, ciudad ,categoria,usuariosApuntados);
         mRootreference.child(nombre).setValue(e);
 
     }

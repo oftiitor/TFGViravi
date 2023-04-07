@@ -6,42 +6,31 @@ import java.util.Date;
 
 public class Usuario {
 
-    private String nombreUsuario;
-    private String nombre, telefono;
-    private Date fechaNacimiento;
-    private String correo, contrasenya;
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
+    private String nombreUsuario, nombre, telefono, fechaNacimiento, correo, contrasenya, fotoPerfil;
     private int seguidores, seguidos;
-    private File fotoPerfil;
     private ArrayList<Evento> eventosApuntado, eventosParticipado, eventosCreados;
 
-    public Usuario(String nombre, Date fechaNacimiento, String telefono, String correo, String contrasenya, int seguidores, int seguidos /*File fotoPerfil*/, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
+    public Usuario(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil, int seguidores, int seguidos, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
+        this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
-        this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
         this.correo = correo;
         this.contrasenya = contrasenya;
+        this.fotoPerfil = fotoPerfil;
         this.seguidores = seguidores;
         this.seguidos = seguidos;
-        //this.fotoPerfil = fotoPerfil;
         this.eventosApuntado = eventosApuntado;
         this.eventosParticipado = eventosParticipado;
         this.eventosCreados = eventosCreados;
     }
 
-    public Usuario(String nombre, Date fechaNacimiento, String telefono, String correo, String contrasenya, String nombreUsuario) {
-        this.nombre = nombre;
-        this.fechaNacimiento = fechaNacimiento;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.contrasenya = contrasenya;
-        this.nombreUsuario = nombreUsuario;
-    }
-
     public String getNombreUsuario() {
         return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 
     public String getNombre() {
@@ -52,20 +41,20 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
-    }
-
     public String getTelefono() {
         return telefono;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(String fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     public String getCorreo() {
@@ -84,6 +73,14 @@ public class Usuario {
         this.contrasenya = contrasenya;
     }
 
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
+
     public int getSeguidores() {
         return seguidores;
     }
@@ -99,14 +96,6 @@ public class Usuario {
     public void setSeguidos(int seguidos) {
         this.seguidos = seguidos;
     }
-
-    /*public File getFotoPerfil() {
-        return fotoPerfil;
-    }
-
-    public void setFotoPerfil(File fotoPerfil) {
-        this.fotoPerfil = fotoPerfil;
-    }*/
 
     public ArrayList<Evento> getEventosApuntado() {
         return eventosApuntado;
