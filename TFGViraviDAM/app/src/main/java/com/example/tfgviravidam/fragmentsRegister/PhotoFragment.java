@@ -83,20 +83,13 @@ public class PhotoFragment extends Fragment {
         if(resultCode==RESULT_OK){
             path=data.getData();
 
-            /*Bundle datosRecuperados = getArguments();
+            Bundle datosRecuperados = getArguments();
             nombre = datosRecuperados.getString("nombre");
             fecha = datosRecuperados.getString("fecha");
             phone = datosRecuperados.getString("phone");
             mail = datosRecuperados.getString("mail");
             contra = datosRecuperados.getString("pass");
-            user = datosRecuperados.getString("user");*/
-
-            nombre = "Victor";
-            fecha = "12/12/2002";
-            phone = "+34654433443";
-            mail = "victor@gmail.com";
-            contra = "123456Victor";
-            user = "Vctr13";
+            user = datosRecuperados.getString("user");
 
             Log.i("path",path.toString());
             binding.btnFoto.setImageURI(path);
@@ -135,6 +128,7 @@ public class PhotoFragment extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     mRootreference.child(firebaseAuth.getUid()).setValue(new Usuario(nombreUsuario,nombre,telefono,fechaNacimiento,correo,contrasenya,fotoPerfil,seguidores,seguidos,eventosApuntado,eventosParticipado,eventosCreados));
+                    startActivity(new Intent(getActivity(),ViraviActivity.class));
                 }else{
                     Log.i("SignIn",correo+"  "+contrasenya);
                     String errorcode = String.valueOf(((FirebaseAuthException) task.getException()));
