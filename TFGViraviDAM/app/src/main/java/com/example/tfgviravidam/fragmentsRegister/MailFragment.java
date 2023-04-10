@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -20,14 +21,20 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tfgviravidam.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class MailFragment extends Fragment {
+
+    private boolean comprobarmail;
 
     Button btn;
     TextView textView;
@@ -68,20 +75,25 @@ public class MailFragment extends Fragment {
                 Animation fuera = AnimationUtils.loadAnimation(getContext(),R.anim.to_left);
                 Animation dentro = AnimationUtils.loadAnimation(getContext(),R.anim.to_rigth);
 
+                verificarEmailEnFirebase(txtMail.getText().toString().trim());
 
-                Bundle datosAEnviar = new Bundle();
-                datosAEnviar.putString("nombre",nombre);
-                datosAEnviar.putString("fecha",fecha);
-                datosAEnviar.putString("phone",phone);
-                datosAEnviar.putString("mail",txtMail.getText().toString().trim());
-                Fragment fragmento = new PasswordFragment();
-                fragmento.setArguments(datosAEnviar);
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.to_rigth,R.anim.to_left);
-                fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                if (comprobarmail){
+                    Toast.makeText(getContext(),"ya existe feooooo",Toast.LENGTH_LONG);
+                } else{
+                    Bundle datosAEnviar = new Bundle();
+                    datosAEnviar.putString("nombre",nombre);
+                    datosAEnviar.putString("fecha",fecha);
+                    datosAEnviar.putString("phone",phone);
+                    datosAEnviar.putString("mail",txtMail.getText().toString().trim());
+                    Fragment fragmento = new PasswordFragment();
+                    fragmento.setArguments(datosAEnviar);
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setCustomAnimations(R.anim.to_rigth,R.anim.to_left);
+                    fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
 
                 //Navigation.findNavController(view).navigate(R.id.action_mailFragment_to_passwordFragment);
             }
@@ -115,4 +127,25 @@ public class MailFragment extends Fragment {
 
         }
     };
+
+    public void verificarEmailEnFirebase(String email){
+        FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                        if (task.isSuccessful()){
+                            boolean check =!task.getResult().getSignInMethods().isEmpty();
+                            if (check){
+                                Toast.makeText(getContext(),"El email esta en uso",Toast.LENGTH_LONG).show();
+                                comprobarmail = true;
+
+                            }
+                            else {
+                                Toast.makeText(getContext(),"El email no esta en uso, por ende el usuario no existe",Toast.LENGTH_LONG).show();
+                                comprobarmail = false;
+                            }
+                        }
+                    }
+                });
+    }
 }
