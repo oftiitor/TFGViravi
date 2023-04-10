@@ -95,14 +95,14 @@ public class PasswordFragment extends Fragment {
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             String text = textView.getText().toString().trim();
 
-            String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).+$";
+            String regex = "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(text);
             boolean isMatch = matcher.matches();
             if(isMatch){
                 btn.setEnabled(!text.isEmpty());
             }else{
-                txtError.setText("Introduce una contraseña valida");
+                txtError.setText("Introduce una contraseña válida");
             }
         }
 

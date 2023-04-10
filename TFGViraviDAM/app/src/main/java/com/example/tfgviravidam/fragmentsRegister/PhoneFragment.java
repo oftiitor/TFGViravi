@@ -97,14 +97,14 @@ public class PhoneFragment extends Fragment {
 
             String text = textView.getText().toString().trim();
 
-            String regex = "^(\\+34|0034|34)?[6-9]\\d{8}$";
+            String regex = "(\\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}";
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(text);
             boolean isMatch = matcher.matches();
             if(isMatch){
                 btn.setEnabled(!text.isEmpty());
             }else{
-                txtError.setText("Introduce un telefono valido");
+                txtError.setText("Introduce un teléfono valido");
             }
         }
 
