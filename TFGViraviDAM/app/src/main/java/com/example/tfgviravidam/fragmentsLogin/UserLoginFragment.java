@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.text.Editable;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.tfgviravidam.R;
+import com.example.tfgviravidam.fragmentsRegister.BirthdayFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +38,7 @@ public class UserLoginFragment extends Fragment {
         btn = view.findViewById(R.id.btnUserLogin);
         textView = view.findViewById(R.id.txtUserLogin);
         textView.requestFocus();
+        textView.setText("victor@gmail.com");
         InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
         textView.addTextChangedListener(textWatcher);
@@ -42,7 +46,17 @@ public class UserLoginFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_userLoginFragment_to_passLoginFragment);
+                Bundle datosAEnviar = new Bundle();
+                datosAEnviar.putString("nombre",textView.getText().toString().trim());
+                Fragment fragmento = new PassLoginFragment();
+                fragmento.setArguments(datosAEnviar);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.to_rigth,R.anim.to_left);
+                fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
                 im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
 
             }

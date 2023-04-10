@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_pragh"
-    app:startDestination="@id/nameFragment">
-
+    app:startDestination="@id/photoFragment">
+b
     <fragment
         android:id="@+id/nameFragment"
         android:name="com.example.tfgviravidam.fragmentsRegister.NameFragment"

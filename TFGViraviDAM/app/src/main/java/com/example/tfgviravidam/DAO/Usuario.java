@@ -25,6 +25,19 @@ public class Usuario {
         this.eventosCreados = eventosCreados;
     }
 
+    public Usuario(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil) {
+        this.nombreUsuario = nombreUsuario;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.fechaNacimiento = fechaNacimiento;
+        this.correo = correo;
+        this.contrasenya = contrasenya;
+        this.fotoPerfil = fotoPerfil;
+    }
+
+    public Usuario() {
+    }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
