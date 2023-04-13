@@ -36,7 +36,6 @@ public class UsernameFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     AwesomeValidation awesomeValidation;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

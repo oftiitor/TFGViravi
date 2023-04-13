@@ -115,11 +115,31 @@ public class MailFragment extends Fragment {
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(text);
             boolean isMatch = matcher.matches();
-            if(isMatch){
+
+            FirebaseAuth.getInstance().fetchSignInMethodsForEmail(textView.getText().toString().trim())
+                    .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                            if (task.isSuccessful()){
+                                boolean check =!task.getResult().getSignInMethods().isEmpty();
+                                if (check){
+                                    Toast.makeText(getContext(),"Ya existe este mail en uso",Toast.LENGTH_LONG).show();
+                                    comprobarmail = false;
+
+                                }
+                                else {
+                                    comprobarmail = true;
+                                }
+                            }
+                        }
+                    });
+
+            if(isMatch&&comprobarmail){
                 btn.setEnabled(!text.isEmpty());
             }else{
                 txtError.setText("Introduce un mail valido");
             }
+
         }
 
         @Override

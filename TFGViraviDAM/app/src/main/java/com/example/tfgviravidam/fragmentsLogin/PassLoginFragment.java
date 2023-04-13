@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -30,8 +31,8 @@ import com.google.firebase.auth.FirebaseAuthException;
 
 public class PassLoginFragment extends Fragment {
 
-    TextView textView;
-    String nombre;
+    TextView passwordUsuario;
+    String emailUsuario;
     Button btn;
 
     FirebaseAuth firebaseAuth;
@@ -41,51 +42,34 @@ public class PassLoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_pass_login, container, false);
         btn = view.findViewById(R.id.btnPassLogin);
-        textView = view.findViewById(R.id.txtPassLogin);
-        textView.requestFocus();
-        textView.setText("123456Victor");
-
+        passwordUsuario = view.findViewById(R.id.txtPassLogin);
+        passwordUsuario.requestFocus();
+        /*passwordUsuario.setText("123456Victor");*/
 
         firebaseAuth= FirebaseAuth.getInstance();
         InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-        textView.addTextChangedListener(textWatcher);
+        passwordUsuario.addTextChangedListener(textWatcher);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle datosRecuperados = getArguments();
-                nombre = datosRecuperados.getString("nombre");
 
-                firebaseAuth.signInWithEmailAndPassword(nombre,textView.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                Bundle datosRecuperados = getArguments();
+                emailUsuario = datosRecuperados.getString("email");
+
+                firebaseAuth.signInWithEmailAndPassword(emailUsuario,passwordUsuario.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             startActivity(new Intent(getActivity(), ViraviActivity.class));
-
                         }else{
-                            String errorcode = String.valueOf(((FirebaseAuthException) task.getException()));
-                            Toast.makeText(getContext(),errorcode,Toast.LENGTH_SHORT).show();
-                            Log.i("error",errorcode);
-
-                            Fragment fragmento = new UserLoginFragment();
-                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.setCustomAnimations(R.anim.to_left,R.anim.to_rigth);
-                            fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
-                            fragmentTransaction.addToBackStack(null);
-                            fragmentTransaction.commit();
-
-
+                            String errorCode = ((FirebaseAuthException) task.getException()).getErrorCode();
+                            dameToastDeError(errorCode);
                         }
                     }
                 });
-
-
-
-                Intent intent = new Intent(getActivity(), ViraviActivity.class);
-                startActivity(intent);
-                im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+                im.hideSoftInputFromWindow(passwordUsuario.getWindowToken(), 0);
             }
         });
         return view;
@@ -99,7 +83,7 @@ public class PassLoginFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            String text = textView.getText().toString().trim();
+            String text = passwordUsuario.getText().toString().trim();
             btn.setEnabled(!text.isEmpty());
         }
 
@@ -108,4 +92,100 @@ public class PassLoginFragment extends Fragment {
 
         }
     };
+
+    private void dameToastDeError(String error) {
+
+        switch (error) {
+
+            case "ERROR_INVALID_CUSTOM_TOKEN":
+                Toast.makeText(getActivity(), "El formato del token personalizado es incorrecto. Por favor revise la documentación", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_CUSTOM_TOKEN_MISMATCH":
+                Toast.makeText(getActivity(), "El token personalizado corresponde a una audiencia diferente.", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_INVALID_CREDENTIAL":
+                Toast.makeText(getActivity(), "La credencial de autenticación proporcionada tiene un formato incorrecto o ha caducado.", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_INVALID_EMAIL":
+                Toast.makeText(getActivity(), "La dirección de correo electrónico está mal formateada.", Toast.LENGTH_LONG).show();
+                error("La dirección de correo electrónico está mal formateada.");
+                break;
+
+            case "ERROR_WRONG_PASSWORD":
+                Toast.makeText(getActivity(), "La contraseña no es válida o el usuario no tiene contraseña.", Toast.LENGTH_LONG).show();
+                passwordUsuario.setError("La contraseña es incorrecta ");
+                passwordUsuario.requestFocus();
+                passwordUsuario.setText("");
+                break;
+
+            case "ERROR_USER_MISMATCH":
+                Toast.makeText(getActivity(), "Las credenciales proporcionadas no corresponden al usuario que inició sesión anteriormente...", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_REQUIRES_RECENT_LOGIN":
+                Toast.makeText(getActivity(),"Esta operación es sensible y requiere autenticación reciente. Inicie sesión nuevamente antes de volver a intentar esta solicitud.", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL":
+                Toast.makeText(getActivity(), "Ya existe una cuenta con la misma dirección de correo electrónico pero diferentes credenciales de inicio de sesión. Inicie sesión con un proveedor asociado a esta dirección de correo electrónico.", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_EMAIL_ALREADY_IN_USE":
+                Toast.makeText(getActivity(), "La dirección de correo electrónico ya está siendo utilizada por otra cuenta...", Toast.LENGTH_LONG).show();
+                error("La dirección de correo electrónico ya está siendo utilizada por otra cuenta...");
+                break;
+
+            case "ERROR_CREDENTIAL_ALREADY_IN_USE":
+                Toast.makeText(getActivity(), "Esta credencial ya está asociada con una cuenta de usuario diferente.", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_USER_DISABLED":
+                Toast.makeText(getActivity(), "La cuenta de usuario ha sido inhabilitada por un administrador..", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_USER_TOKEN_EXPIRED":
+                Toast.makeText(getActivity(), "La credencial del usuario ya no es válida. El usuario debe iniciar sesión nuevamente.", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_USER_NOT_FOUND":
+                Toast.makeText(getActivity(), "No hay ningún registro de usuario que corresponda a este identificador. Es posible que se haya eliminado al usuario.", Toast.LENGTH_LONG).show();
+                error("No hay ningún registro de usuario que corresponda a este identificador. Es posible que se haya eliminado al usuario.");
+                break;
+
+            case "ERROR_INVALID_USER_TOKEN":
+                Toast.makeText(getActivity(), "La credencial del usuario ya no es válida. El usuario debe iniciar sesión nuevamente.", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_OPERATION_NOT_ALLOWED":
+                Toast.makeText(getActivity(), "Esta operación no está permitida. Debes habilitar este servicio en la consola.", Toast.LENGTH_LONG).show();
+                break;
+
+            case "ERROR_WEAK_PASSWORD":
+                Toast.makeText(getActivity(), "La contraseña proporcionada no es válida..", Toast.LENGTH_LONG).show();
+                passwordUsuario.setError("La contraseña no es válida, debe tener al menos 6 caracteres");
+                passwordUsuario.requestFocus();
+                break;
+
+        }
+
+    }
+
+    public void error(String error) {
+
+        Fragment fragmento = new UserLoginFragment();
+        Bundle datosAEnviar = new Bundle();
+        datosAEnviar.putString("emailerror", error);
+        fragmento.setArguments(datosAEnviar);
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.to_rigth,R.anim.to_left);
+        fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
+    }
+
 }

@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(actividad);
     }
 
-    private void dameToastdeerror(String error) {
+    private void dameToastDeError(String error) {
 
         switch (error) {
 
