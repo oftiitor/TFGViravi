@@ -33,7 +33,6 @@ public class UserLoginFragment extends Fragment {
 
     TextView textView;
     Button btn;
-    String error ="";
     private boolean comprobarmail;
 
     @Override
@@ -109,7 +108,9 @@ public class UserLoginFragment extends Fragment {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-
+            if(!textView.getText().toString().isEmpty()) {
+                btn.setEnabled(true);
+            }
 
         }
 
