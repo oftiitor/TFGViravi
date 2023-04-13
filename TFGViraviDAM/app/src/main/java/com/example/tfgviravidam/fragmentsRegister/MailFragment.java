@@ -115,7 +115,26 @@ public class MailFragment extends Fragment {
             Pattern pattern = Pattern.compile(regex);
             Matcher matcher = pattern.matcher(text);
             boolean isMatch = matcher.matches();
-            if(isMatch){
+
+            FirebaseAuth.getInstance().fetchSignInMethodsForEmail(textView.getText().toString().trim())
+                    .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
+                            if (task.isSuccessful()){
+                                boolean check =!task.getResult().getSignInMethods().isEmpty();
+                                if (check){
+                                    Toast.makeText(getContext(),"Ya existe este mail en uso",Toast.LENGTH_LONG).show();
+                                    comprobarmail = false;
+
+                                }
+                                else {
+                                    comprobarmail = true;
+                                }
+                            }
+                        }
+                    });
+
+            if(isMatch&&comprobarmail){
                 btn.setEnabled(!text.isEmpty());
             }else{
                 txtError.setText("Introduce un mail valido");
@@ -129,23 +148,6 @@ public class MailFragment extends Fragment {
     };
 
     public void verificarEmailEnFirebase(String email){
-        FirebaseAuth.getInstance().fetchSignInMethodsForEmail(email)
-                .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                        if (task.isSuccessful()){
-                            boolean check =!task.getResult().getSignInMethods().isEmpty();
-                            if (check){
-                                Toast.makeText(getContext(),"El email esta en uso",Toast.LENGTH_LONG).show();
-                                comprobarmail = true;
 
-                            }
-                            else {
-                                Toast.makeText(getContext(),"El email no esta en uso, por ende el usuario no existe",Toast.LENGTH_LONG).show();
-                                comprobarmail = false;
-                            }
-                        }
-                    }
-                });
     }
 }

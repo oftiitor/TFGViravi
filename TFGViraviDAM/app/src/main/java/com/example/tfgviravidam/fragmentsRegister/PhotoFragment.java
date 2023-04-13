@@ -102,8 +102,6 @@ public class PhotoFragment extends Fragment {
                     reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-
-
                             ArrayList<Evento> eventosApuntado = null;
                             ArrayList<Evento> eventosParticipado = null;
                             ArrayList<Evento> eventosCreado = null;
@@ -116,28 +114,27 @@ public class PhotoFragment extends Fragment {
                 }
             });
         }
-
     }
+
     private void registrarUsuarioFirebase(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil, int seguidores, int seguidos, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
-
-        firebaseAuth.createUserWithEmailAndPassword(correo,contrasenya);
-        Log.i("Create",correo+"  "+contrasenya);
-
-        firebaseAuth.signInWithEmailAndPassword(correo,contrasenya).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        firebaseAuth.createUserWithEmailAndPassword(correo,contrasenya).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    mRootreference.child(firebaseAuth.getUid()).setValue(new Usuario(nombreUsuario,nombre,telefono,fechaNacimiento,correo,contrasenya,fotoPerfil,seguidores,seguidos,eventosApuntado,eventosParticipado,eventosCreados));
-                    startActivity(new Intent(getActivity(),ViraviActivity.class));
-                }else{
-                    Log.i("SignIn",correo+"  "+contrasenya);
-                    String errorcode = String.valueOf(((FirebaseAuthException) task.getException()));
-                    Toast.makeText(getContext(),errorcode,Toast.LENGTH_SHORT).show();
-                    Log.i("error",errorcode);
-                }
+                firebaseAuth.signInWithEmailAndPassword(correo,contrasenya).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            mRootreference.child(firebaseAuth.getUid()).setValue(new Usuario(nombreUsuario,nombre,telefono,fechaNacimiento,correo,contrasenya,fotoPerfil,seguidores,seguidos,eventosApuntado,eventosParticipado,eventosCreados));
+                            startActivity(new Intent(getActivity(),ViraviActivity.class));
+                        }else{
+                            Log.i("SignIn",correo+"  "+contrasenya);
+                            String errorcode = String.valueOf(((FirebaseAuthException) task.getException()));
+                            Toast.makeText(getContext(),errorcode,Toast.LENGTH_SHORT).show();
+                            Log.i("error",errorcode);
+                        }
+                    }
+                });
             }
         });
-
-
-        }
+    }
 }
