@@ -43,6 +43,7 @@ public class UserLoginFragment extends Fragment {
         btn = view.findViewById(R.id.btnUserLogin);
         textView = view.findViewById(R.id.txtUserLogin);
         textView.requestFocus();
+        textView.setText("raularribasc@gmail.com");
         /*textView.setText("victor@gmail.com");*/
         InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         im.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);

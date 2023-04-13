@@ -1,5 +1,6 @@
 package com.example.tfgviravidam.fragmentsViravi;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,21 +24,32 @@ import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
 import com.example.tfgviravidam.databinding.ActivityNewEventBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class NewEventActivity extends AppCompatActivity {
 
     private ActivityNewEventBinding binding;
+    private String nombreUsuario = "";
+
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRootreference = database.getReference("Eventos");
 
-    StorageReference storageReference;
+    String user;
+    FirebaseAuth firebaseAuth;
+    FirebaseStorage storage;
 
     String storage_path = "event/*";
 
@@ -61,9 +74,9 @@ public class NewEventActivity extends AppCompatActivity {
         binding.txtCity.addTextChangedListener(textWatcherYear);
         binding.txtFechaIn.addTextChangedListener(textWatcherYear);
         binding.txtFechaFin.addTextChangedListener(textWatcherYear);
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        storageReference = FirebaseStorage.getInstance().getReference();
-
+        storage = FirebaseStorage.getInstance();
         initListeners();
     }
 
@@ -91,6 +104,7 @@ public class NewEventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 crearEvento(binding.txtName.getText().toString(),binding.txtDesc.getText().toString(),binding.txtFechaIn.getText().toString(),binding.txtFechaFin.getText().toString(),binding.txtCity.getText().toString(),binding.txtCategory.getText().toString());
+                Log.i("dasd","aaaaa");
             }
         });
     }
@@ -107,6 +121,18 @@ public class NewEventActivity extends AppCompatActivity {
         if(resultCode==RESULT_OK){
             Uri path=data.getData();
             binding.btnGaleria.setImageURI(path);
+            final StorageReference reference = storage.getReference().child("event/"+path.toString());
+            reference.putFile(path).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            image_url=uri;
+                        }
+                    });
+                }
+            });
         }
 
     }
@@ -222,9 +248,28 @@ public class NewEventActivity extends AppCompatActivity {
 
     }
     private void crearEvento(String nombre,String descripcion, String fechaIn, String fechaFin, String ciudad, String categoria) {
-        ArrayList<Usuario> usuariosApuntados = null;
+        ArrayList<String> usuariosApuntados = null;
+        mRootreference= FirebaseDatabase.getInstance().getReference("Events");
+        mRootreference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
 
-        Evento e = new Evento(nombre, descripcion, fechaIn, fechaFin, ciudad ,categoria,usuariosApuntados);
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    Usuario user = snapshot.getValue(Usuario.class);
+                    nombreUsuario =user.getNombreUsuario();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        Evento e = new Evento(nombre, descripcion, fechaIn, fechaFin,nombreUsuario, ciudad ,categoria,image_url.toString(),usuariosApuntados);
         mRootreference.child(nombre).setValue(e);
 
     }

@@ -6,39 +6,9 @@ import java.util.Date;
 
 public class Evento {
 
-    private String nombre, descripcion, fechaInicio, fechaFin, usuarioCreador, ciudad, categoria;
-    private File imagen;
-    private ArrayList<Usuario> usuariosApuntados;
+    private String nombre, descripcion, fechaInicio, fechaFin, usuarioCreador, ciudad, categoria,imagen;
+    private ArrayList<String> usuariosApuntados;
 
-
-    public Evento(String nombre, String descripcion, String fechaInicio, String fechaFin, String ciudad, String categoria, ArrayList<Usuario> usuariosApuntados) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.ciudad = ciudad;
-        this.categoria = categoria;
-        this.usuariosApuntados = usuariosApuntados;
-    }
-
-    public Evento(String nombre, String descripcion, String fechaInicio, String fechaFin, String usuarioCreador, String ciudad, File imagen, ArrayList<Usuario> usuariosApuntados) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.usuarioCreador = usuarioCreador;
-        this.ciudad = ciudad;
-        this.imagen = imagen;
-        this.usuariosApuntados = usuariosApuntados;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
 
     public String getNombre() {
         return nombre;
@@ -88,19 +58,41 @@ public class Evento {
         this.ciudad = ciudad;
     }
 
-    public File getImagen() {
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(File imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
-    public ArrayList<Usuario> getUsuariosApuntados() {
+    public ArrayList<String> getUsuariosApuntados() {
         return usuariosApuntados;
     }
 
-    public void setUsuariosApuntados(ArrayList<Usuario> usuariosApuntados) {
+    public void setUsuariosApuntados(ArrayList<String> usuariosApuntados) {
         this.usuariosApuntados = usuariosApuntados;
+    }
+
+    public Evento(String nombre, String descripcion, String fechaInicio, String fechaFin, String usuarioCreador, String ciudad, String categoria, String imagen, ArrayList<String> usuariosApuntados) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.usuarioCreador = usuarioCreador;
+        this.ciudad = ciudad;
+        this.categoria = categoria;
+        this.imagen = imagen;
+        this.usuariosApuntados = usuariosApuntados;
+
+
     }
 }

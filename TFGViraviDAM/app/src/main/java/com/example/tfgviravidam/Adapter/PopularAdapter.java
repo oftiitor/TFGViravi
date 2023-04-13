@@ -17,70 +17,67 @@ import com.example.tfgviravidam.R;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.ViewHolder> {
-    ArrayList<Evento> eventosList;
+public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoViewHolder> {
+    private List<Evento> eventos;
 
-    public PopularAdapter(ArrayList<Evento> eventos) {
-        this.eventosList=eventos;
+    public PopularAdapter(List<Evento> eventos) {
+        this.eventos = eventos;
     }
 
     @NonNull
     @Override
-    public PopularAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_eventos,parent,false);
-        return new PopularAdapter.ViewHolder(inflate);
+    public EventoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflar el archivo XML de la vista de cada elemento
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.viewholder_eventos, parent, false);
+        return new EventoViewHolder(itemView);
     }
 
-    public void onBindViewHolder(@NonNull PopularAdapter.ViewHolder holder, int position) {
-        holder.nombre.setText(eventosList.get(position).getNombre());
-        holder.categoria.setText(eventosList.get(position).getCategoria());
-
-
-        String picUrl="";
-
-        switch (position){
-            case 0:{
-                picUrl="a_ko_hong_a";
-                break;
-
-            }
-            case 1:{
-                picUrl="a_ko_hong_a";
-                break;
-
-            } case 2:{
-                picUrl="a_ko_hong_a";
-                break;
-
-            }
-
-        }
-        int drawableResource= holder.itemView.getContext().getResources().getIdentifier(picUrl,"drawable", holder.itemView.getContext().getPackageName());
-
-        /*Glide.with(holder.itemView.getContext())
-                .load(drawableResource).
-                into(holder.Foto);*/
-
+    @Override
+    public void onBindViewHolder(@NonNull EventoViewHolder holder, int position) {
+        // Obtener el evento correspondiente a esta posición
+        Evento evento = eventos.get(position);
+        holder.nombreEventoTextView.setText(evento.getNombre());
+        holder.descripcionEventoTextView.setText(evento.getDescripcion());
+        holder.usuarioCreadorTextView.setText(evento.getUsuarioCreador());
+        // Cargar la imagen del evento usando Glide o alguna otra librería de carga de imágenes
+        Glide.with(holder.itemView.getContext())
+                .load(evento.getImagen())
+                .into(holder.fotoEventoImageView);
+        holder.ciudadEventoTextView.setText(evento.getCiudad());
+        holder.categoriaEventoTextView.setText(evento.getCategoria());
+        holder.fechaInicioTextView.setText(evento.getFechaInicio());
+        holder.fechaFinTextView.setText(evento.getFechaFin());
+        holder.usuariosApuntadosTextView.setText(String.valueOf(evento.getUsuariosApuntados()));
     }
 
     @Override
     public int getItemCount() {
-        return eventosList.size() ;
+        return eventos.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView Foto;
+    // Clase interna que representa la vista de cada elemento del RecyclerView
+    public static class EventoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nombre, categoria, Fechas;
-        ConstraintLayout mainLayout;
-        public ViewHolder(@NonNull View itemView) {
+        public TextView nombreEventoTextView;
+        public TextView descripcionEventoTextView;
+        public TextView usuarioCreadorTextView;
+        public ImageView fotoEventoImageView;
+        public TextView ciudadEventoTextView;
+        public TextView categoriaEventoTextView;
+        public TextView fechaInicioTextView;
+        public TextView fechaFinTextView;
+        public TextView usuariosApuntadosTextView;
+
+        public EventoViewHolder(View itemView) {
             super(itemView);
-            nombre = itemView.findViewById(R.id.Nombre);
-            categoria = itemView.findViewById(R.id.Categoria);
-            Fechas = itemView.findViewById(R.id.Fechas);
-            Foto = itemView.findViewById(R.id.pic);
-            mainLayout = itemView.findViewById(R.id.mainLayout);
+            nombreEventoTextView = itemView.findViewById(R.id.Nombre);
+            fotoEventoImageView = itemView.findViewById(R.id.Foto);
+            categoriaEventoTextView = itemView.findViewById(R.id.Categoria);
+            fechaInicioTextView = itemView.findViewById(R.id.Fechas);
+            fechaFinTextView = itemView.findViewById(R.id.Fechas);
         }
     }
 }

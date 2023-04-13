@@ -124,17 +124,17 @@ public class MailFragment extends Fragment {
                                 boolean check =!task.getResult().getSignInMethods().isEmpty();
                                 if (check){
                                     Toast.makeText(getContext(),"Ya existe este mail en uso",Toast.LENGTH_LONG).show();
-                                    comprobarmail = false;
+                                    comprobarmail = true;
 
                                 }
                                 else {
-                                    comprobarmail = true;
+                                    comprobarmail = false;
                                 }
                             }
                         }
                     });
 
-            if(isMatch&&comprobarmail){
+            if(isMatch&&!comprobarmail){
                 btn.setEnabled(!text.isEmpty());
             }else{
                 txtError.setText("Introduce un mail valido");

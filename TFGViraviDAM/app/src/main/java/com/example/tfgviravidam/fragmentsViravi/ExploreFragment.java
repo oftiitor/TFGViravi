@@ -1,6 +1,5 @@
 package com.example.tfgviravidam.fragmentsViravi;
 
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.example.tfgviravidam.Adapter.CategoryAdapter;
 import com.example.tfgviravidam.Adapter.PopularAdapter;
@@ -22,7 +20,6 @@ import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
 import com.example.tfgviravidam.databinding.FragmentExploreBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ExploreFragment extends Fragment {
@@ -42,6 +40,8 @@ public class ExploreFragment extends Fragment {
     private  String user;
 
     private RecyclerView recyclerViewCategory;
+    private RecyclerView recyclerViewPopularplans;
+
     FirebaseAuth firebaseAuth;
     DatabaseReference firebaseDatabase;
 
@@ -54,8 +54,9 @@ public class ExploreFragment extends Fragment {
         binding = FragmentExploreBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         recyclerViewCategory = view.findViewById(R.id.viewCategory);
-
+        recyclerViewPopularplans = view.findViewById(R.id.viewPopuPlans);
         recyclerViewCategory(view);
+        recyclerViewPopular(view);
 
         return view;
     }
@@ -113,6 +114,51 @@ public class ExploreFragment extends Fragment {
         adapter=new CategoryAdapter(categoria);
         binding.viewCategory.setAdapter(adapter);
 
+    }
+    private void recyclerViewPopular(View view) {
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        recyclerViewPopularplans.setLayoutManager(linearLayoutManager);
+
+        List<Evento> eventos = recogerEventos();
+
+        PopularAdapter adapter1=new PopularAdapter(eventos);
+        binding.viewPopuPlans.setAdapter(adapter1);
+
+    }
+
+    private List<Evento> recogerEventos(){
+        DatabaseReference eventosRef = FirebaseDatabase.getInstance().getReference().child("Eventos");
+
+        List<Evento> eventos = new ArrayList<>();
+
+        eventosRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot eventoSnapshot : dataSnapshot.getChildren()) {
+                    String nombre = eventoSnapshot.child("nombre").getValue(String.class);
+                    String descripcion = eventoSnapshot.child("descripcion").getValue(String.class);
+                    String usuarioCreador = eventoSnapshot.child("usuarioCreador").getValue(String.class);
+                    String foto = eventoSnapshot.child("foto").getValue(String.class);
+                    String ciudad = eventoSnapshot.child("ciudad").getValue(String.class);
+                    String categoria = eventoSnapshot.child("categoria").getValue(String.class);
+                    String fechaInicio = eventoSnapshot.child("fechaInicio").getValue(String.class);
+                    String fechaFin = eventoSnapshot.child("fechaFin").getValue(String.class);
+
+                    ArrayList<String> usuariosApuntados = new ArrayList<>();
+                    for (DataSnapshot usuarioSnapshot : eventoSnapshot.child("usuariosApuntados").getChildren()) {
+                        usuariosApuntados.add(usuarioSnapshot.getKey());
+                    }
+
+                    Evento evento = new Evento(nombre, descripcion, usuarioCreador, foto, ciudad, categoria, fechaInicio, fechaFin, usuariosApuntados);
+                    eventos.add(evento);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+        return eventos;
     }
 
 }
