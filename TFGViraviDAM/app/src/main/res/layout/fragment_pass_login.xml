@@ -93,7 +93,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/selector_btn_property"
             android:backgroundTint="@color/black"
-            android:enabled="false"
+            android:enabled="true"
             android:text="Continuar"
             android:textAllCaps="false"
             android:textColor="@color/white"

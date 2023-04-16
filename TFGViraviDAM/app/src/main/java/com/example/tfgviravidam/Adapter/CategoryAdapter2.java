@@ -16,40 +16,38 @@ import com.example.tfgviravidam.R;
 
 import java.util.ArrayList;
 
-public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
-    ArrayList<Categorias>categoriasLista;
+public class CategoryAdapter2 extends RecyclerView.Adapter<CategoryAdapter2.ViewHolder2>  {
+    ArrayList<Categorias> categoriasLista;
 
-    public CategoryAdapter(ArrayList<Categorias> categoria) {
+    public CategoryAdapter2(ArrayList<Categorias> categoria) {
         this.categoriasLista=categoria;
     }
 
     @NonNull
-    @Override
-    public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CategoryAdapter2.ViewHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category,parent,false);
-        return new ViewHolder(inflate);
+        return new CategoryAdapter2.ViewHolder2(inflate);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryAdapter2.ViewHolder2 holder, int position) {
         holder.nombre.setText(categoriasLista.get(position).getNombre());
         String picUrl="";
 
         switch (position){
             case 0:{
-                picUrl="party";
+                picUrl="travel";
                 break;
 
             }
             case 1:{
-                picUrl="museum";
+                picUrl="food";
                 break;
 
             }
             case 2:{
-                picUrl="park";
+                picUrl="sport";
                 break;
-
             }
 
         }
@@ -58,20 +56,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         Glide.with(holder.itemView.getContext())
                 .load(drawableResource).
                 into(holder.categoriaFoto);
-
     }
 
-    @Override
+
     public int getItemCount() {
         return categoriasLista.size() ;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder2 extends RecyclerView.ViewHolder{
         ImageView categoriaFoto;
 
         TextView nombre;
         ConstraintLayout mainLayout;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder2(@NonNull View itemView) {
             super(itemView);
             nombre = itemView.findViewById(R.id.Nombre);
             categoriaFoto = itemView.findViewById(R.id.pic);

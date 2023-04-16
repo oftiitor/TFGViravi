@@ -33,9 +33,9 @@
         android:id="@+id/bottomAppBar"
         android:layout_width="match_parent"
         android:windowSoftInputMode="adjustNothing"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_gravity="bottom"
-        android:backgroundTint="#1B1B1B"
+        android:backgroundTint="#FFFFFF"
         app:fabCradleMargin="10dp"
         app:fabCradleRoundedCornerRadius="10dp"
         app:fabCradleVerticalOffset="10dp"
@@ -51,36 +51,17 @@
             android:windowSoftInputMode="adjustNothing"
             android:layout_marginRight="16dp"
             android:background="@drawable/transparent_background"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white"
+            app:itemIconTint="@color/dark_black"
+            app:itemTextColor="@color/dark_black"
             app:menu="@menu/bottom_nav" />
 
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/purple_700"
-        android:src="@drawable/home"
-        app:layout_anchor="@id/bottomAppBar"
-        />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btnCreate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:backgroundTint="@color/purple_700"
-            android:src="@drawable/mas"
-            android:layout_marginRight="32dp"
-            android:layout_marginBottom="100dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.Guideline

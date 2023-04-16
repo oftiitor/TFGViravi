@@ -38,6 +38,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+
 public class NewEventActivity extends AppCompatActivity {
 
     private ActivityNewEventBinding binding;
@@ -248,8 +249,8 @@ public class NewEventActivity extends AppCompatActivity {
 
     }
     private void crearEvento(String nombre,String descripcion, String fechaIn, String fechaFin, String ciudad, String categoria) {
-        ArrayList<String> usuariosApuntados = null;
-        mRootreference= FirebaseDatabase.getInstance().getReference("Events");
+        ArrayList<String> usuariosApuntados = new ArrayList<String>();
+        mRootreference= FirebaseDatabase.getInstance().getReference("Usuarios");
         mRootreference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -257,6 +258,22 @@ public class NewEventActivity extends AppCompatActivity {
                 if(snapshot.exists()){
                     Usuario user = snapshot.getValue(Usuario.class);
                     nombreUsuario =user.getNombreUsuario();
+                    Log.i("Usuario",nombreUsuario);
+                    mRootreference= FirebaseDatabase.getInstance().getReference("Events");
+                    usuariosApuntados.add(nombreUsuario);
+                    usuariosApuntados.add("Juan");
+
+                    Evento e = new Evento();
+                    e.setNombre(nombre);
+                    e.setDescripcion(descripcion);
+                    e.setFechaInicio(fechaIn);
+                    e.setFechaFin(fechaFin);
+                    e.setUsuarioCreador(nombreUsuario);
+                    e.setCiudad(ciudad);
+                    e.setCategoria(categoria);
+                    e.setImagen(image_url.toString());
+                    e.setUsuariosApuntados(new ArrayList<>());
+                    mRootreference.child(nombre).setValue(e);
 
                 }
             }
@@ -269,8 +286,6 @@ public class NewEventActivity extends AppCompatActivity {
 
 
 
-        Evento e = new Evento(nombre, descripcion, fechaIn, fechaFin,nombreUsuario, ciudad ,categoria,image_url.toString(),usuariosApuntados);
-        mRootreference.child(nombre).setValue(e);
 
     }
 }

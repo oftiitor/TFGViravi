@@ -6,7 +6,9 @@
         android:title="Explorar"/>
     <item
         android:id="@+id/home"
-        android:title=""/>
+        android:icon="@drawable/home"
+        android:title="Planes"
+        android:color="#fff"/>
     <item
         android:id="@+id/profile"
         android:icon="@drawable/user__1_"

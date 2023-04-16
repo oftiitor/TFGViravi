@@ -95,7 +95,7 @@ public class UserLoginFragment extends Fragment {
                 }
 
                 im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
-                }
+            }
 
         });
         return view;

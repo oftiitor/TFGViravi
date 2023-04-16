@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_exploreFragment_to_createEventFragment"
             app:destination="@id/createEventFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_eventDetaillFragment"
+            app:destination="@id/eventDetaillFragment" />
     </fragment>
 
     <fragment
@@ -69,5 +72,17 @@
         <action
             android:id="@+id/action_createEventFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventDetaillFragment"
+        android:name="com.example.tfgviravidam.fragmentsViravi.EventDetaillFragment"
+        android:label="fragment_event_detaill"
+        tools:layout="@layout/fragment_event_detaill" >
+        <action
+            android:id="@+id/action_eventDetaillFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <argument
+            android:name="Evento"
+            app:argType="com.example.tfgviravidam.DAO.Evento" />
     </fragment>
 </navigation>

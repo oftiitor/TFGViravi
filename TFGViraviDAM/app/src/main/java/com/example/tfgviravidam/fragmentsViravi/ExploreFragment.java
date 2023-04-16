@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tfgviravidam.Adapter.CategoryAdapter;
+import com.example.tfgviravidam.Adapter.CategoryAdapter2;
 import com.example.tfgviravidam.Adapter.PopularAdapter;
 import com.example.tfgviravidam.DAO.Categorias;
 import com.example.tfgviravidam.DAO.Evento;
@@ -41,6 +42,7 @@ public class ExploreFragment extends Fragment {
 
     private RecyclerView recyclerViewCategory;
     private RecyclerView recyclerViewPopularplans;
+    private List<Evento> eventos = new ArrayList<>();
 
     FirebaseAuth firebaseAuth;
     DatabaseReference firebaseDatabase;
@@ -53,9 +55,10 @@ public class ExploreFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentExploreBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        recyclerViewCategory = view.findViewById(R.id.viewCategory);
+        recyclerViewCategory = view.findViewById(R.id.viewCategory1);
         recyclerViewPopularplans = view.findViewById(R.id.viewPopuPlans);
-        recyclerViewCategory(view);
+        recyclerViewCategory1(view);
+        recyclerViewCategory2(view);
         recyclerViewPopular(view);
 
         return view;
@@ -87,7 +90,6 @@ public class ExploreFragment extends Fragment {
                     String contrasenya=user.getContrasenya();
                     String foto = user.getFotoPerfil();
 
-                    Picasso.get().load(foto).into(binding.foto);
                     Log.i("dasdasdadadassdads","asdasdadadas");
                 }
                 }
@@ -99,7 +101,7 @@ public class ExploreFragment extends Fragment {
         });
     }
 
-    private void recyclerViewCategory(View view) {
+    private void recyclerViewCategory1(View view) {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         recyclerViewCategory.setLayoutManager(linearLayoutManager);
 
@@ -107,30 +109,31 @@ public class ExploreFragment extends Fragment {
         categoria.add(new Categorias("Fiesta","copa-de-champan","yellow_pastel"));
         categoria.add(new Categorias("Turismo","museo_britanico","blue_pastel"));
         categoria.add(new Categorias("Actividades","parque","red_pastel"));
-        categoria.add(new Categorias("Viajes","passport","orange_pastel"));
-        categoria.add(new Categorias("Gastronomia","restaurant","purple_pastel"));
-        categoria.add(new Categorias("Deportes","sports","brown_pastel"));
 
-        adapter=new CategoryAdapter(categoria);
-        binding.viewCategory.setAdapter(adapter);
+
+        CategoryAdapter adapter=new CategoryAdapter(categoria);
+        binding.viewCategory1.setAdapter(adapter);
+
+    }
+    private void recyclerViewCategory2(View view) {
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+        binding.viewCategory2.setLayoutManager(linearLayoutManager);
+
+        ArrayList<Categorias> categoria1 = new ArrayList<>();
+
+        categoria1.add(new Categorias("Viajes","passport","orange_pastel"));
+        categoria1.add(new Categorias("Gastronomia","restaurant","purple_pastel"));
+        categoria1.add(new Categorias("Deportes","sports","brown_pastel"));
+
+        CategoryAdapter2 adapter =new CategoryAdapter2(categoria1);
+        binding.viewCategory2.setAdapter(adapter);
 
     }
     private void recyclerViewPopular(View view) {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         recyclerViewPopularplans.setLayoutManager(linearLayoutManager);
 
-        List<Evento> eventos = recogerEventos();
-
-        PopularAdapter adapter1=new PopularAdapter(eventos);
-        binding.viewPopuPlans.setAdapter(adapter1);
-
-    }
-
-    private List<Evento> recogerEventos(){
-        DatabaseReference eventosRef = FirebaseDatabase.getInstance().getReference().child("Eventos");
-
-        List<Evento> eventos = new ArrayList<>();
-
+        DatabaseReference eventosRef = FirebaseDatabase.getInstance().getReference().child("Events");
         eventosRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -138,7 +141,7 @@ public class ExploreFragment extends Fragment {
                     String nombre = eventoSnapshot.child("nombre").getValue(String.class);
                     String descripcion = eventoSnapshot.child("descripcion").getValue(String.class);
                     String usuarioCreador = eventoSnapshot.child("usuarioCreador").getValue(String.class);
-                    String foto = eventoSnapshot.child("foto").getValue(String.class);
+                    String imagen = eventoSnapshot.child("imagen").getValue(String.class);
                     String ciudad = eventoSnapshot.child("ciudad").getValue(String.class);
                     String categoria = eventoSnapshot.child("categoria").getValue(String.class);
                     String fechaInicio = eventoSnapshot.child("fechaInicio").getValue(String.class);
@@ -149,8 +152,13 @@ public class ExploreFragment extends Fragment {
                         usuariosApuntados.add(usuarioSnapshot.getKey());
                     }
 
-                    Evento evento = new Evento(nombre, descripcion, usuarioCreador, foto, ciudad, categoria, fechaInicio, fechaFin, usuariosApuntados);
+
+                    Evento evento = new Evento(nombre, descripcion,fechaInicio,fechaFin, usuarioCreador, ciudad, categoria, imagen, usuariosApuntados);
                     eventos.add(evento);
+                    Log.i("as",eventos.toString());
+                    PopularAdapter adapter1=new PopularAdapter(eventos);
+                    binding.viewPopuPlans.setAdapter(adapter1);
+
                 }
             }
 
@@ -158,7 +166,13 @@ public class ExploreFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-        return eventos;
+
+
+
+    }
+
+    private void recogerEventos(){
+
     }
 
 }

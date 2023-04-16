@@ -26,25 +26,10 @@ public class ViraviActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viravi);
-        fab = findViewById(R.id.fab_home);
-        Create = findViewById(R.id.btnCreate);
         BottomNavigationView navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new HomeFragment());
-            }
-        });
 
-        Create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ViraviActivity.this, NewEventActivity.class);
-                startActivity(intent);
-            }
 
-        });
     }
 
     private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnItemSelectedListener() {
@@ -57,9 +42,11 @@ public class ViraviActivity extends AppCompatActivity {
                 case R.id.profile:
                     loadFragment(new ProfileFragment());
                     return true;
-                default:
+                case R.id.home:
                     loadFragment(new HomeFragment());
-                    return false;
+                    return true;
+                default:
+                    return true;
             }
 
         }

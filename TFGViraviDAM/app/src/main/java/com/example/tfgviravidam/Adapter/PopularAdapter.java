@@ -1,22 +1,26 @@
 package com.example.tfgviravidam.Adapter;
 
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.R;
+import com.example.tfgviravidam.databinding.ViewholderEventosBinding;
+import com.example.tfgviravidam.fragmentsViravi.EventDetaillFragment;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoViewHolder> {
@@ -24,33 +28,45 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoVi
 
     public PopularAdapter(List<Evento> eventos) {
         this.eventos = eventos;
+        Log.i("as",eventos.toString());
+
     }
 
     @NonNull
     @Override
     public EventoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflar el archivo XML de la vista de cada elemento
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.viewholder_eventos, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_eventos, parent, false);
         return new EventoViewHolder(itemView);
     }
 
-    @Override
     public void onBindViewHolder(@NonNull EventoViewHolder holder, int position) {
         // Obtener el evento correspondiente a esta posición
         Evento evento = eventos.get(position);
-        holder.nombreEventoTextView.setText(evento.getNombre());
-        holder.descripcionEventoTextView.setText(evento.getDescripcion());
-        holder.usuarioCreadorTextView.setText(evento.getUsuarioCreador());
-        // Cargar la imagen del evento usando Glide o alguna otra librería de carga de imágenes
-        Glide.with(holder.itemView.getContext())
-                .load(evento.getImagen())
-                .into(holder.fotoEventoImageView);
-        holder.ciudadEventoTextView.setText(evento.getCiudad());
-        holder.categoriaEventoTextView.setText(evento.getCategoria());
-        holder.fechaInicioTextView.setText(evento.getFechaInicio());
-        holder.fechaFinTextView.setText(evento.getFechaFin());
-        holder.usuariosApuntadosTextView.setText(String.valueOf(evento.getUsuariosApuntados()));
+
+        // Rellenar la vista con los datos del evento correspondiente utilizando View Binding
+        holder.binding.Nombre.setText(evento.getNombre());
+        holder.binding.Categoria.setText(evento.getCategoria());
+        holder.binding.Fechas.setText(evento.getFechaInicio()+"//"+evento.getFechaFin());
+        Picasso.get().load(evento.getImagen()).resize(300, 200).centerCrop().into(holder.binding.Foto);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("Evento","sd");
+                Log.i("Evento",evento.toString());
+                // Abrir otro fragment
+                Fragment fragment = new EventDetaillFragment();
+                Bundle args = new Bundle();
+                args.putParcelable("evento",evento);
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = ((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 
     @Override
@@ -58,26 +74,17 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoVi
         return eventos.size();
     }
 
-    // Clase interna que representa la vista de cada elemento del RecyclerView
-    public static class EventoViewHolder extends RecyclerView.ViewHolder {
+    public class EventoViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView nombreEventoTextView;
-        public TextView descripcionEventoTextView;
-        public TextView usuarioCreadorTextView;
-        public ImageView fotoEventoImageView;
-        public TextView ciudadEventoTextView;
-        public TextView categoriaEventoTextView;
-        public TextView fechaInicioTextView;
-        public TextView fechaFinTextView;
-        public TextView usuariosApuntadosTextView;
+        ViewholderEventosBinding binding;
 
         public EventoViewHolder(View itemView) {
             super(itemView);
-            nombreEventoTextView = itemView.findViewById(R.id.Nombre);
-            fotoEventoImageView = itemView.findViewById(R.id.Foto);
-            categoriaEventoTextView = itemView.findViewById(R.id.Categoria);
-            fechaInicioTextView = itemView.findViewById(R.id.Fechas);
-            fechaFinTextView = itemView.findViewById(R.id.Fechas);
+
+            // Inicializar el binding
+            binding = ViewholderEventosBinding.bind(itemView);
         }
     }
 }
+
+
