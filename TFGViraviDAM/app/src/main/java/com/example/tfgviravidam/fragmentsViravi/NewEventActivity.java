@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.DAO.Usuario;
@@ -44,7 +45,6 @@ public class NewEventActivity extends AppCompatActivity {
     private ActivityNewEventBinding binding;
     private String nombreUsuario = "";
 
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRootreference = database.getReference("Eventos");
 
@@ -60,8 +60,6 @@ public class NewEventActivity extends AppCompatActivity {
     private Uri image_url;
     String photo = "photo";
     String id;
-
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -104,8 +102,22 @@ public class NewEventActivity extends AppCompatActivity {
         binding.btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                crearEvento(binding.txtName.getText().toString(),binding.txtDesc.getText().toString(),binding.txtFechaIn.getText().toString(),binding.txtFechaFin.getText().toString(),binding.txtCity.getText().toString(),binding.txtCategory.getText().toString());
-                Log.i("dasd","aaaaa");
+
+                if(!binding.txtName.getText().toString().isEmpty() &&
+                        !binding.txtName.getText().toString().isEmpty() &&
+                        !binding.txtDesc.getText().toString().isEmpty() &&
+                        !binding.txtCity.getText().toString().isEmpty() &&
+                        !binding.txtCategory.getText().toString().isEmpty() &&
+                        !binding.txtFechaFin.getText().toString().isEmpty() &&
+                        !binding.txtFechaIn.getText().toString().isEmpty()) {
+
+                    crearEvento(binding.txtName.getText().toString(),binding.txtDesc.getText().toString(),binding.txtFechaIn.getText().toString(),binding.txtFechaFin.getText().toString(),binding.txtCity.getText().toString(),binding.txtCategory.getText().toString());
+                    Log.i("dasd","aaaaa");
+
+                } else {
+                    Toast.makeText(NewEventActivity.this, "Rellene todos los campos", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
@@ -158,7 +170,6 @@ public class NewEventActivity extends AppCompatActivity {
             }else{
                 binding.btnCrear.setEnabled(false);
             }
-
 
         }
 
