@@ -61,6 +61,9 @@ public class NewEventActivity extends AppCompatActivity {
     String photo = "photo";
     String id;
 
+    String fechaInicio;
+    String fechaFin;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +74,12 @@ public class NewEventActivity extends AppCompatActivity {
         binding.txtDesc.addTextChangedListener(textWatcherYear);
         binding.txtCategory.addTextChangedListener(textWatcherYear);
         binding.txtCity.addTextChangedListener(textWatcherYear);
-        binding.txtFechaIn.addTextChangedListener(textWatcherYear);
-        binding.txtFechaFin.addTextChangedListener(textWatcherYear);
+        binding.txtDayInicio.addTextChangedListener(textWatcherYear);
+        binding.txtMonthInicio.addTextChangedListener(textWatcherYear);
+        binding.txtYearInicio.addTextChangedListener(textWatcherYear);
+        binding.txtDayFin.addTextChangedListener(textWatcherYear);
+        binding.txtMonthFin.addTextChangedListener(textWatcherYear);
+        binding.txtYearFin.addTextChangedListener(textWatcherYear);
         firebaseAuth = FirebaseAuth.getInstance();
 
         storage = FirebaseStorage.getInstance();
@@ -108,10 +115,16 @@ public class NewEventActivity extends AppCompatActivity {
                         !binding.txtDesc.getText().toString().isEmpty() &&
                         !binding.txtCity.getText().toString().isEmpty() &&
                         !binding.txtCategory.getText().toString().isEmpty() &&
-                        !binding.txtFechaFin.getText().toString().isEmpty() &&
-                        !binding.txtFechaIn.getText().toString().isEmpty()) {
+                        !binding.txtDayInicio.getText().toString().isEmpty() &&
+                        !binding.txtMonthInicio.getText().toString().isEmpty() &&
+                        !binding.txtYearInicio.getText().toString().isEmpty() &&
+                        !binding.txtDayFin.getText().toString().isEmpty() &&
+                        !binding.txtMonthFin.getText().toString().isEmpty() &&
+                        !binding.txtYearFin.getText().toString().isEmpty()) {
 
-                    crearEvento(binding.txtName.getText().toString(),binding.txtDesc.getText().toString(),binding.txtFechaIn.getText().toString(),binding.txtFechaFin.getText().toString(),binding.txtCity.getText().toString(),binding.txtCategory.getText().toString());
+                    fechaInicio = binding.txtDayInicio.getText().toString()+"-"+binding.txtMonthInicio.getText().toString()+"-"+binding.txtYearInicio.getText().toString();
+                    fechaFin = binding.txtDayFin.getText().toString()+"-"+binding.txtMonthFin.getText().toString()+"-"+binding.txtYearFin.getText().toString();
+                    crearEvento(binding.txtName.getText().toString(),binding.txtDesc.getText().toString(),fechaInicio,fechaFin,binding.txtCity.getText().toString(),binding.txtCategory.getText().toString());
                     Log.i("dasd","aaaaa");
 
                 } else {
@@ -159,14 +172,13 @@ public class NewEventActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            if(binding.txtName.getText().length()!=0
-                    && binding.txtDesc.getText().length()!=0
-                    && binding.txtCity.getText().length()!=0
-                    && binding.txtCategory.getText().length()!=0
-                    && binding.txtFechaFin.getText().length()!=0
-                    && binding.txtFechaIn.getText().length()!=0){
+            if(!binding.txtName.getText().toString().isEmpty()
+                    && !binding.txtDesc.getText().toString().isEmpty()
+                    && !binding.txtCity.getText().toString().isEmpty()
+                    && !binding.txtCategory.getText().toString().isEmpty()
+                    && !fechaInicio.isEmpty()
+                    && !fechaFin.isEmpty()) {
                 binding.btnCrear.setEnabled(true);
-
             }else{
                 binding.btnCrear.setEnabled(false);
             }
@@ -259,7 +271,7 @@ public class NewEventActivity extends AppCompatActivity {
         dialog.getWindow().setGravity(Gravity.BOTTOM);
 
     }
-    private void crearEvento(String nombre,String descripcion, String fechaIn, String fechaFin, String ciudad, String categoria) {
+    private void crearEvento(String nombre,String descripcion, String fechaInicio, String fechaFin, String ciudad, String categoria) {
         ArrayList<String> usuariosApuntados = new ArrayList<String>();
         mRootreference= FirebaseDatabase.getInstance().getReference("Usuarios");
         mRootreference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
@@ -277,7 +289,7 @@ public class NewEventActivity extends AppCompatActivity {
                     Evento e = new Evento();
                     e.setNombre(nombre);
                     e.setDescripcion(descripcion);
-                    e.setFechaInicio(fechaIn);
+                    e.setFechaInicio(fechaInicio);
                     e.setFechaFin(fechaFin);
                     e.setUsuarioCreador(nombreUsuario);
                     e.setCiudad(ciudad);

@@ -118,37 +118,317 @@
                     app:layout_constraintStart_toStartOf="@+id/guideline111"
                     app:layout_constraintTop_toTopOf="@+id/guideline110"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtFechaIn"
-                    android:layout_width="150dp"
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/poppins_extrabold"
-                    android:gravity="bottom"
                     android:hint="Fecha Inicio"
+                    android:textAlignment="center"
                     android:textColor="#B0000000"
                     android:textColorHint="#99B8B8B8"
-                    android:textSize="20dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline115"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline111"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/guideline112" />
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline89"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline104"
+                    app:layout_constraintStart_toStartOf="@+id/guideline99"
+                    app:layout_constraintTop_toTopOf="@+id/guideline88" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:hint="Fecha Fin"
+                    android:textAlignment="center"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline89"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline1073"
+                    app:layout_constraintStart_toStartOf="@+id/guideline105"
+                    app:layout_constraintTop_toTopOf="@+id/guideline88" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtFechaFin"
-                    android:layout_width="150dp"
+                    android:id="@+id/txtDayInicio"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/poppins_extrabold"
-                    android:gravity="bottom"
-                    android:hint="Fecha Fin"
+                    android:gravity="center_horizontal"
+                    android:hint="DD"
+                    android:inputType="date"
                     android:textColor="#B0000000"
                     android:textColorHint="#99B8B8B8"
-                    android:textSize="20dp"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline115"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/guideline111"
-                    app:layout_constraintTop_toTopOf="@+id/guideline112" />
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline100"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline99"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="center"
+                    android:inputType="date"
+                    android:textColor="#99B8B8B8"
+                    android:textSize="15dp"
+                    android:text="/"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline101"
+                    app:layout_constraintStart_toStartOf="@+id/guideline100"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtMonthInicio"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="center_horizontal"
+                    android:hint="MM"
+                    android:inputType="date"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline102"
+                    app:layout_constraintStart_toStartOf="@+id/guideline101"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="center"
+                    android:inputType="date"
+                    android:textColor="#99B8B8B8"
+                    android:textSize="15dp"
+                    android:text="/"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline103"
+                    app:layout_constraintStart_toStartOf="@+id/guideline102"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtYearInicio"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="center_horizontal"
+                    android:hint="YYYY"
+                    android:inputType="date"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline104"
+                    app:layout_constraintStart_toStartOf="@+id/guideline103"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtDayFin"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="center_horizontal"
+                    android:hint="DD"
+                    android:inputType="date"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline106"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/guideline105"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="center"
+                    android:inputType="date"
+                    android:textColor="#99B8B8B8"
+                    android:textSize="15dp"
+                    android:text="/"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline107"
+                    app:layout_constraintStart_toStartOf="@+id/guideline106"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtMonthFin"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="center_horizontal"
+                    android:hint="MM"
+                    android:inputType="date"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline1071"
+                    app:layout_constraintStart_toStartOf="@+id/guideline107"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="center"
+                    android:inputType="date"
+                    android:textColor="#99B8B8B8"
+                    android:textSize="15dp"
+                    android:text="/"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline1072"
+                    app:layout_constraintStart_toStartOf="@+id/guideline1071"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtYearFin"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_extrabold"
+                    android:gravity="center_horizontal"
+                    android:hint="YYYY"
+                    android:inputType="date"
+                    android:textColor="#B0000000"
+                    android:textColorHint="#99B8B8B8"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline91"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline1073"
+                    app:layout_constraintStart_toStartOf="@+id/guideline1072"
+                    app:layout_constraintTop_toTopOf="@+id/guideline90" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline88"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.75" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline89"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.80" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.80" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline91"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.88" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline99"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.04"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.15" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline101"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.17" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline102"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.28" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline103"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.30" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline104"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.46" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline105"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.54"/>
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline106"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.65" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline107"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.67" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline1071"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.78" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline1072"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.80" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline1073"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.96" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnVolver"
@@ -209,7 +489,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.64" />
+                    app:layout_constraintGuide_percent="0.62" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline115"
@@ -223,7 +503,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.76" />
+                    app:layout_constraintGuide_percent="0.72" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline111"
