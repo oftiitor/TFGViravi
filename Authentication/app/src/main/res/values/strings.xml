@@ -1,5 +1,0 @@
-<resources>
-    <string name="app_name">Firebase</string>
-    <string name="invalid_mail">Introduzca un correo electrónico válido.</string>
-    <string name="invalid_password">La contraseña debe tener al menos 6 caracteres.</string>
-</resources>
