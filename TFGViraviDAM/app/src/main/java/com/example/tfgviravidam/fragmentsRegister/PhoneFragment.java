@@ -103,6 +103,7 @@ public class PhoneFragment extends Fragment {
             boolean isMatch = matcher.matches();
             if(isMatch){
                 btn.setEnabled(!text.isEmpty());
+                txtError.setText("");
             }else{
                 txtError.setText("Introduce un teléfono valido");
             }

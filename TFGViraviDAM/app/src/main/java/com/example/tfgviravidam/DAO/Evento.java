@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class Evento implements Parcelable {
 
-    private String nombre, descripcion, dayInicio, monthInicio, yearInicio, dayFin, monthFin, yearFin, usuarioCreador, ciudad, categoria,imagen;
+    private String nombre, descripcion, dayInicio, monthInicio, yearInicio, dayFin, monthFin, yearFin, usuarioCreador, ciudad, categoria, imagen;
     private ArrayList<String> usuariosApuntados;
 
     private String fechaInicio = dayInicio+"-"+monthInicio+"-"+yearInicio;

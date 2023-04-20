@@ -136,6 +136,7 @@ public class MailFragment extends Fragment {
 
             if(isMatch&&!comprobarmail){
                 btn.setEnabled(!text.isEmpty());
+                txtError.setText("");
             }else{
                 txtError.setText("Introduce un mail valido");
             }

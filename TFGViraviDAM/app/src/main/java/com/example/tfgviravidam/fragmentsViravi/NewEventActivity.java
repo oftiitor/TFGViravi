@@ -74,13 +74,20 @@ public class NewEventActivity extends AppCompatActivity {
         binding.txtDesc.addTextChangedListener(textWatcherYear);
         binding.txtCategory.addTextChangedListener(textWatcherYear);
         binding.txtCity.addTextChangedListener(textWatcherYear);
-        binding.txtDayInicio.addTextChangedListener(textWatcherYear);
-        binding.txtMonthInicio.addTextChangedListener(textWatcherYear);
-        binding.txtYearInicio.addTextChangedListener(textWatcherYear);
-        binding.txtDayFin.addTextChangedListener(textWatcherYear);
-        binding.txtMonthFin.addTextChangedListener(textWatcherYear);
+
+        /* Fecha Inicio */
+        binding.txtDayFin.addTextChangedListener(textWatcherDayInicio);
+        binding.txtMonthFin.addTextChangedListener(textWatcherMonthInicio);
+        binding.txtYearFin.addTextChangedListener(textWatcherYearInicio);
+
+        /* Fecha Fin*/
+        binding.txtDayFin.addTextChangedListener(textWatcherDayFin);
+        binding.txtMonthFin.addTextChangedListener(textWatcherMonthFin);
         binding.txtYearFin.addTextChangedListener(textWatcherYear);
+
         firebaseAuth = FirebaseAuth.getInstance();
+
+
 
         storage = FirebaseStorage.getInstance();
         initListeners();
@@ -163,6 +170,111 @@ public class NewEventActivity extends AppCompatActivity {
 
     }
 
+    private TextWatcher textWatcherDayInicio = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            if(binding.txtDayInicio.getText().toString().length()==2){
+                binding.txtMonthInicio.requestFocus();
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
+
+    private TextWatcher textWatcherMonthInicio = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            if(binding.txtMonthInicio.getText().toString().length()==2){
+                binding.txtYearInicio.requestFocus();
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
+
+    private TextWatcher textWatcherYearInicio = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            if(binding.txtYearInicio.getText().toString().length()==4){
+                binding.txtDayFin.requestFocus();
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
+
+    private TextWatcher textWatcherDayFin = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            if(binding.txtDayFin.getText().toString().length()==2){
+                binding.txtMonthFin.requestFocus();
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
+
+    private TextWatcher textWatcherMonthFin = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            if(binding.txtMonthFin.getText().toString().length()==2){
+                binding.txtYearFin.requestFocus();
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
+
     private TextWatcher textWatcherYear = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -171,6 +283,9 @@ public class NewEventActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            fechaInicio = binding.txtDayInicio.getText().toString()+"-"+binding.txtMonthInicio.getText().toString()+"-"+binding.txtYearInicio.getText().toString();
+            fechaFin = binding.txtDayFin.getText().toString()+"-"+binding.txtMonthFin.getText().toString()+"-"+binding.txtYearFin.getText().toString();
 
             if(!binding.txtName.getText().toString().isEmpty()
                     && !binding.txtDesc.getText().toString().isEmpty()
@@ -306,9 +421,6 @@ public class NewEventActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
     }
 }

@@ -124,7 +124,8 @@ public class PhotoFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            mRootreference.child(firebaseAuth.getUid()).setValue(new Usuario(nombreUsuario,nombre,telefono,fechaNacimiento,correo,contrasenya,fotoPerfil,seguidores,seguidos,eventosApuntado,eventosParticipado,eventosCreados));
+                            Usuario usuario = new Usuario(nombreUsuario,nombre,telefono,fechaNacimiento,correo,contrasenya,fotoPerfil,seguidores,seguidos,eventosApuntado,eventosParticipado,eventosCreados);
+                            mRootreference.child(usuario.getNombreUsuario()).setValue(usuario);
                             startActivity(new Intent(getActivity(),ViraviActivity.class));
                         }else{
                             Log.i("SignIn",correo+"  "+contrasenya);

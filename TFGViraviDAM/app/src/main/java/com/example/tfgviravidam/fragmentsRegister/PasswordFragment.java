@@ -101,6 +101,7 @@ public class PasswordFragment extends Fragment {
             boolean isMatch = matcher.matches();
             if(isMatch){
                 btn.setEnabled(!text.isEmpty());
+                txtError.setText("");
             }else{
                 txtError.setText("Introduce una contraseña válida");
             }

@@ -37,13 +37,10 @@ public class BirthdayFragment extends Fragment {
 
     EditText day,month,year;
     Button btnNext;
-
     TextView txtError;
-
     String nombre;
 
     private FragmentBirthdayBinding binding;
-
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +64,6 @@ public class BirthdayFragment extends Fragment {
         year=view.findViewById(R.id.txtYear);
         btnNext=view.findViewById(R.id.btnBirth);
         txtError=view.findViewById(R.id.txtError);
-
 
         day.requestFocus();
 
