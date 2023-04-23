@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TFGViravi.iml" filepath="$PROJECT_DIR$/.idea/modules/TFGViravi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/TFGViravi.iml" filepath="$PROJECT_DIR$/.idea/TFGViravi.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TFGViravi.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TFGViravi.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TFGViravi.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TFGViravi.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TFGViravi.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TFGViravi.app.main.iml" />

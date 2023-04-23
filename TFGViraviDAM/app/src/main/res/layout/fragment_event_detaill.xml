@@ -228,12 +228,12 @@
         app:layout_constraintTop_toTopOf="@+id/guideline122" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnBack"
+        android:id="@+id/btnChat"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="15dp"
         android:fontFamily="@font/bebas_neue"
-        android:text="Volver"
+        android:text="Chat"
         android:textAllCaps="false"
         android:textSize="20dp"
         app:cornerRadius="10dp"

@@ -1,0 +1,125 @@
+package com.example.tfgviravidam.Chat;
+
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.tfgviravidam.Adapter.ChatsAdapter;
+import com.example.tfgviravidam.DAO.Chat;
+import com.example.tfgviravidam.DAO.Message;
+import com.example.tfgviravidam.DAO.Usuario;
+import com.example.tfgviravidam.R;
+import com.example.tfgviravidam.databinding.FragmentChatListBinding;
+import com.example.tfgviravidam.databinding.FragmentExploreBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class ChatListFragment extends Fragment {
+
+    private FragmentChatListBinding binding;
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        DatabaseReference chatsRef = FirebaseDatabase.getInstance().getReference("Chats");
+        DatabaseReference mRootreference;
+        mRootreference = FirebaseDatabase.getInstance().getReference("Usuarios");
+        chatsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ArrayList<Chat> chatList = new ArrayList<>();
+                for (DataSnapshot chatSnapshot : snapshot.getChildren()) {
+                    String chatKey = chatSnapshot.getKey();
+                    String nameEvent = chatSnapshot.child("name").getValue().toString();
+                    String Event = chatSnapshot.child("event").getValue().toString();
+
+                    ArrayList<String> userList = (ArrayList<String>) chatSnapshot.child("users").getValue();
+                    ArrayList<Message> messageList = new ArrayList<>();
+                    for (DataSnapshot messageSnapshot : chatSnapshot.child("messages").getChildren()) {
+                        String sender = messageSnapshot.child("sender").getValue(String.class);
+                        String text = messageSnapshot.child("text").getValue(String.class);
+                        String time = messageSnapshot.child("time").getValue(String.class);
+                        Message message = new Message(sender, text, time,null);
+                        messageList.add(message);
+                    }
+                    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+                    mRootreference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@androidx.annotation.NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                Usuario user = snapshot.getValue(Usuario.class);
+                                String nombreUsuario = user.getNombreUsuario();
+                                if (userList.contains(nombreUsuario)) {
+                                    for (String n : userList) {
+                                        if (!n.equals(nombreUsuario)) {
+                                            String name = n;
+                                            Chat chat = new Chat(chatKey,nameEvent,Event, userList, messageList);
+                                            chatList.add(chat);
+                                            Log.i("as",chatList.toString());
+                                            ChatsAdapter adapter = new ChatsAdapter(chatList);
+                                            RecyclerView recyclerView = binding.chatList;
+                                            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                                            recyclerView.setAdapter(adapter);
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@androidx.annotation.NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@androidx.annotation.NonNull DatabaseError error) {
+
+            }
+
+        });
+
+
+        /*ChatsAdapter adapter = new ChatsAdapter(chats);
+        RecyclerView recyclerView = binding.chatList;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);*/
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentChatListBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+}

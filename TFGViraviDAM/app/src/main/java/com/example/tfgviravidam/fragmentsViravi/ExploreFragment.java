@@ -92,7 +92,7 @@ public class ExploreFragment extends Fragment {
 
                     Log.i("dasdasdadadassdads","asdasdadadas");
                 }
-                }
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

@@ -6,31 +6,10 @@
     app:startDestination="@id/exploreFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.tfgviravidam.fragmentsViravi.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_exploreFragment"
-            app:destination="@id/exploreFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_createEventFragment"
-            app:destination="@id/createEventFragment" />
-    </fragment>
-
-    <fragment
         android:id="@+id/exploreFragment"
         android:name="com.example.tfgviravidam.fragmentsViravi.ExploreFragment"
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore" >
-        <action
-            android:id="@+id/action_exploreFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/to_rigth"
-            app:exitAnim="@anim/to_left" />
         <action
             android:id="@+id/action_exploreFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -51,9 +30,6 @@
             android:id="@+id/action_profileFragment_to_exploreFragment"
             app:destination="@id/exploreFragment" />
         <action
-            android:id="@+id/action_profileFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
             android:id="@+id/action_profileFragment_to_createEventFragment"
             app:destination="@id/createEventFragment" />
     </fragment>
@@ -63,9 +39,6 @@
         android:name="com.example.tfgviravidam.fragmentsViravi.CreateEventFragment"
         android:label="fragment_create_event"
         tools:layout="@layout/fragment_create_event" >
-        <action
-            android:id="@+id/action_createEventFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_createEventFragment_to_exploreFragment"
             app:destination="@id/exploreFragment" />
@@ -84,5 +57,29 @@
         <argument
             android:name="Evento"
             app:argType="com.example.tfgviravidam.DAO.Evento" />
+        <action
+            android:id="@+id/action_eventDetaillFragment_to_chatListFragment"
+            app:destination="@id/chatListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.tfgviravidam.fragmentsViravi.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="Chat"
+            app:argType="com.example.tfgviravidam.DAO.Chat" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.example.tfgviravidam.Chat.ChatListFragment"
+        android:label="fragment_chat_list"
+        tools:layout="@layout/fragment_chat_list" >
+        <action
+            android:id="@+id/action_chatListFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+        <action
+            android:id="@+id/action_chatListFragment_to_eventDetaillFragment"
+            app:destination="@id/eventDetaillFragment" />
     </fragment>
 </navigation>

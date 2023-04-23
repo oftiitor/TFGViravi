@@ -18,12 +18,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="15dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline118"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/pc280173_modified" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/txtnumEventos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -32,32 +33,31 @@
             app:layout_constraintTop_toTopOf="@+id/guideline117" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/txtEventos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Eventos"
             app:layout_constraintEnd_toStartOf="@+id/guideline114"
             app:layout_constraintStart_toStartOf="@+id/guideline113"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/txtnumEventos" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/txtNumSeguidores"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
-            app:layout_constraintEnd_toStartOf="@+id/guideline116"
-            app:layout_constraintStart_toStartOf="@+id/guideline114"
+            app:layout_constraintEnd_toStartOf="@+id/textView11"
+            app:layout_constraintStart_toStartOf="@+id/guideline120"
             app:layout_constraintTop_toTopOf="@+id/guideline117" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/txtSeguidores"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Seguidores"
-            app:layout_constraintEnd_toStartOf="@+id/guideline116"
-            app:layout_constraintHorizontal_bias="0.515"
-            app:layout_constraintStart_toStartOf="@+id/guideline114"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintEnd_toStartOf="@+id/textView15"
+            app:layout_constraintStart_toEndOf="@+id/txtnumEventos"
+            app:layout_constraintTop_toBottomOf="@+id/txtNumSeguidores" />
 
         <TextView
             android:id="@+id/textView11"
@@ -77,19 +77,68 @@
             app:layout_constraintStart_toStartOf="@+id/guideline116"
             app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
+        <TextView
+            android:id="@+id/txtEventosParticipados"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Eventos
+            Participados"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline127"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline126" />
+
+        <TextView
+            android:id="@+id/txtEventosCreados"
+            android:layout_width="95dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Eventos
+             Creados"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline127"
+            app:layout_constraintTop_toTopOf="@+id/guideline126" />
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            app:dividerColor="#232323"
+            app:layout_constraintTop_toBottomOf="@id/txtEventosCreados"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline113"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.43" />
+            app:layout_constraintGuide_percent="0.31" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline120"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.43" />
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline127"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline114"
@@ -124,14 +173,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.18" />
+            app:layout_constraintGuide_percent="0.21" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline119"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.23" />
+            app:layout_constraintGuide_percent="0.27" />
 
         <TextView
             android:id="@+id/textView16"
@@ -150,7 +199,7 @@
             android:text="Editar"
             android:textSize="8sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline119"
-            app:layout_constraintEnd_toStartOf="@+id/guideline113"
+            app:layout_constraintEnd_toStartOf="@+id/guideline120"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline118" />
 
@@ -164,6 +213,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline123"
             app:layout_constraintTop_toTopOf="@+id/guideline118" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline126"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="218dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
