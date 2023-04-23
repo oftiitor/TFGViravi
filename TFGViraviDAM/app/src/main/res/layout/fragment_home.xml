@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragmentsViravi.HomeFragment"
-    android:backgroundTint="#EE8EFF"
+    android:backgroundTint="#FFFFFF"
     android:background="@color/black">
 
 

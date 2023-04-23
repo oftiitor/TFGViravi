@@ -125,7 +125,7 @@ public class PhotoFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Usuario usuario = new Usuario(nombreUsuario,nombre,telefono,fechaNacimiento,correo,contrasenya,fotoPerfil,seguidores,seguidos,eventosApuntado,eventosParticipado,eventosCreados);
-                            mRootreference.child(usuario.getNombreUsuario()).setValue(usuario);
+                            mRootreference.push().setValue(usuario);
                             startActivity(new Intent(getActivity(),ViraviActivity.class));
                         }else{
                             Log.i("SignIn",correo+"  "+contrasenya);

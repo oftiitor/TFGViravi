@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.tfgviravidam.Chat.ChatListFragment;
 import com.example.tfgviravidam.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -43,7 +44,7 @@ public class ViraviActivity extends AppCompatActivity {
                     loadFragment(new ProfileFragment());
                     return true;
                 case R.id.home:
-                    loadFragment(new HomeFragment());
+                    loadFragment(new ChatListFragment());
                     return true;
                 default:
                     return true;

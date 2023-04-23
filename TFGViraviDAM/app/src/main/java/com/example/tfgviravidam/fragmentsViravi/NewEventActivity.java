@@ -76,14 +76,13 @@ public class NewEventActivity extends AppCompatActivity {
         binding.txtCity.addTextChangedListener(textWatcherYear);
 
         /* Fecha Inicio */
-        binding.txtDayFin.addTextChangedListener(textWatcherDayInicio);
-        binding.txtMonthFin.addTextChangedListener(textWatcherMonthInicio);
-        binding.txtYearFin.addTextChangedListener(textWatcherYearInicio);
+        binding.txtDayInicio.addTextChangedListener(textWatcherDayInicio);
+        binding.txtMonthInicio.addTextChangedListener(textWatcherMonthInicio);
+        binding.txtYearInicio.addTextChangedListener(textWatcherYearInicio);
 
         /* Fecha Fin*/
         binding.txtDayFin.addTextChangedListener(textWatcherDayFin);
         binding.txtMonthFin.addTextChangedListener(textWatcherMonthFin);
-        binding.txtYearFin.addTextChangedListener(textWatcherYear);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -178,11 +177,9 @@ public class NewEventActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            if(binding.txtDayInicio.getText().toString().length()==2){
+            if(binding.txtDayInicio.getText().length()==2){
                 binding.txtMonthInicio.requestFocus();
             }
-
         }
 
         @Override
@@ -190,6 +187,7 @@ public class NewEventActivity extends AppCompatActivity {
 
         }
     };
+
 
     private TextWatcher textWatcherMonthInicio = new TextWatcher() {
         @Override
@@ -200,7 +198,7 @@ public class NewEventActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            if(binding.txtMonthInicio.getText().toString().length()==2){
+            if(binding.txtMonthInicio.getText().length()==2){
                 binding.txtYearInicio.requestFocus();
             }
 
@@ -221,7 +219,7 @@ public class NewEventActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            if(binding.txtYearInicio.getText().toString().length()==4){
+            if(binding.txtYearInicio.getText().length()==4){
                 binding.txtDayFin.requestFocus();
             }
 
@@ -242,7 +240,7 @@ public class NewEventActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            if(binding.txtDayFin.getText().toString().length()==2){
+            if(binding.txtDayFin.getText().length()==2){
                 binding.txtMonthFin.requestFocus();
             }
 
@@ -263,7 +261,7 @@ public class NewEventActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            if(binding.txtMonthFin.getText().toString().length()==2){
+            if(binding.txtMonthFin.getText().length()==2){
                 binding.txtYearFin.requestFocus();
             }
 
