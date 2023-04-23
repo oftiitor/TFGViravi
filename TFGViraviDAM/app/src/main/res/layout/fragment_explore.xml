@@ -117,13 +117,41 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/PopuPlan" />
+        <TextView
+            android:id="@+id/planesMadrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Planes mas populares"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
 
         <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="51dp"
-            android:layout_height="400dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="13dp"
             android:layout_marginRight="20dp"
+            android:src="@drawable/baseline_arrow_forward_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPopuPlans" />
+            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/viewPlanesMadrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingStart="22dp"
+            android:paddingEnd="22dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PopuPlan" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,6 +56,7 @@ public class ChatFragment extends Fragment {
 
         binding = FragmentChatBinding.inflate(inflater, container, false);
         recyclerView = binding.messageList;
+        binding.messageList.smoothScrollToPosition(messageList.size() - 1);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         return binding.getRoot();
@@ -93,7 +94,6 @@ public class ChatFragment extends Fragment {
                 ArrayList<Message> messagesList = new ArrayList<>();
                 messagesList.add(m);
                 newMessageRef.setValue(m);
-                loadMessages();
                 binding.etMessage.setText("");
             }
         });
@@ -103,7 +103,7 @@ public class ChatFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getUserName();
-        loadMessages();
+    //loadMessages();
         Bundle bundle = getArguments();
         if(bundle != null){
             chat = (Chat) bundle.getSerializable("Chat");
@@ -112,54 +112,10 @@ public class ChatFragment extends Fragment {
         }
 
         Chat finalChat = chat;
+
         DatabaseReference messagesRef = FirebaseDatabase.getInstance().getReference("Chats").child(chat.getId()).child("messages");
         messagesRef.addChildEventListener(messagesListener);
 
-    }
-
-    private void loadMessages() {
-        Bundle bundle = getArguments();
-        messageList = new ArrayList<Message>();
-        if(bundle != null){
-            chat = (Chat) bundle.getSerializable("Chat");
-            Log.i("Chat23",chat.toString());
-            // Usa el objeto Chat según sea necesario
-        }
-
-        Chat finalChat = chat;
-
-        DatabaseReference messagesRef = FirebaseDatabase.getInstance().getReference("Chats").child(finalChat.getId()).child("messages");
-        messagesRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot messageSnapshot : dataSnapshot.getChildren()) {
-                    String messageId = messageSnapshot.getKey();
-                    String sender = messageSnapshot.child("sender").getValue(String.class);
-                    String text = messageSnapshot.child("text").getValue(String.class);
-                    String time = messageSnapshot.child("timestamp").getValue(String.class);
-
-                    if(sender.equals(nombre.get(0))){
-                        Message m = new Message(sender,text,time,true);
-                        messageList.add(m);
-                    }else {
-                        Message m = new Message(sender,text,time,false);
-                        messageList.add(m);
-                    }
-                }
-                adapter = new MessageAdapter(messageList);
-
-                recyclerView.setAdapter(adapter);
-                adapter.notifyItemInserted(adapter.messageList.size() - 1);
-                adapter.notifyDataSetChanged();
-                recyclerView.smoothScrollToPosition(adapter.messageList.size() - 1);
-                Log.i("mensajes",messageList.toString());
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
     }
 
     private ChildEventListener messagesListener = new ChildEventListener() {
@@ -170,13 +126,19 @@ public class ChatFragment extends Fragment {
             String text = snapshot.child("text").getValue(String.class);
             String time = snapshot.child("timestamp").getValue(String.class);
 
-            if (sender == telefono.get(0)) {
+            if (sender.equals(nombre.get(0))) {
                 Message m = new Message(sender, text, time, true);
                 messageList.add(m);
             } else {
                 Message m = new Message(sender, text, time, false);
                 messageList.add(m);
             }
+            Log.i("mensajesChild",messageList.toString());
+
+            adapter = new MessageAdapter(messageList);
+
+            recyclerView.setAdapter(adapter);
+
             adapter.notifyItemInserted(messageList.size() - 1);
             binding.messageList.smoothScrollToPosition(messageList.size() - 1);}
 
