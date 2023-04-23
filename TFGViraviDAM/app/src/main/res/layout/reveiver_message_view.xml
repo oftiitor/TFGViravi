@@ -21,7 +21,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="5dp"
         android:elevation="18dp"
-        app:cardBackgroundColor="#5564EB"
+        app:cardBackgroundColor="#FF000000"
         app:cardCornerRadius="15dp"
         app:layout_constraintStart_toEndOf="@id/ivProfileImage"
         app:layout_constraintBottom_toBottomOf="parent"

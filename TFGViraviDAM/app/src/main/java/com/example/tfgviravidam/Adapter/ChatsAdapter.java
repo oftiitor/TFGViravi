@@ -79,10 +79,12 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder> 
             super(itemView);
             profileFoto = itemView.findViewById(R.id.ivProfileImage);
             message = itemView.findViewById(R.id.tvName);
+            time = itemView.findViewById(R.id.tvLastMessage);
         }
 
         public void bind(Chat chat, OnChatClickListener listener) {
             message.setText(chat.getName());
+            time.setText(chat.getNameEvent());
             itemView.setOnClickListener(v -> listener.onChatClick(chat));
         }
     }

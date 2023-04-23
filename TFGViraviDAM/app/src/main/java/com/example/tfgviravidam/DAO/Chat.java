@@ -7,16 +7,39 @@ public class Chat implements Serializable {
 
     private String id;
     private String name;
+
+    private String nameEvent;
+
     private List<String> users;
     private List<Message> messages;
 
     public Chat() {}
 
-    public Chat(String id, String name, List<String> users, List<Message> messages) {
+    public Chat(String id, String name, String nameEvent, List<String> users, List<Message> messages) {
         this.id = id;
         this.name = name;
+        this.nameEvent = nameEvent;
         this.users = users;
         this.messages = messages;
+    }
+
+    public String getNameEvent() {
+        return nameEvent;
+    }
+
+    @Override
+    public String toString() {
+        return "Chat{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", nameEvent='" + nameEvent + '\'' +
+                ", users=" + users +
+                ", messages=" + messages +
+                '}';
+    }
+
+    public void setNameEvent(String nameEvent) {
+        this.nameEvent = nameEvent;
     }
 
     public String getName() {
@@ -25,16 +48,6 @@ public class Chat implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Chat{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", users=" + users +
-                ", messages=" + messages +
-                '}';
     }
 
     public String getId() {

@@ -74,7 +74,7 @@ public class ChatFragment extends Fragment {
             chat = (Chat) bundle.getSerializable("Chat");
             Log.i("Chat",chat.toString());
             binding.tvUserName.setText(chat.getName());
-            // Usa el objeto Chat según sea necesario
+            binding.tvEventName.setText(chat.getNameEvent());
         }
 
         Chat finalChat = chat;
@@ -120,8 +120,6 @@ public class ChatFragment extends Fragment {
     private void loadMessages() {
         Bundle bundle = getArguments();
         messageList = new ArrayList<Message>();
-
-
         if(bundle != null){
             chat = (Chat) bundle.getSerializable("Chat");
             Log.i("Chat23",chat.toString());
