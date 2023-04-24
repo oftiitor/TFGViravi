@@ -66,7 +66,23 @@ public class UserLoginFragment extends Fragment {
                                 if (task.isSuccessful()){
                                     boolean check =!task.getResult().getSignInMethods().isEmpty();
                                     if (check){
-                                        comprobarmail = true;
+
+                                        if (!isMatch) {
+                                            textView.setError("El email introducido no es válido");
+                                        }else{
+                                            Bundle datosAEnviar = new Bundle();
+                                            datosAEnviar.putString("email", textView.getText().toString().trim());
+                                            Fragment fragmento = new PassLoginFragment();
+                                            fragmento.setArguments(datosAEnviar);
+                                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                            fragmentTransaction.setCustomAnimations(R.anim.to_rigth, R.anim.to_left);
+                                            fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commit();
+                                        }
+
+                                        im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
                                     }
                                     else {
                                         comprobarmail = false;
@@ -77,24 +93,7 @@ public class UserLoginFragment extends Fragment {
                             }
                         });
 
-                if (!isMatch) {
-                    textView.setError("El email introducido no es válido");
-                }
 
-                if(isMatch&&comprobarmail){
-                    Bundle datosAEnviar = new Bundle();
-                    datosAEnviar.putString("email", textView.getText().toString().trim());
-                    Fragment fragmento = new PassLoginFragment();
-                    fragmento.setArguments(datosAEnviar);
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.setCustomAnimations(R.anim.to_rigth, R.anim.to_left);
-                    fragmentTransaction.replace(R.id.fragmentContainerView, fragmento);
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
-                }
-
-                im.hideSoftInputFromWindow(textView.getWindowToken(), 0);
             }
 
         });

@@ -7,6 +7,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -38,12 +40,15 @@ public class ViraviActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.explore:
+                    item.setIcon(R.drawable.globe);
                     loadFragment(new ExploreFragment());
                     return true;
                 case R.id.profile:
+                    item.setIcon(R.drawable.usuario__3_);
                     loadFragment(new ProfileFragment());
                     return true;
                 case R.id.home:
+                    item.setIcon(R.drawable.chat_de_burbujas__1_);
                     loadFragment(new ChatListFragment());
                     return true;
                 default:

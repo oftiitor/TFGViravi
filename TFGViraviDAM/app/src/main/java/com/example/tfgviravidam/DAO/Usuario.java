@@ -6,9 +6,9 @@ import java.util.Date;
 
 public class Usuario {
 
-    private String nombreUsuario, nombre, telefono, fechaNacimiento, correo, contrasenya, fotoPerfil;
+    private String nombreUsuario, nombre, telefono, fechaNacimiento, correo, contrasenya, fotoPerfil,userKey;
     private int seguidores, seguidos;
-    private ArrayList<Evento> eventosApuntado, eventosParticipado, eventosCreados;
+    private ArrayList<Evento> eventosApuntado, eventosCreados;
 
     public Usuario(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil, int seguidores, int seguidos, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
         this.nombreUsuario = nombreUsuario;
@@ -21,8 +21,15 @@ public class Usuario {
         this.seguidores = seguidores;
         this.seguidos = seguidos;
         this.eventosApuntado = eventosApuntado;
-        this.eventosParticipado = eventosParticipado;
         this.eventosCreados = eventosCreados;
+    }
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 
     public Usuario(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil) {
@@ -36,6 +43,30 @@ public class Usuario {
     }
 
     public Usuario() {
+    }
+
+    public Usuario(String userKey, String fotoPerfil, String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+        this.fotoPerfil = fotoPerfil;
+        this.userKey = userKey;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombreUsuario='" + nombreUsuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contrasenya='" + contrasenya + '\'' +
+                ", fotoPerfil='" + fotoPerfil + '\'' +
+                ", userKey='" + userKey + '\'' +
+                ", seguidores=" + seguidores +
+                ", seguidos=" + seguidos +
+                ", eventosApuntado=" + eventosApuntado +
+                ", eventosCreados=" + eventosCreados +
+                '}';
     }
 
     public String getNombreUsuario() {
@@ -117,15 +148,6 @@ public class Usuario {
     public void setEventosApuntado(ArrayList<Evento> eventosApuntado) {
         this.eventosApuntado = eventosApuntado;
     }
-
-    public ArrayList<Evento> getEventosParticipado() {
-        return eventosParticipado;
-    }
-
-    public void setEventosParticipado(ArrayList<Evento> eventosParticipado) {
-        this.eventosParticipado = eventosParticipado;
-    }
-
     public ArrayList<Evento> getEventosCreados() {
         return eventosCreados;
     }

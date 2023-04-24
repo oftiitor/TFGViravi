@@ -24,4 +24,16 @@
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
 
     </style>
+    <style name="MenuIcons">
+        <item name="android:textSize">40sp</item>
+    </style>
+
+    <style name="MenuIcon" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
 </resources>

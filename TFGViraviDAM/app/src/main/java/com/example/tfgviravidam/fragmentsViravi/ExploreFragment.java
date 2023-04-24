@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.example.tfgviravidam.Adapter.CategoryAdapter;
 import com.example.tfgviravidam.Adapter.CategoryAdapter2;
 import com.example.tfgviravidam.Adapter.PopularAdapter;
+import com.example.tfgviravidam.Adapter.UserAdapter;
 import com.example.tfgviravidam.DAO.Categorias;
 import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.DAO.Usuario;
@@ -68,7 +69,7 @@ public class ExploreFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         user= firebaseAuth.getCurrentUser().getUid();
         firebaseDatabase= FirebaseDatabase.getInstance().getReference("Usuarios");
-
+        loadUser();
         recogerDatosUser();
 
     }
@@ -169,6 +170,40 @@ public class ExploreFragment extends Fragment {
 
 
 
+    }
+
+    private void loadUser(){
+        DatabaseReference usuariosRef = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+        ArrayList<Usuario> listaUser = new ArrayList<Usuario>();
+        usuariosRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot usuarioSnapshot : dataSnapshot.getChildren()) {
+                    String userKey = usuarioSnapshot.getKey();
+                    String nombreUsuario = usuarioSnapshot.child("nombreUsuario").getValue(String.class);
+                    String nombre = usuarioSnapshot.child("nombre").getValue(String.class);
+                    String telefono = usuarioSnapshot.child("telefono").getValue(String.class);
+                    String fechaNacimiento = usuarioSnapshot.child("fechaNacimiento").getValue(String.class);
+                    String correo = usuarioSnapshot.child("correo").getValue(String.class);
+                    String contrasena = usuarioSnapshot.child("contrasenya").getValue(String.class);
+                    String fotoPerfil = usuarioSnapshot.child("fotoPerfil").getValue(String.class);
+                    Usuario u = new Usuario(userKey,fotoPerfil,nombreUsuario);
+                    listaUser.add(u);
+
+                    LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
+                    binding.viewUsers.setLayoutManager(linearLayoutManager);
+                    UserAdapter adapterUser =new UserAdapter(listaUser);
+                    binding.viewUsers.setAdapter(adapterUser);
+                    Log.i("ListaUser",listaUser.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Manejar errores si es necesario
+                // ...
+            }
+        });
     }
 
     private void recogerEventos(){

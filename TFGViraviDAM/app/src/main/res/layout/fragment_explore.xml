@@ -117,32 +117,42 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/PopuPlan" />
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:dividerColor="#F6F6F6"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintTop_toBottomOf="@id/viewPopuPlans"/>
+
         <TextView
-            android:id="@+id/planesMadrid"
+            android:id="@+id/users"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Planes mas populares"
+            android:text="Nuestros Usuarios"
             android:textColor="@color/black"
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageView4"
             android:layout_width="51dp"
             android:layout_height="43dp"
             android:layout_marginTop="13dp"
             android:layout_marginRight="20dp"
             android:src="@drawable/baseline_arrow_forward_24"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/viewPlanesMadrid"
+            android:id="@+id/viewUsers"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
@@ -150,7 +160,20 @@
             android:paddingEnd="22dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PopuPlan" />
+            app:layout_constraintTop_toBottomOf="@+id/users" />
+
+        <TextView
+            android:id="@+id/espacio"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewUsers" />
+
 
 
 
