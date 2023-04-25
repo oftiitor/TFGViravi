@@ -50,30 +50,134 @@
             android:layout_marginBottom="10dp"
             app:layout_constraintTop_toBottomOf="@id/editText"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/viewCategory1"
-            android:paddingTop="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingStart="22dp"
-            android:paddingEnd="22dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+        <ImageButton
+            android:id="@+id/imageButtonFiesta"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/party"
+            android:scaleType="FIT_CENTER"
+            app:layout_constraintEnd_toStartOf="@id/guidelinecategorias2vertical"
+            app:layout_constraintStart_toStartOf="@id/guidelinecategorias1vertical"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@id/guidelinecategorias1horizontal"/>
+
+        <ImageButton
+            android:id="@+id/imageButtonTurismo"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="FIT_CENTER"
+            android:src="@drawable/museum"
+            app:layout_constraintBottom_toTopOf="@id/guidelinecategorias1horizontal"
+            app:layout_constraintEnd_toStartOf="@id/guidelinecategorias4vertical"
+            app:layout_constraintStart_toEndOf="@id/guidelinecategorias3vertical"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/viewCategory2"
-            android:layout_width="match_parent"
+
+        <ImageButton
+            android:id="@+id/imageButtonActividades"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="FIT_CENTER"
+            android:src="@drawable/park"
+            app:layout_constraintBottom_toTopOf="@id/guidelinecategorias1horizontal"
+            app:layout_constraintEnd_toStartOf="@id/guidelinecategorias6vertical"
+            app:layout_constraintStart_toStartOf="@id/guidelinecategorias5vertical"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+        <ImageButton
+            android:id="@+id/imageButtonViajes"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="FIT_CENTER"
+            android:src="@drawable/travel"
+            app:layout_constraintBottom_toTopOf="@id/guidelinecategorias3horizontal"
+            app:layout_constraintEnd_toStartOf="@id/guidelinecategorias2vertical"
+            app:layout_constraintStart_toStartOf="@id/guidelinecategorias1vertical"
+            app:layout_constraintTop_toBottomOf="@+id/guidelinecategorias2horizontal" />
+
+        <ImageButton
+            android:id="@+id/imageButtonGastronomia"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="FIT_CENTER"
+            android:src="@drawable/food"
+            app:layout_constraintBottom_toTopOf="@id/guidelinecategorias3horizontal"
+            app:layout_constraintEnd_toStartOf="@id/guidelinecategorias4vertical"
+            app:layout_constraintStart_toStartOf="@id/guidelinecategorias3vertical"
+            app:layout_constraintTop_toBottomOf="@+id/guidelinecategorias2horizontal" />
+
+        <ImageButton
+            android:id="@+id/imageButtonDeportes"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:scaleType="FIT_CENTER"
+            android:src="@drawable/sport"
+            app:layout_constraintBottom_toTopOf="@id/guidelinecategorias3horizontal"
+            app:layout_constraintEnd_toStartOf="@id/guidelinecategorias6vertical"
+            app:layout_constraintStart_toStartOf="@id/guidelinecategorias5vertical"
+            app:layout_constraintTop_toBottomOf="@+id/guidelinecategorias2horizontal" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinecategorias1horizontal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="20dp"
-            android:clipToPadding="false"
-            android:paddingStart="22dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewCategory1" />
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.18" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinecategorias2horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1875" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinecategorias3horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.27" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinecategorias1vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.02" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinecategorias2vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.32" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinecategorias3vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinecategorias4vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinecategorias5vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.68" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelinecategorias6vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.98" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider1"
@@ -81,7 +185,7 @@
             android:layout_height="10dp"
             app:dividerColor="#F6F6F6"
             android:layout_marginBottom="10dp"
-            app:layout_constraintTop_toBottomOf="@id/viewCategory2"/>
+            app:layout_constraintTop_toBottomOf="@id/guidelinecategorias3horizontal"/>
 
         <TextView
             android:id="@+id/PopuPlan"
@@ -173,8 +277,6 @@
             android:textSize="25sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewUsers" />
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

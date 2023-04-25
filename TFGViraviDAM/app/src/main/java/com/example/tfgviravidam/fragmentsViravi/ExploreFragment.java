@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.tfgviravidam.Adapter.CategoryAdapter;
 import com.example.tfgviravidam.Adapter.CategoryAdapter2;
@@ -37,33 +39,35 @@ public class ExploreFragment extends Fragment {
 
     private FragmentExploreBinding binding;
 
-    private RecyclerView.Adapter adapter;
-
     private  String user;
 
-    private RecyclerView recyclerViewCategory;
+    /* DECLARACIÓN DE LOS IMAGEBUTTONS */
+    private ImageButton imageButtonFiesta, imageButtonTurismo, imageButtonActividades, imageButtonViajes, imageButtonGastronomia, imageButtonDeportes;
     private RecyclerView recyclerViewPopularplans;
     private List<Evento> eventos = new ArrayList<>();
 
     FirebaseAuth firebaseAuth;
     DatabaseReference firebaseDatabase;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentExploreBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        recyclerViewCategory = view.findViewById(R.id.viewCategory1);
         recyclerViewPopularplans = view.findViewById(R.id.viewPopuPlans);
-        recyclerViewCategory1(view);
-        recyclerViewCategory2(view);
         recyclerViewPopular(view);
+
+        /* SÓLO ES PARA SABER SI FUNCIONA EL BOTÓN */
+        imageButtonFiesta.setOnClickListener(view16 -> Toast.makeText(getActivity(), "Fiesta", Toast.LENGTH_LONG).show());
+        imageButtonTurismo.setOnClickListener(view15 -> Toast.makeText(getActivity(), "Turismo", Toast.LENGTH_LONG).show());
+        imageButtonActividades.setOnClickListener(view14 -> Toast.makeText(getActivity(), "Actividades", Toast.LENGTH_LONG).show());
+        imageButtonViajes.setOnClickListener(view13 -> Toast.makeText(getActivity(), "Viajes", Toast.LENGTH_LONG).show());
+        imageButtonGastronomia.setOnClickListener(view12 -> Toast.makeText(getActivity(), "Gastronomia", Toast.LENGTH_LONG).show());
+        imageButtonDeportes.setOnClickListener(view1 -> Toast.makeText(getActivity(), "Deportes", Toast.LENGTH_LONG).show());
 
         return view;
     }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -83,12 +87,12 @@ public class ExploreFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     Usuario user = snapshot.getValue(Usuario.class);
-                    String nombreUsuario =user.getNombreUsuario();
-                    String nombre=user.getNombre();
-                    String telefono=user.getTelefono();
-                    String fechaNacimiento=user.getFechaNacimiento();
-                    String correo=user.getCorreo();
-                    String contrasenya=user.getContrasenya();
+                    String nombreUsuario = user.getNombreUsuario();
+                    String nombre = user.getNombre();
+                    String telefono = user.getTelefono();
+                    String fechaNacimiento = user.getFechaNacimiento();
+                    String correo = user.getCorreo();
+                    String contrasenya = user.getContrasenya();
                     String foto = user.getFotoPerfil();
 
                     Log.i("dasdasdadadassdads","asdasdadadas");
@@ -102,34 +106,6 @@ public class ExploreFragment extends Fragment {
         });
     }
 
-    private void recyclerViewCategory1(View view) {
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-        recyclerViewCategory.setLayoutManager(linearLayoutManager);
-
-        ArrayList<Categorias> categoria = new ArrayList<>();
-        categoria.add(new Categorias("Fiesta","copa-de-champan","yellow_pastel"));
-        categoria.add(new Categorias("Turismo","museo_britanico","blue_pastel"));
-        categoria.add(new Categorias("Actividades","parque","red_pastel"));
-
-
-        CategoryAdapter adapter=new CategoryAdapter(categoria);
-        binding.viewCategory1.setAdapter(adapter);
-
-    }
-    private void recyclerViewCategory2(View view) {
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
-        binding.viewCategory2.setLayoutManager(linearLayoutManager);
-
-        ArrayList<Categorias> categoria1 = new ArrayList<>();
-
-        categoria1.add(new Categorias("Viajes","passport","orange_pastel"));
-        categoria1.add(new Categorias("Gastronomia","restaurant","purple_pastel"));
-        categoria1.add(new Categorias("Deportes","sports","brown_pastel"));
-
-        CategoryAdapter2 adapter =new CategoryAdapter2(categoria1);
-        binding.viewCategory2.setAdapter(adapter);
-
-    }
     private void recyclerViewPopular(View view) {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
         recyclerViewPopularplans.setLayoutManager(linearLayoutManager);
@@ -153,7 +129,6 @@ public class ExploreFragment extends Fragment {
                         usuariosApuntados.add(usuarioSnapshot.getKey());
                     }
 
-
                     Evento evento = new Evento(nombre, descripcion,fechaInicio,fechaFin, usuarioCreador, ciudad, categoria, imagen, usuariosApuntados);
                     eventos.add(evento);
                     Log.i("as",eventos.toString());
@@ -167,8 +142,6 @@ public class ExploreFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
-
-
 
     }
 
