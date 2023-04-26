@@ -86,7 +86,7 @@
             Participados"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline127"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline126" />
@@ -100,7 +100,7 @@
              Creados"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline127"
             app:layout_constraintTop_toTopOf="@+id/guideline126" />

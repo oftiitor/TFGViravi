@@ -11,9 +11,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.example.tfgviravidam.fragmentsLogin.LoginActivity;
 import com.example.tfgviravidam.fragmentsViravi.ViraviActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashActivity extends AppCompatActivity {
+
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,4 +42,16 @@ public class SplashActivity extends AppCompatActivity {
             }
         },1800);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (firebaseAuth.getCurrentUser() != null) {
+            Intent intent = new Intent(SplashActivity.this, ViraviActivity.class);
+            startActivity(intent);
+        }
+
+    }
+
 }

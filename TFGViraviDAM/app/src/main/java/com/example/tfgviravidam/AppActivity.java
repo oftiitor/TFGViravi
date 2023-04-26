@@ -14,6 +14,7 @@ public class AppActivity extends AppCompatActivity {
 
     Button btnRegister;
     Button btnLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,4 +39,5 @@ public class AppActivity extends AppCompatActivity {
         });
 
     }
+
 }

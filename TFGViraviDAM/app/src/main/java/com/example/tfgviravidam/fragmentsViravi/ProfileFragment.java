@@ -1,5 +1,6 @@
 package com.example.tfgviravidam.fragmentsViravi;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,12 +14,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.tfgviravidam.Adapter.PopularAdapter;
 import com.example.tfgviravidam.Adapter.UserEventsAdapter;
+import com.example.tfgviravidam.AppActivity;
 import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
+import com.example.tfgviravidam.SplashActivity;
 import com.example.tfgviravidam.databinding.FragmentExploreBinding;
 import com.example.tfgviravidam.databinding.FragmentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +39,9 @@ public class ProfileFragment extends Fragment {
 
     private FragmentProfileBinding binding;
     private ArrayList<String> lista = new ArrayList<String>();
+    FirebaseAuth firebaseAuth;
+    TextView txtNombre;
+    String nombreUsuario;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,21 +51,42 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        binding.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebaseAuth.signOut();
+                startActivity(new Intent(ProfileFragment.this.getActivity(), AppActivity.class));
+                finishF();
+            }
+        });
+
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         getUserName();
         loadUserEvents();
 
+        Bundle datosRecuperados = getArguments();
+        nombreUsuario = datosRecuperados.getString("user");
+        txtNombre = view.findViewById(R.id.textView16);
+        txtNombre.setText(nombreUsuario);
+
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), NewEventActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(getActivity(), NewEventActivity.class));
             }
         });
 
         return  view;
+
+    }
+
+    private void finishF() {
+        Activity activity = (Activity)getContext();
+        activity.finish();
     }
 
     private void loadUserEvents(){

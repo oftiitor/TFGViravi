@@ -48,10 +48,7 @@ public class EventDetaillFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRootreference = database.getReference("Events");
 
-
     FirebaseAuth firebaseAuth;
-
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
