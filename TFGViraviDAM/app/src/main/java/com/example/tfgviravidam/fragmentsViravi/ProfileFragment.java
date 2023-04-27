@@ -52,6 +52,14 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+
+        // Inflate the layout for this fragment
+        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        getUserName();
+        loadUserEvents();
+
         firebaseAuth = FirebaseAuth.getInstance();
         binding.button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,16 +70,10 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
-        getUserName();
-        loadUserEvents();
-
-        Bundle datosRecuperados = getArguments();
+        /*Bundle datosRecuperados = getArguments();
         nombreUsuario = datosRecuperados.getString("user");
         txtNombre = view.findViewById(R.id.textView16);
-        txtNombre.setText(nombreUsuario);
+        txtNombre.setText(nombreUsuario);*/
 
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,8 +147,7 @@ public class ProfileFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
 
-                        Usuario user = snapshot.getValue(Usuario.class);
-                        String nombreUsuario = user.getNombreUsuario();
+                        String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
                         lista.add(0,nombreUsuario);
 
                     }

@@ -42,7 +42,6 @@ public class ExploreFragment extends Fragment {
     private  String user;
 
     /* DECLARACIÓN DE LOS IMAGEBUTTONS */
-    private ImageButton imageButtonFiesta, imageButtonTurismo, imageButtonActividades, imageButtonViajes, imageButtonGastronomia, imageButtonDeportes;
     private RecyclerView recyclerViewPopularplans;
     private List<Evento> eventos = new ArrayList<>();
 
@@ -58,12 +57,12 @@ public class ExploreFragment extends Fragment {
         recyclerViewPopular(view);
 
         /* SÓLO ES PARA SABER SI FUNCIONA EL BOTÓN */
-        imageButtonFiesta.setOnClickListener(view16 -> Toast.makeText(getActivity(), "Fiesta", Toast.LENGTH_LONG).show());
-        imageButtonTurismo.setOnClickListener(view15 -> Toast.makeText(getActivity(), "Turismo", Toast.LENGTH_LONG).show());
-        imageButtonActividades.setOnClickListener(view14 -> Toast.makeText(getActivity(), "Actividades", Toast.LENGTH_LONG).show());
-        imageButtonViajes.setOnClickListener(view13 -> Toast.makeText(getActivity(), "Viajes", Toast.LENGTH_LONG).show());
-        imageButtonGastronomia.setOnClickListener(view12 -> Toast.makeText(getActivity(), "Gastronomia", Toast.LENGTH_LONG).show());
-        imageButtonDeportes.setOnClickListener(view1 -> Toast.makeText(getActivity(), "Deportes", Toast.LENGTH_LONG).show());
+        binding.imageButtonFiesta.setOnClickListener(view16 -> Toast.makeText(getActivity(), "Fiesta", Toast.LENGTH_LONG).show());
+        binding.imageButtonTurismo.setOnClickListener(view15 -> Toast.makeText(getActivity(), "Turismo", Toast.LENGTH_LONG).show());
+        binding.imageButtonActividades.setOnClickListener(view14 -> Toast.makeText(getActivity(), "Actividades", Toast.LENGTH_LONG).show());
+        binding.imageButtonViajes.setOnClickListener(view13 -> Toast.makeText(getActivity(), "Viajes", Toast.LENGTH_LONG).show());
+        binding.imageButtonGastronomia.setOnClickListener(view12 -> Toast.makeText(getActivity(), "Gastronomia", Toast.LENGTH_LONG).show());
+        binding.imageButtonDeportes.setOnClickListener(view1 -> Toast.makeText(getActivity(), "Deportes", Toast.LENGTH_LONG).show());
 
         return view;
     }
@@ -86,14 +85,13 @@ public class ExploreFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    Usuario user = snapshot.getValue(Usuario.class);
-                    String nombreUsuario = user.getNombreUsuario();
-                    String nombre = user.getNombre();
-                    String telefono = user.getTelefono();
-                    String fechaNacimiento = user.getFechaNacimiento();
-                    String correo = user.getCorreo();
-                    String contrasenya = user.getContrasenya();
-                    String foto = user.getFotoPerfil();
+                    String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
+                    String nombre = snapshot.child("nombre").getValue(String.class);
+                    String telefono = snapshot.child("telefono").getValue(String.class);
+                    String fechaNacimiento = snapshot.child("fechaNacimiento").getValue(String.class);
+                    String correo = snapshot.child("correo").getValue(String.class);
+                    String contrasenya = snapshot.child("contrasenya").getValue(String.class);
+                    String foto= snapshot.child("fotoPerfil").getValue(String.class);
 
                     Log.i("dasdasdadadassdads","asdasdadadas");
                 }

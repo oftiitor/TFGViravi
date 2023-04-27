@@ -27,11 +27,9 @@ public class SplashActivity extends AppCompatActivity {
 
         Animation animacion1 = AnimationUtils.loadAnimation(this,R.anim.splash);
 
-
         ImageView ivLogo = findViewById(R.id.ivLogo);
 
         ivLogo.setAnimation(animacion1);
-
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -42,16 +40,4 @@ public class SplashActivity extends AppCompatActivity {
             }
         },1800);
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (firebaseAuth.getCurrentUser() != null) {
-            Intent intent = new Intent(SplashActivity.this, ViraviActivity.class);
-            startActivity(intent);
-        }
-
-    }
-
 }

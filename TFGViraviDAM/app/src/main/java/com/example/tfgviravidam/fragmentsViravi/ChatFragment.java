@@ -161,10 +161,9 @@ public class ChatFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
+                    String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
 
-                    Usuario user = snapshot.getValue(Usuario.class);
-                    String nombreUsuario = user.getNombreUsuario();
-                    String phone = user.getTelefono();
+                    String phone = snapshot.child("telefono").getValue(String.class);
 
                     nombre.add(0,nombreUsuario);
                     telefono.add(0,phone);

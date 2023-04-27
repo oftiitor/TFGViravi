@@ -74,8 +74,7 @@ public class ChatListFragment extends Fragment {
                         @Override
                         public void onDataChange(@androidx.annotation.NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()) {
-                                Usuario user = snapshot.getValue(Usuario.class);
-                                String nombreUsuario = user.getNombreUsuario();
+                                String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
                                 if (userList.contains(nombreUsuario)) {
                                     for (String n : userList) {
                                         if (!n.equals(nombreUsuario)) {

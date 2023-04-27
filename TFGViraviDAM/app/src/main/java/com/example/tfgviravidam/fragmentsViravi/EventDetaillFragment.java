@@ -59,8 +59,7 @@ public class EventDetaillFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Usuario user = snapshot.getValue(Usuario.class);
-                    String nombreUsuario = user.getNombreUsuario();
+                    String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
                     lista.add(0,nombreUsuario);
                 }
             }
