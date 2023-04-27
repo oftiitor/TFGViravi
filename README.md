@@ -5,4 +5,4 @@ Centro Educativo: Innovación en Formación Profesional.
 ## Aplicación Móvil
 Red Social de Eventos.
 
-![hippo](https://media3.giphy.com/media/aUovxH8Vf9qDu/giphy.gif)
+![kikorivera](https://c.tenor.com/A_IBnhx1Jh0AAAAC/kiko-rivera-paquirrin.gif)
