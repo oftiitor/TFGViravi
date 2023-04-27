@@ -4,3 +4,5 @@ Autores: Víctor Henry Fall Turrientes, Raúl Arribas Canalejo, Víctor Corchado
 Centro Educativo: Innovación en Formación Profesional.
 ## Aplicación Móvil
 Red Social de Eventos.
+
+![hippo](https://media3.giphy.com/media/aUovxH8Vf9qDu/giphy.gif)
