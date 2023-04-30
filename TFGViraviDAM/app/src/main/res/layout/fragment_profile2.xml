@@ -7,7 +7,7 @@
     tools:context=".fragmentsViravi.ProfileFragment"
     android:background="@color/white"
     android:backgroundTint="@color/white"
->
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -131,7 +131,6 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14dp"
-            android:background="#7CDFDFDF"
             app:layout_constraintBottom_toTopOf="@id/divider2"
             app:layout_constraintEnd_toStartOf="@+id/guideline127"
             app:layout_constraintStart_toStartOf="parent"
@@ -160,6 +159,7 @@
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="14dp"
+            android:background="#7CDFDFDF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/divider2"
             app:layout_constraintStart_toStartOf="@+id/guideline127"
@@ -192,18 +192,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/ivNewEvent"
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="15dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/a_adir_evento__3__prev_ui__1_"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/scrollView"
-                    tools:ignore="NotSibling" />
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/userEvents"
                     android:layout_width="match_parent"
@@ -212,7 +200,6 @@
                     app:layout_constraintBottom_toBottomOf="@+id/scrollView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivNewEvent"
                     tools:ignore="NotSibling" />
 
                 <androidx.constraintlayout.widget.Guideline

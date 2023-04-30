@@ -392,12 +392,13 @@ public class NewEventActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    Usuario user = snapshot.getValue(Usuario.class);
-                    nombreUsuario =user.getNombreUsuario();
+                    String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
                     Log.i("Usuario",nombreUsuario);
                     mRootreference= FirebaseDatabase.getInstance().getReference("Events");
                     usuariosApuntados.add(nombreUsuario);
                     usuariosApuntados.add("Juan");
+                    DatabaseReference userEvent = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid()).child("eventosCreados").child(nombre);
+                    userEvent.setValue(nombre);
 
                     Evento e = new Evento();
                     e.setNombre(nombre);

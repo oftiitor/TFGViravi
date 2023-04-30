@@ -16,6 +16,7 @@ import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
 import com.example.tfgviravidam.databinding.UserCardBinding;
 import com.example.tfgviravidam.fragmentsViravi.ProfileFragment;
+import com.example.tfgviravidam.fragmentsViravi.UserProfileFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -46,8 +47,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new ProfileFragment();
+                Fragment fragment = new UserProfileFragment();
                 Bundle args = new Bundle();
+                args.putParcelable("user",user);
                 fragment.setArguments(args);
 
                 FragmentManager fragmentManager = ((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager();

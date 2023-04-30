@@ -1,5 +1,6 @@
 package com.example.tfgviravidam.fragmentsViravi;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.transition.Fade;
 
 import android.os.Parcelable;
 import android.util.Log;
@@ -76,6 +78,9 @@ public class EventDetaillFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentEventDetaillBinding.inflate(inflater, container, false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setEnterTransition(new Fade());
+        }
         View view = binding.getRoot();
         Evento event = getArguments().getParcelable("evento");
         if (event != null) {
@@ -104,14 +109,15 @@ public class EventDetaillFragment extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-
-                            Usuario user = snapshot.getValue(Usuario.class);
-                            String nombreUsuario = user.getNombreUsuario();
+                            ArrayList<String> listaEvent = new ArrayList<String>();
+                            String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
                             lista.add(0,nombreUsuario);
                             Log.i("Usuario", nombreUsuario);
                             Log.i("event", nombre);
-
                             DatabaseReference eventRef = FirebaseDatabase.getInstance().getReference("Events").child(nombre);
+                            listaEvent.clear();
+                            listaEvent.add(nombre);
+                            mRootreference.child(firebaseAuth.getCurrentUser().getUid()).child("eventosApuntados").child(nombre).setValue(nombre);
 
                             DatabaseReference usersRef = eventRef.child("usuariosApuntados");
 

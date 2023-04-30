@@ -57,12 +57,12 @@ public class ExploreFragment extends Fragment {
         recyclerViewPopular(view);
 
         /* SÓLO ES PARA SABER SI FUNCIONA EL BOTÓN */
-        binding.imageButtonFiesta.setOnClickListener(view16 -> Toast.makeText(getActivity(), "Fiesta", Toast.LENGTH_LONG).show());
-        binding.imageButtonTurismo.setOnClickListener(view15 -> Toast.makeText(getActivity(), "Turismo", Toast.LENGTH_LONG).show());
-        binding.imageButtonActividades.setOnClickListener(view14 -> Toast.makeText(getActivity(), "Actividades", Toast.LENGTH_LONG).show());
-        binding.imageButtonViajes.setOnClickListener(view13 -> Toast.makeText(getActivity(), "Viajes", Toast.LENGTH_LONG).show());
-        binding.imageButtonGastronomia.setOnClickListener(view12 -> Toast.makeText(getActivity(), "Gastronomia", Toast.LENGTH_LONG).show());
-        binding.imageButtonDeportes.setOnClickListener(view1 -> Toast.makeText(getActivity(), "Deportes", Toast.LENGTH_LONG).show());
+        binding.cvParty.setOnClickListener(view16 -> Toast.makeText(getActivity(), "Fiesta", Toast.LENGTH_LONG).show());
+        binding.cvMuseum.setOnClickListener(view15 -> Toast.makeText(getActivity(), "Turismo", Toast.LENGTH_LONG).show());
+        binding.cvActivity.setOnClickListener(view14 -> Toast.makeText(getActivity(), "Actividades", Toast.LENGTH_LONG).show());
+        binding.cvTravel.setOnClickListener(view13 -> Toast.makeText(getActivity(), "Viajes", Toast.LENGTH_LONG).show());
+        binding.cvFood.setOnClickListener(view12 -> Toast.makeText(getActivity(), "Gastronomia", Toast.LENGTH_LONG).show());
+        binding.cvSport.setOnClickListener(view1 -> Toast.makeText(getActivity(), "Deportes", Toast.LENGTH_LONG).show());
 
         return view;
     }
@@ -151,15 +151,39 @@ public class ExploreFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot usuarioSnapshot : dataSnapshot.getChildren()) {
                     String userKey = usuarioSnapshot.getKey();
-                    String nombreUsuario = usuarioSnapshot.child("nombreUsuario").getValue(String.class);
-                    String nombre = usuarioSnapshot.child("nombre").getValue(String.class);
-                    String telefono = usuarioSnapshot.child("telefono").getValue(String.class);
-                    String fechaNacimiento = usuarioSnapshot.child("fechaNacimiento").getValue(String.class);
+                    String contrasenya = usuarioSnapshot.child("contrasenya").getValue(String.class);
                     String correo = usuarioSnapshot.child("correo").getValue(String.class);
-                    String contrasena = usuarioSnapshot.child("contrasenya").getValue(String.class);
+                    ArrayList<String> eventosApuntados = new ArrayList<>();
+                    for (DataSnapshot snapshot : usuarioSnapshot.child("eventosApuntados").getChildren()) {
+                        String eventoApuntado = snapshot.getValue(String.class);
+                        eventosApuntados.add(eventoApuntado);
+                    }
+                    ArrayList<String> eventosCreados = new ArrayList<>();
+                    for (DataSnapshot snapshot : usuarioSnapshot.child("eventosCreados").getChildren()) {
+                        String eventoCreado = snapshot.getValue(String.class);
+                        eventosCreados.add(eventoCreado);
+                    }
+                    String fechaNacimiento = usuarioSnapshot.child("fechaNacimiento").getValue(String.class);
                     String fotoPerfil = usuarioSnapshot.child("fotoPerfil").getValue(String.class);
-                    Usuario u = new Usuario(userKey,fotoPerfil,nombreUsuario);
-                    listaUser.add(u);
+                    String nombre = usuarioSnapshot.child("nombre").getValue(String.class);
+                    String nombreUsuario = usuarioSnapshot.child("nombreUsuario").getValue(String.class);
+                    ArrayList<String> seguidores = new ArrayList<>();
+                    for (DataSnapshot snapshot : usuarioSnapshot.child("seguidores").getChildren()) {
+                        String seguidor = snapshot.getValue(String.class);
+                        seguidores.add(seguidor);
+                    }
+                    ArrayList<String> seguidos = new ArrayList<>();
+                    for (DataSnapshot snapshot : usuarioSnapshot.child("seguidos").getChildren()) {
+                        String seguido = snapshot.getValue(String.class);
+                        seguidos.add(seguido);
+                    }
+                    String numeroTelefono = usuarioSnapshot.child("telefono").getValue(String.class);
+
+                    Usuario usuario = new Usuario(nombreUsuario, nombre, numeroTelefono, fechaNacimiento,
+                            correo, contrasenya,fotoPerfil, userKey, eventosApuntados,
+                            eventosCreados, seguidores, seguidos);
+                    listaUser.add(usuario);
+                    Log.i("USUARIO",usuario.toString());
 
                     LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
                     binding.viewUsers.setLayoutManager(linearLayoutManager);

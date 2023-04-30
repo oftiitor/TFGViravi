@@ -7,7 +7,7 @@
     tools:context=".fragmentsViravi.ProfileFragment"
     android:background="@color/white"
     android:backgroundTint="@color/white"
->
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -108,77 +108,14 @@
             app:layout_constraintStart_toStartOf="@+id/guideline116"
             app:layout_constraintTop_toBottomOf="@+id/txtNumSeguidos" />
 
-        <TextView
-            android:id="@+id/txtEventosParticipados"
-            android:layout_width="95dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Eventos
-            Apuntado"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            app:layout_constraintBottom_toTopOf="@id/divider2"
-            app:layout_constraintEnd_toStartOf="@+id/guideline127"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
-        <TextView
-            android:id="@+id/txtApuntadoEspacio"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            android:background="#7CDFDFDF"
-            app:layout_constraintBottom_toTopOf="@id/divider2"
-            app:layout_constraintEnd_toStartOf="@+id/guideline127"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-        <TextView
-            android:id="@+id/txtEventosCreados"
-            android:layout_width="95dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Eventos
-             Creados"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/divider2"
-            app:layout_constraintStart_toStartOf="@+id/guideline127"
-            app:layout_constraintTop_toBottomOf="@+id/divider3" />
-
-        <TextView
-            android:id="@+id/txtCreadoEspacio"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="14dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/divider2"
-            app:layout_constraintStart_toStartOf="@+id/guideline127"
-            app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="5dp"
             app:dividerColor="#232323"
-            app:layout_constraintTop_toBottomOf="@id/txtEventosCreados" />
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginTop="10dp"
-            app:dividerColor="#232323"
-            app:layout_constraintTop_toTopOf="@id/guideline119" />
+            app:layout_constraintTop_toBottomOf="@id/btnSeguir" />
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -192,18 +129,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/ivNewEvent"
-                    android:layout_width="0dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="15dp"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/a_adir_evento__3__prev_ui__1_"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/scrollView"
-                    tools:ignore="NotSibling" />
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/userEvents"
                     android:layout_width="match_parent"
@@ -212,7 +137,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/scrollView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivNewEvent"
+                    app:layout_constraintTop_toTopOf="@+id/scrollView"
                     tools:ignore="NotSibling" />
 
                 <androidx.constraintlayout.widget.Guideline
@@ -304,11 +229,11 @@
             app:layout_constraintTop_toBottomOf="@+id/foto" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnSeguir"
             android:layout_width="150dp"
             android:layout_height="0dp"
             android:fontFamily="@font/bebas_neue"
-            android:text="EDITAR"
+            android:text="Seguir"
             android:textAllCaps="false"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline119"
@@ -317,11 +242,11 @@
             app:layout_constraintTop_toTopOf="@+id/guideline118" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnDejarSeguir"
             android:layout_width="150dp"
             android:layout_height="0dp"
             android:fontFamily="@font/bebas_neue"
-            android:text="Cerrar Sesion"
+            android:text="Dejar de seguir"
             android:textAllCaps="false"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline119"

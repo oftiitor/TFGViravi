@@ -1,16 +1,26 @@
 package com.example.tfgviravidam.DAO;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Usuario {
+public class Usuario  implements Parcelable {
 
     private String nombreUsuario, nombre, telefono, fechaNacimiento, correo, contrasenya, fotoPerfil,userKey;
-    private int seguidores, seguidos;
-    private ArrayList<Evento> eventosApuntado, eventosCreados;
+    private ArrayList<String> eventosApuntado, eventosCreados,seguidores, seguidos;
 
-    public Usuario(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil, int seguidores, int seguidos, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
+    public Usuario(String nombreUsuario, String fotoPerfil, String userKey) {
+        this.nombreUsuario = nombreUsuario;
+        this.fotoPerfil = fotoPerfil;
+        this.userKey = userKey;
+    }
+
+    public Usuario(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil, String userKey, ArrayList<String> eventosApuntado, ArrayList<String> eventosCreados, ArrayList<String> seguidores, ArrayList<String> seguidos) {
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -18,21 +28,14 @@ public class Usuario {
         this.correo = correo;
         this.contrasenya = contrasenya;
         this.fotoPerfil = fotoPerfil;
-        this.seguidores = seguidores;
-        this.seguidos = seguidos;
+        this.userKey = userKey;
         this.eventosApuntado = eventosApuntado;
         this.eventosCreados = eventosCreados;
+        this.seguidores = seguidores;
+        this.seguidos = seguidos;
     }
 
-    public String getUserKey() {
-        return userKey;
-    }
-
-    public void setUserKey(String userKey) {
-        this.userKey = userKey;
-    }
-
-    public Usuario(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil) {
+    public Usuario(String contrasenya, String correo, ArrayList<String> eventosApuntados, ArrayList<String> eventosCreados, String fechaNacimiento, String fotoPerfil, String nombre, String nombreUsuario, ArrayList<String> seguidores, ArrayList<String> seguidos, String telefono) {
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -40,34 +43,38 @@ public class Usuario {
         this.correo = correo;
         this.contrasenya = contrasenya;
         this.fotoPerfil = fotoPerfil;
+        this.eventosApuntado = eventosApuntados;
+        this.eventosCreados = eventosCreados;
+        this.seguidores = seguidores;
+        this.seguidos = seguidos;
     }
 
-    public Usuario() {
+    protected Usuario(Parcel in) {
+        nombreUsuario = in.readString();
+        nombre = in.readString();
+        telefono = in.readString();
+        fechaNacimiento = in.readString();
+        correo = in.readString();
+        contrasenya = in.readString();
+        fotoPerfil = in.readString();
+        userKey = in.readString();
+        eventosApuntado = in.createStringArrayList();
+        eventosCreados = in.createStringArrayList();
+        seguidores = in.createStringArrayList();
+        seguidos = in.createStringArrayList();
     }
 
-    public Usuario(String userKey, String fotoPerfil, String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-        this.fotoPerfil = fotoPerfil;
-        this.userKey = userKey;
-    }
+    public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
+        @Override
+        public Usuario createFromParcel(Parcel in) {
+            return new Usuario(in);
+        }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "nombreUsuario='" + nombreUsuario + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", fechaNacimiento='" + fechaNacimiento + '\'' +
-                ", correo='" + correo + '\'' +
-                ", contrasenya='" + contrasenya + '\'' +
-                ", fotoPerfil='" + fotoPerfil + '\'' +
-                ", userKey='" + userKey + '\'' +
-                ", seguidores=" + seguidores +
-                ", seguidos=" + seguidos +
-                ", eventosApuntado=" + eventosApuntado +
-                ", eventosCreados=" + eventosCreados +
-                '}';
-    }
+        @Override
+        public Usuario[] newArray(int size) {
+            return new Usuario[size];
+        }
+    };
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -125,34 +132,82 @@ public class Usuario {
         this.fotoPerfil = fotoPerfil;
     }
 
-    public int getSeguidores() {
-        return seguidores;
+    public String getUserKey() {
+        return userKey;
     }
 
-    public void setSeguidores(int seguidores) {
-        this.seguidores = seguidores;
+    public void setUserKey(String userKey) {
+        this.userKey = userKey;
     }
 
-    public int getSeguidos() {
-        return seguidos;
-    }
-
-    public void setSeguidos(int seguidos) {
-        this.seguidos = seguidos;
-    }
-
-    public ArrayList<Evento> getEventosApuntado() {
+    public ArrayList<String> getEventosApuntado() {
         return eventosApuntado;
     }
 
-    public void setEventosApuntado(ArrayList<Evento> eventosApuntado) {
+    public void setEventosApuntado(ArrayList<String> eventosApuntado) {
         this.eventosApuntado = eventosApuntado;
     }
-    public ArrayList<Evento> getEventosCreados() {
+
+    public ArrayList<String> getEventosCreados() {
         return eventosCreados;
     }
 
-    public void setEventosCreados(ArrayList<Evento> eventosCreados) {
+    public void setEventosCreados(ArrayList<String> eventosCreados) {
         this.eventosCreados = eventosCreados;
+    }
+
+    public ArrayList<String> getSeguidores() {
+        return seguidores;
+    }
+
+    public void setSeguidores(ArrayList<String> seguidores) {
+        this.seguidores = seguidores;
+    }
+
+    public ArrayList<String> getSeguidos() {
+        return seguidos;
+    }
+
+    public void setSeguidos(ArrayList<String> seguidos) {
+        this.seguidos = seguidos;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombreUsuario='" + nombreUsuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", telefono='" + telefono + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", correo='" + correo + '\'' +
+                ", contrasenya='" + contrasenya + '\'' +
+                ", fotoPerfil='" + fotoPerfil + '\'' +
+                ", userKey='" + userKey + '\'' +
+                ", eventosApuntado=" + eventosApuntado +
+                ", eventosCreados=" + eventosCreados +
+                ", seguidores=" + seguidores +
+                ", seguidos=" + seguidos +
+                '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeString(nombreUsuario);
+        parcel.writeString(nombre);
+        parcel.writeString(telefono);
+        parcel.writeString(fechaNacimiento);
+        parcel.writeString(correo);
+        parcel.writeString(contrasenya);
+        parcel.writeString(fotoPerfil);
+        parcel.writeString(userKey);
+        parcel.writeStringList(eventosApuntado);
+        parcel.writeStringList(eventosCreados);
+        parcel.writeStringList(seguidores);
+        parcel.writeStringList(seguidos);
     }
 }

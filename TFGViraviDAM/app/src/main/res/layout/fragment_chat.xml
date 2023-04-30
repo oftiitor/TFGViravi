@@ -12,55 +12,44 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
-        android:text=""
+        android:text="rasdasdasa"
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/tvEventName"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
-        app:layout_constraintTop_toBottomOf="@+id/guideline128" />
+        app:layout_constraintTop_toTopOf="@+id/guideline128" />
 
     <TextView
         android:id="@+id/tvEventName"
         android:layout_width="250dp"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text=""
+        android:text="adsdasdadsad"
         android:textColor="#3C000000"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/materialDivider"
-        app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
-        app:layout_constraintTop_toTopOf="@+id/tvUserName"/>
+        app:layout_constraintBottom_toTopOf="@+id/guideline18"
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImage"/>
 
     <ImageView
         android:id="@+id/ivProfileImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="25dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@drawable/baseline_supervised_user_circle_24"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
-        app:layout_constraintEnd_toStartOf="@+id/tvUserName"
+        app:layout_constraintEnd_toStartOf="@+id/guideline129"
         app:layout_constraintStart_toEndOf="@+id/guideline23"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline128" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageView
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/flecha_izquierda"
-        android:textColor="@color/white"
-        app:backgroundTint="#FF000000"
-        app:elevation="6dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/baseline_arrow_back_24"
         app:layout_constraintBottom_toTopOf="@+id/guideline18"
         app:layout_constraintEnd_toStartOf="@+id/guideline23"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:pressedTranslationZ="12dp"
-        app:rippleColor="#FFFFFF"
-        app:tint="@android:color/white" />
-
+        app:layout_constraintTop_toTopOf="@+id/guideline128"/>
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/materialDivider"
@@ -127,13 +116,20 @@
         app:layout_constraintStart_toEndOf="@+id/etMessage"
         app:layout_constraintTop_toTopOf="@+id/guideline25" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline128"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.01" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="664dp" />
+        app:layout_constraintGuide_percent="0.09165527" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline23"
@@ -157,10 +153,10 @@
         app:layout_constraintGuide_percent="0.82" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline128"
+        android:id="@+id/guideline129"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.02872777" />
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.32603407" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

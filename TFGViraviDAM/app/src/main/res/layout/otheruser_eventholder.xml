@@ -34,20 +34,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/a_ko_hong_a" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:text="EDITAR"
-                android:gravity="center"
-                android:textSize="30dp"
-                android:background="#86000000"
-                android:fontFamily="@font/bebas_neue"
-                android:textColor="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/guideline98"
-                app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintStart_toStartOf="@+id/guideline97"
-                app:layout_constraintTop_toTopOf="parent"/>
-
 
             <TextView
                 android:id="@+id/Nombre"

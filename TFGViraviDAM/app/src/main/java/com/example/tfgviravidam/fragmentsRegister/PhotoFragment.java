@@ -102,12 +102,13 @@ public class PhotoFragment extends Fragment {
                     reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            ArrayList<Evento> eventosApuntado = null;
-                            ArrayList<Evento> eventosParticipado = null;
-                            ArrayList<Evento> eventosCreado = null;
+                            ArrayList<String> eventosApuntado = null;
+                            ArrayList<String> eventosCreado = null;
+                            ArrayList<String> seguidores = null;
+                            ArrayList<String> seguidos = null;
 
                             binding.progressBar.setVisibility(View.GONE);
-                            registrarUsuarioFirebase(user, nombre, phone, fecha, mail, contra, String.valueOf(uri), 0, 0,eventosApuntado,eventosParticipado,eventosCreado);
+                            registrarUsuarioFirebase(user, nombre, phone, fecha, mail, contra, String.valueOf(uri), seguidores, seguidos,eventosApuntado,eventosCreado);
 
                         }
                     });
@@ -116,7 +117,7 @@ public class PhotoFragment extends Fragment {
         }
     }
 
-    private void registrarUsuarioFirebase(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil, int seguidores, int seguidos, ArrayList<Evento> eventosApuntado, ArrayList<Evento> eventosParticipado, ArrayList<Evento> eventosCreados) {
+    private void registrarUsuarioFirebase(String nombreUsuario, String nombre, String telefono, String fechaNacimiento, String correo, String contrasenya, String fotoPerfil,  ArrayList<String> seguidores,  ArrayList<String> seguidos, ArrayList<String> eventosApuntado, ArrayList<String> eventosCreados) {
         firebaseAuth.createUserWithEmailAndPassword(correo,contrasenya).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -124,7 +125,7 @@ public class PhotoFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            Usuario usuario = new Usuario(nombreUsuario,nombre,telefono,fechaNacimiento,correo,contrasenya,fotoPerfil,seguidores,seguidos,eventosApuntado,eventosParticipado,eventosCreados);
+                            Usuario usuario = new Usuario(contrasenya, correo, eventosApuntado, eventosCreados, fechaNacimiento, fotoPerfil, nombre, nombreUsuario, seguidores, seguidos, telefono);
                             mRootreference.child(firebaseAuth.getCurrentUser().getUid()).setValue(usuario);
                             startActivity(new Intent(getActivity(),ViraviActivity.class));
                         }else{

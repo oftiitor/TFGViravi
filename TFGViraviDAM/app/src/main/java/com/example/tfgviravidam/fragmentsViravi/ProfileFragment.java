@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -22,8 +24,6 @@ import com.example.tfgviravidam.AppActivity;
 import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
-import com.example.tfgviravidam.SplashActivity;
-import com.example.tfgviravidam.databinding.FragmentExploreBinding;
 import com.example.tfgviravidam.databinding.FragmentProfileBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -40,8 +41,7 @@ public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
     private ArrayList<String> lista = new ArrayList<String>();
     FirebaseAuth firebaseAuth;
-    TextView txtNombre;
-    String nombreUsuario;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        getUserName();
+        loadUser();
         loadUserEvents();
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -70,15 +70,25 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        /*Bundle datosRecuperados = getArguments();
-        nombreUsuario = datosRecuperados.getString("user");
-        txtNombre = view.findViewById(R.id.textView16);
-        txtNombre.setText(nombreUsuario);*/
-
-        binding.button.setOnClickListener(new View.OnClickListener() {
+        binding.ivNewEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), NewEventActivity.class));
+            }
+        });
+
+        binding.txtEventosParticipados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new Profile2Fragment();
+                Bundle args = new Bundle();
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -124,6 +134,7 @@ public class ProfileFragment extends Fragment {
                         binding.userEvents.setAdapter(adapterUserEvento);
                     }
                     Log.i("EVENTOS",listaEvento.size()+"");
+
                 }
             }
 
@@ -135,29 +146,64 @@ public class ProfileFragment extends Fragment {
             });
         }
 
-        private void getUserName(){
+        private void loadUser(){
             DatabaseReference mRootreference;
             FirebaseAuth firebaseAuth;
             firebaseAuth = FirebaseAuth.getInstance();
 
-            mRootreference = FirebaseDatabase.getInstance().getReference("Usuarios");
-            mRootreference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // Aquí se obtienen los datos del usuario y se crea el objeto Usuario correspondiente
+                        String contrasenya = dataSnapshot.child("contrasenya").getValue(String.class);
+                        String correo = dataSnapshot.child("correo").getValue(String.class);
+                        ArrayList<String> eventosApuntados = new ArrayList<>();
+                        for (DataSnapshot snapshot : dataSnapshot.child("eventosApuntados").getChildren()) {
+                            String eventoApuntado = snapshot.getValue(String.class);
+                            eventosApuntados.add(eventoApuntado);
+                        }
+                        ArrayList<String> eventosCreados = new ArrayList<>();
+                        for (DataSnapshot snapshot : dataSnapshot.child("eventosCreados").getChildren()) {
+                            String eventoCreado = snapshot.getValue(String.class);
+                            eventosCreados.add(eventoCreado);
+                        }
+                        String fechaNacimiento = dataSnapshot.child("fechaNacimiento").getValue(String.class);
+                        String fotoPerfil = dataSnapshot.child("fotoPerfil").getValue(String.class);
+                        String nombre = dataSnapshot.child("nombre").getValue(String.class);
+                        String nombreUsuario = dataSnapshot.child("nombreUsuario").getValue(String.class);
+                        ArrayList<String> seguidores = new ArrayList<>();
+                        for (DataSnapshot snapshot : dataSnapshot.child("seguidores").getChildren()) {
+                            String seguidor = snapshot.getValue(String.class);
+                            seguidores.add(seguidor);
+                        }
+                        ArrayList<String> seguidos = new ArrayList<>();
+                        for (DataSnapshot snapshot : dataSnapshot.child("seguidos").getChildren()) {
+                            String seguido = snapshot.getValue(String.class);
+                            seguidos.add(seguido);
+                        }
+                        String numeroTelefono = dataSnapshot.child("telefono").getValue(String.class);
 
-                        String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
-                        lista.add(0,nombreUsuario);
+                        Usuario usuario = new Usuario(contrasenya, correo, eventosApuntados, eventosCreados,
+                                fechaNacimiento, fotoPerfil, nombre, nombreUsuario,
+                                seguidores, seguidos, numeroTelefono);
+                        lista.add(nombreUsuario);
+                        binding.txtnumEventos.setText(eventosCreados.size()+"");
+                        binding.txtNumSeguidores.setText(seguidores.size()+"");
+                        binding.txtNumSeguidos.setText(seguidos.size()+"");
+                        binding.tvNombre.setText(nombreUsuario);
+                        Picasso.get().load(fotoPerfil).resize(300, 200).centerCrop().into(binding.foto);
 
+
+                        Log.i("usuario",usuario.toString());
                     }
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Manejar errores aquí
                 }
-
             });
         }
     }

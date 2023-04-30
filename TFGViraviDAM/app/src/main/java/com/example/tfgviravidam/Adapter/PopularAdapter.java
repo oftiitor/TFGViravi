@@ -1,8 +1,6 @@
 package com.example.tfgviravidam.Adapter;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +18,6 @@ import com.example.tfgviravidam.databinding.ViewholderEventosBinding;
 import com.example.tfgviravidam.fragmentsViravi.EventDetaillFragment;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoViewHolder> {
@@ -62,9 +59,10 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoVi
 
                 FragmentManager fragmentManager = ((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager();
                 fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out,R.anim.zoom_in, R.anim.zoom_out)
                         .replace(R.id.frame_layout, fragment)
                         .addToBackStack(null)
-                        .commit();
+                        .commitAllowingStateLoss();
             }
         });
     }
