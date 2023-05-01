@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.VideoView;
 
 import com.example.tfgviravidam.fragmentsLogin.LoginActivity;
 import com.example.tfgviravidam.fragmentsViravi.ViraviActivity;
@@ -28,17 +31,20 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference("Usuarios").child("6qz0wD4MTZeRnHlu5E68je7bWQT2").child("eventosCreados").child("Sala Fabrik");
-        firebaseDatabase.setValue("Sala Fabrik");
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference("Usuarios").child("6qz0wD4MTZeRnHlu5E68je7bWQT2").child("eventosCreados").child("Patinaje");
-        firebaseDatabase.setValue("Patinaje");
-        firebaseDatabase = FirebaseDatabase.getInstance().getReference("Usuarios").child("6qz0wD4MTZeRnHlu5E68je7bWQT2").child("eventosCreados").child("Crucero Mediterráneo");
-        firebaseDatabase.setValue("Crucero Mediterráneo");
+
         Animation animacion1 = AnimationUtils.loadAnimation(this,R.anim.splash);
 
-        ImageView ivLogo = findViewById(R.id.ivLogo);
-
-        ivLogo.setAnimation(animacion1);
+        VideoView videoView = findViewById(R.id.ivLogo);
+        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.logo);
+        videoView.setVideoURI(uri);
+        videoView.start();
+        videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+        videoView.setAnimation(animacion1);
 
         new Handler().postDelayed(new Runnable() {
             @Override

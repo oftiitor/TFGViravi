@@ -3,7 +3,13 @@ package com.example.tfgviravidam.fragmentsViravi;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -55,16 +61,114 @@ public class ExploreFragment extends Fragment {
         View view = binding.getRoot();
         recyclerViewPopularplans = view.findViewById(R.id.viewPopuPlans);
         recyclerViewPopular(view);
-
-        /* SÓLO ES PARA SABER SI FUNCIONA EL BOTÓN */
-        binding.cvParty.setOnClickListener(view16 -> Toast.makeText(getActivity(), "Fiesta", Toast.LENGTH_LONG).show());
-        binding.cvMuseum.setOnClickListener(view15 -> Toast.makeText(getActivity(), "Turismo", Toast.LENGTH_LONG).show());
-        binding.cvActivity.setOnClickListener(view14 -> Toast.makeText(getActivity(), "Actividades", Toast.LENGTH_LONG).show());
-        binding.cvTravel.setOnClickListener(view13 -> Toast.makeText(getActivity(), "Viajes", Toast.LENGTH_LONG).show());
-        binding.cvFood.setOnClickListener(view12 -> Toast.makeText(getActivity(), "Gastronomia", Toast.LENGTH_LONG).show());
-        binding.cvSport.setOnClickListener(view1 -> Toast.makeText(getActivity(), "Deportes", Toast.LENGTH_LONG).show());
-
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initListeners();
+
+    }
+
+    private void initListeners() {
+        binding.cvParty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new CategoryEventsFragment();
+                Bundle args = new Bundle();
+                args.putString("category","Fiesta");
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out,R.anim.zoom_in, R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+
+            }
+        });
+        binding.cvMuseum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new CategoryEventsFragment();
+                Bundle args = new Bundle();
+                args.putString("category","Turismo");
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out,R.anim.zoom_in, R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
+        binding.cvActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new CategoryEventsFragment();
+                Bundle args = new Bundle();
+                args.putString("category","Actividades");
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out,R.anim.zoom_in, R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
+        binding.cvTravel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new CategoryEventsFragment();
+                Bundle args = new Bundle();
+                args.putString("category","Viajes");
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out,R.anim.zoom_in, R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
+        binding.cvFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new CategoryEventsFragment();
+                Bundle args = new Bundle();
+                args.putString("category","Gastronomia");
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out,R.anim.zoom_in, R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
+        binding.cvSport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new CategoryEventsFragment();
+                Bundle args = new Bundle();
+                args.putString("category","Deportes");
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out,R.anim.zoom_in, R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
     }
 
     public void onCreate(Bundle savedInstanceState) {

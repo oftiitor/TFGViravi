@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_exploreFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_categoryEventsFragment"
+            app:destination="@id/categoryEventsFragment" />
     </fragment>
 
     <fragment
@@ -92,5 +95,14 @@
         <argument
             android:name="usuario"
             app:argType="com.example.tfgviravidam.DAO.Usuario" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryEventsFragment"
+        android:name="com.example.tfgviravidam.fragmentsViravi.CategoryEventsFragment"
+        android:label="fragment_category_events"
+        tools:layout="@layout/fragment_category_events" >
+        <argument
+            android:name="category"
+            app:argType="string" />
     </fragment>
 </navigation>

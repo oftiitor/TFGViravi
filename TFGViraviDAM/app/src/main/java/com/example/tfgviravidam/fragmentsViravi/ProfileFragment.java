@@ -92,6 +92,21 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        binding.btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new EditProfileFragment();
+                Bundle args = new Bundle();
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
+
         return  view;
 
     }
