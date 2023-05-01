@@ -113,6 +113,7 @@
             android:fontFamily="@font/poppins_extrabold"
             android:gravity="center"
             android:hint="ejemplo@gmail.com"
+            android:singleLine="true"
             android:textColor="#B0000000"
             android:textColorHint="#99B8B8B8"
             android:textSize="25dp"

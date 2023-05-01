@@ -50,6 +50,7 @@
             android:fontFamily="@font/poppins_extrabold"
             android:gravity="center"
             android:hint="Tu nombre"
+            android:singleLine="true"
             android:textColor="#B0000000"
             android:textColorHint="#99B8B8B8"
             android:textSize="30dp"

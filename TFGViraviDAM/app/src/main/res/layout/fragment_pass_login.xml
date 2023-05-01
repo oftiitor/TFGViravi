@@ -112,6 +112,7 @@
             android:layout_gravity="center_horizontal"
             android:fontFamily="@font/poppins_extrabold"
             android:gravity="center"
+            android:singleLine="true"
             android:inputType="textPassword"
             android:textColor="#B0000000"
             android:textColorHint="#99B8B8B8"
