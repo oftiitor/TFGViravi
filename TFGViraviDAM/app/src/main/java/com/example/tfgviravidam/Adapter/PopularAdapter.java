@@ -38,6 +38,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoVi
 
     public void onBindViewHolder(@NonNull EventoViewHolder holder, int position) {
         // Obtener el evento correspondiente a esta posición
+
         Evento evento = eventos.get(position);
 
         // Rellenar la vista con los datos del evento correspondiente utilizando View Binding

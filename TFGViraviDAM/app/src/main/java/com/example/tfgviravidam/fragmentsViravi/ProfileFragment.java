@@ -77,7 +77,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        binding.txtEventosParticipados.setOnClickListener(new View.OnClickListener() {
+        binding.txtApuntadoEspacio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new Profile2Fragment();

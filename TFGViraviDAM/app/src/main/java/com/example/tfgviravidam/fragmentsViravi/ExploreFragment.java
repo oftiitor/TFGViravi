@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,8 +23,10 @@ import android.widget.Toast;
 
 import com.example.tfgviravidam.Adapter.CategoryAdapter;
 import com.example.tfgviravidam.Adapter.CategoryAdapter2;
+import com.example.tfgviravidam.Adapter.OtherUserEventsAdapter;
 import com.example.tfgviravidam.Adapter.PopularAdapter;
 import com.example.tfgviravidam.Adapter.UserAdapter;
+import com.example.tfgviravidam.Adapter.UserEventsAdapter;
 import com.example.tfgviravidam.DAO.Categorias;
 import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.DAO.Usuario;
@@ -68,6 +71,7 @@ public class ExploreFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initListeners();
+        recogerEventos();
 
     }
 
@@ -216,7 +220,9 @@ public class ExploreFragment extends Fragment {
         eventosRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for (DataSnapshot eventoSnapshot : dataSnapshot.getChildren()) {
+
                     String nombre = eventoSnapshot.child("nombre").getValue(String.class);
                     String descripcion = eventoSnapshot.child("descripcion").getValue(String.class);
                     String usuarioCreador = eventoSnapshot.child("usuarioCreador").getValue(String.class);
@@ -232,6 +238,7 @@ public class ExploreFragment extends Fragment {
                     }
 
                     Evento evento = new Evento(nombre, descripcion,fechaInicio,fechaFin, usuarioCreador, ciudad, categoria, imagen, usuariosApuntados);
+
                     eventos.add(evento);
                     Log.i("as",eventos.toString());
                     PopularAdapter adapter1=new PopularAdapter(eventos);
@@ -306,7 +313,40 @@ public class ExploreFragment extends Fragment {
     }
 
     private void recogerEventos(){
+        binding.viewPlans.setLayoutManager(new GridLayoutManager(getContext(),2));
 
+
+        DatabaseReference eventosRef = FirebaseDatabase.getInstance().getReference().child("Events");
+        eventosRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot eventoSnapshot : dataSnapshot.getChildren()) {
+                    String nombre = eventoSnapshot.child("nombre").getValue(String.class);
+                    String descripcion = eventoSnapshot.child("descripcion").getValue(String.class);
+                    String usuarioCreador = eventoSnapshot.child("usuarioCreador").getValue(String.class);
+                    String imagen = eventoSnapshot.child("imagen").getValue(String.class);
+                    String ciudad = eventoSnapshot.child("ciudad").getValue(String.class);
+                    String categoria = eventoSnapshot.child("categoria").getValue(String.class);
+                    String fechaInicio = eventoSnapshot.child("fechaInicio").getValue(String.class);
+                    String fechaFin = eventoSnapshot.child("fechaFin").getValue(String.class);
+
+                    ArrayList<String> usuariosApuntados = new ArrayList<>();
+                    for (DataSnapshot usuarioSnapshot : eventoSnapshot.child("usuariosApuntados").getChildren()) {
+                        usuariosApuntados.add(usuarioSnapshot.getKey());
+                    }
+
+                    Evento evento = new Evento(nombre, descripcion,fechaInicio,fechaFin, usuarioCreador, ciudad, categoria, imagen, usuariosApuntados);
+                    eventos.add(evento);
+                    OtherUserEventsAdapter adapterUserEvento = new OtherUserEventsAdapter(eventos);
+                    binding.viewPlans.setAdapter(adapterUserEvento);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 
 }
