@@ -31,8 +31,6 @@ public class ViraviActivity extends AppCompatActivity {
         setContentView(R.layout.activity_viravi);
         BottomNavigationView navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnItemSelectedListener(mOnNavigationItemSelectedListener);
-
-
     }
 
     private final BottomNavigationView.OnItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnItemSelectedListener() {
@@ -62,6 +60,5 @@ public class ViraviActivity extends AppCompatActivity {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, fragment);
         transaction.commit();
-
     }
 }
