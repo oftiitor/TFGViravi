@@ -57,7 +57,7 @@ public class Profile2Fragment extends Fragment {
         loadUserEvents();
 
         firebaseAuth = FirebaseAuth.getInstance();
-        binding.button2.setOnClickListener(new View.OnClickListener() {
+        binding.btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 firebaseAuth.signOut();
@@ -74,6 +74,21 @@ public class Profile2Fragment extends Fragment {
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
+        binding.btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new EditProfileFragment();
+                Bundle args = new Bundle();
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.slide_down_in,R.anim.slide_down_out,R.anim.slide_down_in,R.anim.slide_down_out)
                         .replace(R.id.frame_layout, fragment)
                         .addToBackStack(null)
                         .commitAllowingStateLoss();

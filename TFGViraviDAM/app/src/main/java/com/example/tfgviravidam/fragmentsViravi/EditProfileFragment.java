@@ -32,15 +32,14 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class EditProfileFragment extends Fragment {
 
     private FragmentEditProfileBinding binding;
     Uri path;
-
     FirebaseStorage storage;
-
     Boolean fotoDone = false;
 
 
@@ -61,6 +60,17 @@ public class EditProfileFragment extends Fragment {
     }
 
     private void inistListeners() {
+
+        binding.btnVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                Fragment nuevoFragmento = new ProfileFragment();
+                nuevoFragmento.setArguments(bundle);
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_up_in,R.anim.slide_up_out,R.anim.slide_up_in,R.anim.slide_up_out).replace(R.id.frame_layout, nuevoFragmento).commit();
+
+            }
+        });
         binding.btnFotoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +89,13 @@ public class EditProfileFragment extends Fragment {
                     userRef.child("telefono").setValue(binding.txtTelefono.getText().toString());
                     userRef.child("fechaNacimiento").setValue(binding.txtNacimiento.getText().toString());
                     userRef.child("fotoPerfil").setValue(path.toString());
+
                 }
+                Bundle bundle = new Bundle();
+                Fragment nuevoFragmento = new ProfileFragment();
+                nuevoFragmento.setArguments(bundle);
+                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_up_in,R.anim.slide_up_out,R.anim.slide_up_in,R.anim.slide_up_out).replace(R.id.frame_layout, nuevoFragmento).commit();
+
             }
         });
     }

@@ -55,6 +55,7 @@ public class UserProfileFragment extends Fragment {
         binding.btnSeguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.btnSeguir.setText("Siguiendo");
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Usuarios").child(user.getUserKey()).child("seguidores");
@@ -67,6 +68,7 @@ public class UserProfileFragment extends Fragment {
         binding.btnDejarSeguir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.btnSeguir.setText("Seguir");
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Usuarios").child(user.getUserKey()).child("seguidores");

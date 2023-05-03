@@ -1,10 +1,12 @@
 package com.example.tfgviravidam.Adapter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -23,8 +25,14 @@ import java.util.List;
 public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoViewHolder> {
     private List<Evento> eventos;
 
-    public PopularAdapter(List<Evento> eventos) {
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Evento evento);
+    }
+    public PopularAdapter(List<Evento> eventos,  PopularAdapter.OnItemClickListener listener) {
         this.eventos = eventos;
+        this.listener = listener;
         Log.i("as",eventos.toString());
 
     }
@@ -50,20 +58,12 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listener.onItemClick(evento);
+
                 Log.i("Evento","sd");
                 Log.i("Evento",evento.toString());
                 // Abrir otro fragment
-                Fragment fragment = new EventDetaillFragment();
-                Bundle args = new Bundle();
-                args.putParcelable("evento",evento);
-                fragment.setArguments(args);
 
-                FragmentManager fragmentManager = ((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .setCustomAnimations(R.anim.zoom_in, R.anim.zoom_out,R.anim.zoom_in, R.anim.zoom_out)
-                        .replace(R.id.frame_layout, fragment)
-                        .addToBackStack(null)
-                        .commitAllowingStateLoss();
             }
         });
     }

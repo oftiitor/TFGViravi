@@ -291,7 +291,7 @@
             app:layout_constraintTop_toBottomOf="@+id/foto" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnEditar"
             android:layout_width="150dp"
             android:layout_height="0dp"
             android:fontFamily="@font/bebas_neue"
@@ -304,7 +304,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline118" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnCerrar"
             android:layout_width="150dp"
             android:layout_height="0dp"
             android:fontFamily="@font/bebas_neue"

@@ -17,6 +17,8 @@ import com.example.tfgviravidam.R;
 import com.example.tfgviravidam.databinding.UserCardBinding;
 import com.example.tfgviravidam.databinding.ViewholderEventosBinding;
 import com.example.tfgviravidam.databinding.ViewholderEventosProfileBinding;
+import com.example.tfgviravidam.fragmentsViravi.EditEventFragment;
+import com.example.tfgviravidam.fragmentsViravi.EventDetaillFragment;
 import com.example.tfgviravidam.fragmentsViravi.ProfileFragment;
 import com.squareup.picasso.Picasso;
 
@@ -47,15 +49,17 @@ public class UserEventsAdapter extends RecyclerView.Adapter<UserEventsAdapter.Us
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new ProfileFragment();
+                Fragment fragment = new EditEventFragment();
                 Bundle args = new Bundle();
+                args.putParcelable("evento",e);
                 fragment.setArguments(args);
 
-                FragmentManager fragmentManager = ((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager();
+                FragmentManager fragmentManager =((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager();
                 fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in,R.anim.zoom_out,R.anim.zoom_in,R.anim.zoom_out)
                         .replace(R.id.frame_layout, fragment)
                         .addToBackStack(null)
-                        .commit();
+                        .commitAllowingStateLoss();
             }
         });
     }

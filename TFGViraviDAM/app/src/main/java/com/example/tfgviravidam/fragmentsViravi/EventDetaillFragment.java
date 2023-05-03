@@ -15,15 +15,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.tfgviravidam.DAO.Chat;
 import com.example.tfgviravidam.DAO.Evento;
 import com.example.tfgviravidam.DAO.Message;
 import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
-import com.example.tfgviravidam.databinding.ActivityNewEventBinding;
 import com.example.tfgviravidam.databinding.FragmentEventDetaillBinding;
-import com.example.tfgviravidam.databinding.FragmentExploreBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -94,12 +93,12 @@ public class EventDetaillFragment extends Fragment {
             binding.tvCreator.setText(event.getUsuarioCreador());
             binding.tvPersonas.setText(String.valueOf(event.getUsuariosApuntados().size()));
         }
-        a(event.getNombre());
+        loadEvent(event.getNombre());
         return view;
 
     }
 
-    private void a(String nombre) {
+    private void loadEvent(String nombre) {
         binding.btnSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,6 +121,9 @@ public class EventDetaillFragment extends Fragment {
                             DatabaseReference usersRef = eventRef.child("usuariosApuntados");
 
                             usersRef.child(nombreUsuario).setValue(nombreUsuario);
+                            Evento event = getArguments().getParcelable("evento");
+                            binding.btnSign.setText("Apuntado");
+                            Toast.makeText(getContext(),"Te has apuntado a " + event.getNombre(),Toast.LENGTH_LONG);
                         }
                     }
 
@@ -140,6 +142,21 @@ public class EventDetaillFragment extends Fragment {
 
                 createChat();
 
+            }
+        });
+
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new ExploreFragment();
+                Bundle args = new Bundle();
+
+                FragmentManager fragmentManager =getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in,R.anim.zoom_out,R.anim.zoom_in,R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
             }
         });
     }
@@ -195,7 +212,7 @@ public class EventDetaillFragment extends Fragment {
         bundle.putSerializable("Chat", (Serializable) c);
         Fragment nuevoFragmento = new ChatFragment();
         nuevoFragmento.setArguments(bundle);
-        getFragmentManager().beginTransaction().replace(R.id.frame_layout, nuevoFragmento).commit();
+        getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_left_in,R.anim.slide_left_out,R.anim.slide_left_in,R.anim.slide_left_out).replace(R.id.frame_layout, nuevoFragmento).commit();
 
 
     }

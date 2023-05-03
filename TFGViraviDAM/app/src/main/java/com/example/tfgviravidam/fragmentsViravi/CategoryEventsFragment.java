@@ -3,6 +3,7 @@ package com.example.tfgviravidam.fragmentsViravi;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
@@ -37,8 +38,13 @@ public class CategoryEventsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentCategoryEventsBinding.inflate(inflater, container, false);
-        loadEvents();
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        loadEvents();
     }
 
     private void loadEvents() {

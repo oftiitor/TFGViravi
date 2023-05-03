@@ -241,7 +241,22 @@ public class ExploreFragment extends Fragment {
 
                     eventos.add(evento);
                     Log.i("as",eventos.toString());
-                    PopularAdapter adapter1=new PopularAdapter(eventos);
+                    PopularAdapter adapter1=new PopularAdapter(eventos, new PopularAdapter.OnItemClickListener(){
+
+                        @Override
+                        public void onItemClick(Evento evento) {
+                            Fragment fragment = new EventDetaillFragment();
+                            Bundle args = new Bundle();
+                            args.putParcelable("evento",evento);
+                            fragment.setArguments(args);
+
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            fragmentManager.beginTransaction()
+                                    .replace(R.id.frame_layout, fragment)
+                                    .addToBackStack(null)
+                                    .commitAllowingStateLoss();
+                        }
+                    });
                     binding.viewPopuPlans.setAdapter(adapter1);
 
                 }

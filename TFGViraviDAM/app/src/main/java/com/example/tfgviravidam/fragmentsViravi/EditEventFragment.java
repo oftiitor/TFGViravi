@@ -1,8 +1,6 @@
 package com.example.tfgviravidam.fragmentsViravi;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import static android.app.Activity.RESULT_OK;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -10,11 +8,19 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -22,9 +28,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.tfgviravidam.DAO.Evento;
-import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
 import com.example.tfgviravidam.databinding.ActivityNewEventBinding;
+import com.example.tfgviravidam.databinding.FragmentCategoryEventsBinding;
+import com.example.tfgviravidam.databinding.FragmentEditEventBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -39,9 +46,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+public class EditEventFragment extends Fragment {
 
-public class NewEventActivity extends AppCompatActivity {
-    private ActivityNewEventBinding binding;
+    private FragmentEditEventBinding binding;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRootreference = database.getReference("Eventos");
 
@@ -56,31 +63,39 @@ public class NewEventActivity extends AppCompatActivity {
     String fechaInicio;
     String fechaFin;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityNewEventBinding.inflate(getLayoutInflater());
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        binding = FragmentEditEventBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        setContentView(view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Evento event = getArguments().getParcelable("evento");
+        binding.txtName.setText(event.getNombre());
+        binding.txtDesc.setText(event.getDescripcion());
+        binding.txtCategory.setText(event.getCategoria());
+        binding.txtCity.setText(event.getCiudad());
+        binding.txtDayInicio.setText(event.getFechaInicio());
+        binding.txtDayFin.setText(event.getFechaFin());
+        Picasso.get().load(event.getImagen()).resize(300, 200).centerCrop().into(binding.btnGaleria);
+
+
         binding.txtName.addTextChangedListener(textWatcherYear);
         binding.txtDesc.addTextChangedListener(textWatcherYear);
         binding.txtCategory.addTextChangedListener(textWatcherYear);
         binding.txtCity.addTextChangedListener(textWatcherYear);
-
-        /* Fecha Inicio */
-        binding.txtDayInicio.addTextChangedListener(textWatcherDayInicio);
-        binding.txtMonthInicio.addTextChangedListener(textWatcherMonthInicio);
-        binding.txtYearInicio.addTextChangedListener(textWatcherYearInicio);
-
-        /* Fecha Fin*/
-        binding.txtDayFin.addTextChangedListener(textWatcherDayFin);
-        binding.txtMonthFin.addTextChangedListener(textWatcherMonthFin);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         storage = FirebaseStorage.getInstance();
         initListeners();
     }
+
+
 
     private void initListeners() {
         binding.btnGaleria.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +113,17 @@ public class NewEventActivity extends AppCompatActivity {
         binding.btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NewEventActivity.this, ViraviActivity.class);
-                startActivity(intent);
+                Fragment fragment = new ProfileFragment();
+                Bundle args = new Bundle();
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager =getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in,R.anim.zoom_out,R.anim.zoom_in,R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+
             }
         });
         binding.btnCrear.setOnClickListener(new View.OnClickListener() {
@@ -112,19 +136,15 @@ public class NewEventActivity extends AppCompatActivity {
                         !binding.txtCity.getText().toString().isEmpty() &&
                         !binding.txtCategory.getText().toString().isEmpty() &&
                         !binding.txtDayInicio.getText().toString().isEmpty() &&
-                        !binding.txtMonthInicio.getText().toString().isEmpty() &&
-                        !binding.txtYearInicio.getText().toString().isEmpty() &&
-                        !binding.txtDayFin.getText().toString().isEmpty() &&
-                        !binding.txtMonthFin.getText().toString().isEmpty() &&
-                        !binding.txtYearFin.getText().toString().isEmpty()) {
+                        !binding.txtDayFin.getText().toString().isEmpty()){
 
-                    fechaInicio = binding.txtDayInicio.getText().toString()+"-"+binding.txtMonthInicio.getText().toString()+"-"+binding.txtYearInicio.getText().toString();
-                    fechaFin = binding.txtDayFin.getText().toString()+"-"+binding.txtMonthFin.getText().toString()+"-"+binding.txtYearFin.getText().toString();
+                    fechaInicio = binding.txtDayInicio.getText().toString();
+                    fechaFin = binding.txtDayFin.getText().toString();
                     crearEvento(binding.txtName.getText().toString(),binding.txtDesc.getText().toString(),fechaInicio,fechaFin,binding.txtCity.getText().toString(),binding.txtCategory.getText().toString());
                     Log.i("dasd","aaaaa");
 
                 } else {
-                    Toast.makeText(NewEventActivity.this, "Rellene todos los campos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Rellene todos los campos", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -158,111 +178,6 @@ public class NewEventActivity extends AppCompatActivity {
         }
 
     }
-
-    private TextWatcher textWatcherDayInicio = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            if(binding.txtDayInicio.getText().length()==2){
-                binding.txtMonthInicio.requestFocus();
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
-
-
-    private TextWatcher textWatcherMonthInicio = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            if(binding.txtMonthInicio.getText().length()==2){
-                binding.txtYearInicio.requestFocus();
-            }
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
-
-    private TextWatcher textWatcherYearInicio = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            if(binding.txtYearInicio.getText().length()==4){
-                binding.txtDayFin.requestFocus();
-            }
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
-
-    private TextWatcher textWatcherDayFin = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            if(binding.txtDayFin.getText().length()==2){
-                binding.txtMonthFin.requestFocus();
-            }
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
-
-    private TextWatcher textWatcherMonthFin = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            if(binding.txtMonthFin.getText().length()==2){
-                binding.txtYearFin.requestFocus();
-            }
-
-        }
-
-        @Override
-        public void afterTextChanged(Editable editable) {
-
-        }
-    };
-
     private TextWatcher textWatcherYear = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -272,8 +187,8 @@ public class NewEventActivity extends AppCompatActivity {
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-            fechaInicio = binding.txtDayInicio.getText().toString()+"-"+binding.txtMonthInicio.getText().toString()+"-"+binding.txtYearInicio.getText().toString();
-            fechaFin = binding.txtDayFin.getText().toString()+"-"+binding.txtMonthFin.getText().toString()+"-"+binding.txtYearFin.getText().toString();
+            fechaInicio = binding.txtDayInicio.getText().toString();
+            fechaFin = binding.txtDayFin.getText().toString();
 
             if(!binding.txtName.getText().toString().isEmpty()
                     && !binding.txtDesc.getText().toString().isEmpty()
@@ -296,7 +211,7 @@ public class NewEventActivity extends AppCompatActivity {
 
     private void showDialog() {
 
-        final Dialog dialog = new Dialog(this);
+        final Dialog dialog = new Dialog(getContext());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.bottom_dialog);
 
@@ -401,6 +316,17 @@ public class NewEventActivity extends AppCompatActivity {
                     e.setImagen(image_url.toString());
                     e.setUsuariosApuntados(new ArrayList<>());
                     mRootreference.child(nombre).setValue(e);
+
+                    Fragment fragment = new ProfileFragment();
+                    Bundle args = new Bundle();
+                    fragment.setArguments(args);
+
+                    FragmentManager fragmentManager =getActivity().getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .setCustomAnimations(R.anim.zoom_in,R.anim.zoom_out,R.anim.zoom_in,R.anim.zoom_out)
+                            .replace(R.id.frame_layout, fragment)
+                            .addToBackStack(null)
+                            .commitAllowingStateLoss();
 
                 }
             }

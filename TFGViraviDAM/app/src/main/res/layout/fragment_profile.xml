@@ -317,7 +317,7 @@
             app:layout_constraintTop_toTopOf="@+id/guideline118" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnCerrar"
             android:layout_width="150dp"
             android:layout_height="0dp"
             android:fontFamily="@font/bebas_neue"

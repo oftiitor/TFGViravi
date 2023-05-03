@@ -142,7 +142,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline152" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnChat"
+        android:id="@+id/btnVolver"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="15dp"
