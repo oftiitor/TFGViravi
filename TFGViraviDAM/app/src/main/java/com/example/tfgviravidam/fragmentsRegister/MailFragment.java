@@ -125,7 +125,6 @@ public class MailFragment extends Fragment {
                                 if (check){
                                     Toast.makeText(getContext(),"Ya existe este mail en uso",Toast.LENGTH_LONG).show();
                                     comprobarmail = true;
-
                                 }
                                 else {
                                     comprobarmail = false;

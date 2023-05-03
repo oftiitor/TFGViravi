@@ -25,10 +25,17 @@ public class SplashActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     DatabaseReference firebaseDatabase;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        if (firebaseAuth.getCurrentUser() != null) {
+            Intent intent = new Intent(SplashActivity.this, ViraviActivity.class);
+            startActivity(intent);
+        }
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
 
