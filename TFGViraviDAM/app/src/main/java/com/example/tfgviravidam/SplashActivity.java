@@ -31,10 +31,7 @@ public class SplashActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        if (firebaseAuth.getCurrentUser() != null) {
-            Intent intent = new Intent(SplashActivity.this, ViraviActivity.class);
-            startActivity(intent);
-        }
+
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
@@ -52,14 +49,25 @@ public class SplashActivity extends AppCompatActivity {
             }
         });
         videoView.setAnimation(animacion1);
+        if (firebaseAuth.getCurrentUser() != null) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(SplashActivity.this, ViraviActivity.class);
+                    Bundle b = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle();
+                    startActivity(intent,b);
+                }
+            },1800);
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(SplashActivity.this, AppActivity.class);
+                    Bundle b = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle();
+                    startActivity(intent,b);
+                }
+            },1800);
+        }
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashActivity.this, AppActivity.class);
-                Bundle b = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this).toBundle();
-                startActivity(intent,b);
-            }
-        },1800);
     }
 }
