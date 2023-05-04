@@ -171,6 +171,12 @@ public class EventDetaillFragment extends Fragment {
         return eventName;
     }
 
+    private String getEventFoto(){
+        Evento event = getArguments().getParcelable("evento");
+        String eventFoto = event.getImagen();
+        return eventFoto;
+    }
+
     private String getEvent(){
         Evento event = getArguments().getParcelable("evento");
         String eventName = event.getNombre();
@@ -192,6 +198,7 @@ public class EventDetaillFragment extends Fragment {
         Map<String, Object> chatData = new HashMap<>();
         chatData.put("name", getUserName() +" & " + getEventName());
         chatData.put("event", getEvent());
+        chatData.put("fotoChat", getEventFoto());
         chatData.put("users", Arrays.asList(userName, eventName));
 
         chatRef.setValue(chatData);
@@ -206,7 +213,7 @@ public class EventDetaillFragment extends Fragment {
 
         messageRef.setValue(messageData);
 
-        Chat c = new Chat(chatKey,getUserName() +" & " + getEventName(),getEvent(),Arrays.asList(userName, eventName),messagesList);
+        Chat c = new Chat(chatKey,getUserName() +" & " + getEventName(),getEventFoto(),getEvent(),Arrays.asList(userName, eventName),messagesList);
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("Chat", (Serializable) c);

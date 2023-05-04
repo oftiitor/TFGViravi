@@ -58,6 +58,7 @@ public class ChatListFragment extends Fragment {
                     String chatKey = chatSnapshot.getKey();
                     String nameEvent = chatSnapshot.child("name").getValue().toString();
                     String Event = chatSnapshot.child("event").getValue().toString();
+                    String Foto = chatSnapshot.child("fotoChat").getValue().toString();
 
                     ArrayList<String> userList = (ArrayList<String>) chatSnapshot.child("users").getValue();
                     ArrayList<Message> messageList = new ArrayList<>();
@@ -79,7 +80,7 @@ public class ChatListFragment extends Fragment {
                                     for (String n : userList) {
                                         if (!n.equals(nombreUsuario)) {
                                             String name = n;
-                                            Chat chat = new Chat(chatKey,nameEvent,Event, userList, messageList);
+                                            Chat chat = new Chat(chatKey,nameEvent,Foto,Event, userList, messageList);
                                             chatList.add(chat);
                                             Log.i("as",chatList.toString());
                                             ChatsAdapter adapter = new ChatsAdapter(chatList);

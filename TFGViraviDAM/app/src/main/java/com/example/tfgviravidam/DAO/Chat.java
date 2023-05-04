@@ -6,8 +6,7 @@ import java.util.List;
 public class Chat implements Serializable {
 
     private String id;
-    private String name;
-
+    private String name,foto;
     private String nameEvent;
 
     private List<String> users;
@@ -15,13 +14,24 @@ public class Chat implements Serializable {
 
     public Chat() {}
 
-    public Chat(String id, String name, String nameEvent, List<String> users, List<Message> messages) {
+    public Chat(String id, String name, String foto, String nameEvent, List<String> users, List<Message> messages) {
         this.id = id;
         this.name = name;
+        this.foto = foto;
         this.nameEvent = nameEvent;
         this.users = users;
         this.messages = messages;
     }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+
 
     public String getNameEvent() {
         return nameEvent;
@@ -32,6 +42,7 @@ public class Chat implements Serializable {
         return "Chat{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", foto='" + foto + '\'' +
                 ", nameEvent='" + nameEvent + '\'' +
                 ", users=" + users +
                 ", messages=" + messages +

@@ -108,6 +108,34 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        binding.txtNumSeguidores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new SeguidoresFragment();
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in,R.anim.zoom_out,R.anim.zoom_in,R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
+
+        binding.txtNumSeguidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new SeguidosFragment();
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in,R.anim.zoom_out,R.anim.zoom_in,R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
+
         return  view;
 
     }

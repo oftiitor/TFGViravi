@@ -1,9 +1,7 @@
 package com.example.tfgviravidam.Adapter;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,25 +13,22 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.tfgviravidam.DAO.Chat;
+import com.example.tfgviravidam.DAO.Usuario;
 import com.example.tfgviravidam.R;
-import com.example.tfgviravidam.databinding.ChatUserCardBinding;
-import com.example.tfgviravidam.fragmentsViravi.ChatFragment;
-import com.example.tfgviravidam.fragmentsViravi.EventDetaillFragment;
+import com.example.tfgviravidam.fragmentsViravi.ProfileFragment;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder> {
+public class FollowersAdapter extends RecyclerView.Adapter<FollowersAdapter.ViewHolder> {
 
 
-    private List<Chat> chats;
+    private List<Usuario> users;
     private OnChatClickListener listener;
 
-    public ChatsAdapter(List<Chat> chats) {
-        this.chats = chats;
+    public FollowersAdapter(List<Usuario> user) {
+        this.users = user;
     }
 
     @NonNull
@@ -46,15 +41,15 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Chat chat = chats.get(position);
-        holder.bind(chat, listener);
+        Usuario u = users.get(position);
+        holder.bind(u, listener);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Abrir otro fragment
-                Fragment fragment = new ChatFragment();
+                Fragment fragment = new ProfileFragment();
                 Bundle args = new Bundle();
-                args.putSerializable("Chat", (Serializable) chat);
+                args.putSerializable("User", (Serializable) users);
                 fragment.setArguments(args);
 
                 FragmentManager fragmentManager = ((FragmentActivity) holder.itemView.getContext()).getSupportFragmentManager();
@@ -69,7 +64,7 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return chats.size();
+        return users.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -84,15 +79,14 @@ public class ChatsAdapter extends RecyclerView.Adapter<ChatsAdapter.ViewHolder> 
             time = itemView.findViewById(R.id.tvLastMessage);
         }
 
-        public void bind(Chat chat, OnChatClickListener listener) {
-            message.setText(chat.getName());
-            time.setText(chat.getNameEvent());
-            Picasso.get().load(chat.getFoto()).resize(300, 200).centerCrop().into(profileFoto);
-            itemView.setOnClickListener(v -> listener.onChatClick(chat));
+        public void bind(Usuario u, OnChatClickListener listener) {
+            message.setText(u.getNombreUsuario());
+            Picasso.get().load(u.getFotoPerfil()).resize(300, 200).centerCrop().into(profileFoto);
+            itemView.setOnClickListener(v -> listener.onChatClick(u));
         }
     }
 
     public interface OnChatClickListener {
-        void onChatClick(Chat chat);
+        void onChatClick(Usuario chat);
     }
 }
