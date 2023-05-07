@@ -141,7 +141,6 @@ public class EditEventFragment extends Fragment {
                     fechaInicio = binding.txtDayInicio.getText().toString();
                     fechaFin = binding.txtDayFin.getText().toString();
                     crearEvento(binding.txtName.getText().toString(),binding.txtDesc.getText().toString(),fechaInicio,fechaFin,binding.txtCity.getText().toString(),binding.txtCategory.getText().toString());
-                    Log.i("dasd","aaaaa");
 
                 } else {
                     Toast.makeText(getContext(), "Rellene todos los campos", Toast.LENGTH_LONG).show();
@@ -298,7 +297,6 @@ public class EditEventFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
-                    Log.i("Usuario",nombreUsuario);
                     mRootreference= FirebaseDatabase.getInstance().getReference("Events");
                     usuariosApuntados.add(nombreUsuario);
                     usuariosApuntados.add("Juan");

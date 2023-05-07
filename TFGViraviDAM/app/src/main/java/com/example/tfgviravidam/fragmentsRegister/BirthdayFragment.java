@@ -150,7 +150,6 @@ public class BirthdayFragment extends Fragment {
 
             if(year.getText().toString().length()==4){
                 String fecha= day.getText()+"-"+month.getText()+"-"+year.getText();
-                Log.i("w",fecha);
                 String regex = "^(0[1-9]|[1-2][0-9]|3[0-1])-(0[1-9]|1[0-2])-(19|20)\\d{2}$";
                 Pattern pattern = Pattern.compile(regex);
                 Matcher matcher = pattern.matcher(fecha);

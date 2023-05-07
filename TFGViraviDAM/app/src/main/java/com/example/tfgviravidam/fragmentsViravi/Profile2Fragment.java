@@ -181,7 +181,6 @@ public class Profile2Fragment extends Fragment {
                                 }
 
                                 Evento evento = new Evento(nombre, descripcion, fechaInicio, fechaFin, usuarioCreador, ciudad, categoria, imagen, usuariosApuntados);
-                                Log.i("EVEN",evento.toString());
 
                                 for (String nombreEvento: eventosApuntados) {
                                     if (nombre.equals(nombreEvento)){
@@ -201,7 +200,6 @@ public class Profile2Fragment extends Fragment {
                             // ...
                         }
                     });
-                    Log.i("usuario",usuario.toString());
                 }
             }
 

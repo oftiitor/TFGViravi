@@ -186,7 +186,6 @@ public class ExploreFragment extends Fragment {
     }
 
     private void recogerDatosUser() {
-        Log.i("dasdasdadadassdads","asdasdadadas");
 
         firebaseDatabase.child(user).addValueEventListener(new ValueEventListener() {
 
@@ -201,7 +200,6 @@ public class ExploreFragment extends Fragment {
                     String contrasenya = snapshot.child("contrasenya").getValue(String.class);
                     String foto= snapshot.child("fotoPerfil").getValue(String.class);
 
-                    Log.i("dasdasdadadassdads","asdasdadadas");
                 }
             }
 
@@ -240,7 +238,6 @@ public class ExploreFragment extends Fragment {
                     Evento evento = new Evento(nombre, descripcion,fechaInicio,fechaFin, usuarioCreador, ciudad, categoria, imagen, usuariosApuntados);
 
                     eventos.add(evento);
-                    Log.i("as",eventos.toString());
                     PopularAdapter adapter1=new PopularAdapter(eventos, new PopularAdapter.OnItemClickListener(){
 
                         @Override
@@ -309,13 +306,11 @@ public class ExploreFragment extends Fragment {
                             correo, contrasenya,fotoPerfil, userKey, eventosApuntados,
                             eventosCreados, seguidores, seguidos);
                     listaUser.add(usuario);
-                    Log.i("USUARIO",usuario.toString());
 
                     LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.HORIZONTAL,false);
                     binding.viewUsers.setLayoutManager(linearLayoutManager);
                     UserAdapter adapterUser =new UserAdapter(listaUser);
                     binding.viewUsers.setAdapter(adapterUser);
-                    Log.i("ListaUser",listaUser.toString());
                 }
             }
 

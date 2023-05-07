@@ -82,7 +82,6 @@ public class ChatListFragment extends Fragment {
                                             String name = n;
                                             Chat chat = new Chat(chatKey,nameEvent,Foto,Event, userList, messageList);
                                             chatList.add(chat);
-                                            Log.i("as",chatList.toString());
                                             ChatsAdapter adapter = new ChatsAdapter(chatList);
                                             RecyclerView recyclerView = binding.chatList;
                                             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

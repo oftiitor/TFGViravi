@@ -121,7 +121,6 @@ public class NewEventActivity extends AppCompatActivity {
                     fechaInicio = binding.txtDayInicio.getText().toString()+"-"+binding.txtMonthInicio.getText().toString()+"-"+binding.txtYearInicio.getText().toString();
                     fechaFin = binding.txtDayFin.getText().toString()+"-"+binding.txtMonthFin.getText().toString()+"-"+binding.txtYearFin.getText().toString();
                     crearEvento(binding.txtName.getText().toString(),binding.txtDesc.getText().toString(),fechaInicio,fechaFin,binding.txtCity.getText().toString(),binding.txtCategory.getText().toString());
-                    Log.i("dasd","aaaaa");
 
                 } else {
                     Toast.makeText(NewEventActivity.this, "Rellene todos los campos", Toast.LENGTH_LONG).show();
@@ -383,7 +382,6 @@ public class NewEventActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
                     String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
-                    Log.i("Usuario",nombreUsuario);
                     mRootreference= FirebaseDatabase.getInstance().getReference("Events");
                     usuariosApuntados.add(nombreUsuario);
                     usuariosApuntados.add("Juan");

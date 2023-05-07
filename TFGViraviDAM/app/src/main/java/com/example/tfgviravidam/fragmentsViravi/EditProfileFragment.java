@@ -181,7 +181,6 @@ public class EditProfileFragment extends Fragment {
                     Picasso.get().load(fotoPerfil).resize(300, 200).centerCrop().into(binding.btnFotoPerfil);
 
 
-                    Log.i("usuario",usuario.toString());
                 }
             }
 

@@ -170,14 +170,12 @@ public class ProfileFragment extends Fragment {
                     }
 
                     Evento evento = new Evento(nombre, descripcion, fechaInicio, fechaFin, usuarioCreador, ciudad, categoria, imagen, usuariosApuntados);
-                    Log.i("EVEN",evento.toString());
 
                     if (usuarioCreador.equals(lista.get(0))){
                         listaEvento.add(evento);
                         UserEventsAdapter adapterUserEvento = new UserEventsAdapter(listaEvento);
                         binding.userEvents.setAdapter(adapterUserEvento);
                     }
-                    Log.i("EVENTOS",listaEvento.size()+"");
 
                 }
             }
@@ -240,7 +238,6 @@ public class ProfileFragment extends Fragment {
                         Picasso.get().load(fotoPerfil).resize(300, 200).centerCrop().into(binding.foto);
 
 
-                        Log.i("usuario",usuario.toString());
                     }
                 }
 

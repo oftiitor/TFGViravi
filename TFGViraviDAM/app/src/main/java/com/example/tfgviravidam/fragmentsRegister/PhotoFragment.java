@@ -91,7 +91,6 @@ public class PhotoFragment extends Fragment {
             contra = datosRecuperados.getString("pass");
             user = datosRecuperados.getString("user");
 
-            Log.i("path",path.toString());
             binding.btnFoto.setImageURI(path);
             binding.progressBar.setVisibility(View.VISIBLE);
 
@@ -129,10 +128,8 @@ public class PhotoFragment extends Fragment {
                             mRootreference.child(firebaseAuth.getCurrentUser().getUid()).setValue(usuario);
                             startActivity(new Intent(getActivity(),ViraviActivity.class));
                         }else{
-                            Log.i("SignIn",correo+"  "+contrasenya);
                             String errorcode = String.valueOf(((FirebaseAuthException) task.getException()));
                             Toast.makeText(getContext(),errorcode,Toast.LENGTH_SHORT).show();
-                            Log.i("error",errorcode);
                         }
                     }
                 });

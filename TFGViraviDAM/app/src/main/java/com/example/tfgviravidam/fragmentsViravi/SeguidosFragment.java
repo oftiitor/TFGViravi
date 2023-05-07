@@ -129,7 +129,6 @@ public class SeguidosFragment extends Fragment {
                                             eventosCreados, seguidores, seguidos);
                                     if (user.equals(nombreUsuario)) {
                                         listaUsers.add(usuario);
-                                        Log.i("LISTASEGUIDOS", listaUsers.toString());
                                         FollowersAdapter adapter = new FollowersAdapter(listaUsers);
                                         binding.seguidosList.setLayoutManager(new LinearLayoutManager(getContext()));
                                         binding.seguidosList.setAdapter(adapter);
@@ -144,7 +143,6 @@ public class SeguidosFragment extends Fragment {
                         });
                     }
 
-                    Log.i("usuario",usuario.toString());
                 }
             }
 

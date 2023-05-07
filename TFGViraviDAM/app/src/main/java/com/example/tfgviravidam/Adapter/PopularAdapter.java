@@ -33,7 +33,6 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoVi
     public PopularAdapter(List<Evento> eventos,  PopularAdapter.OnItemClickListener listener) {
         this.eventos = eventos;
         this.listener = listener;
-        Log.i("as",eventos.toString());
 
     }
 
@@ -59,10 +58,6 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.EventoVi
             @Override
             public void onClick(View v) {
                 listener.onItemClick(evento);
-
-                Log.i("Evento","sd");
-                Log.i("Evento",evento.toString());
-                // Abrir otro fragment
 
             }
         });

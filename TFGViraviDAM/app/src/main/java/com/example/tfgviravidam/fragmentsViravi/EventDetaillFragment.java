@@ -45,6 +45,10 @@ import java.util.Map;
 public class EventDetaillFragment extends Fragment {
     private FragmentEventDetaillBinding binding;
     private ArrayList<String> lista = new ArrayList<String>();
+    private ArrayList<String> phone = new ArrayList<String>();
+
+    Boolean existe = false;
+    Boolean existeDef = false;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference mRootreference = database.getReference("Events");
@@ -61,7 +65,10 @@ public class EventDetaillFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
+                    String telefono = snapshot.child("telefono").getValue(String.class);
+
                     lista.add(0,nombreUsuario);
+                    phone.add(0,telefono);
                 }
             }
 
@@ -77,6 +84,7 @@ public class EventDetaillFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentEventDetaillBinding.inflate(inflater, container, false);
+        existe();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setEnterTransition(new Fade());
         }
@@ -139,11 +147,51 @@ public class EventDetaillFragment extends Fragment {
         binding.btnChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i("EXISTIRA", existe.toString());
+                if (existe && existeDef){
+                    DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chats");
+                    chatRef.orderByChild("fotoChat").equalTo(getEventFoto()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot chatSnapshot : snapshot.getChildren()) {
+                                String chatKey = chatSnapshot.getKey();
+                                String nameEvent = chatSnapshot.child("name").getValue().toString();
+                                String Event = chatSnapshot.child("event").getValue().toString();
+                                String Foto = chatSnapshot.child("fotoChat").getValue().toString();
+                                ArrayList<String> userList = (ArrayList<String>) chatSnapshot.child("users").getValue();
+                                ArrayList<Message> messageList = new ArrayList<>();
+                                for (DataSnapshot messageSnapshot : chatSnapshot.child("messages").getChildren()) {
+                                    String sender = messageSnapshot.child("sender").getValue(String.class);
+                                    String text = messageSnapshot.child("text").getValue(String.class);
+                                    String time = messageSnapshot.child("time").getValue(String.class);
+                                    Message message = new Message(sender, text, time, null);
+                                    messageList.add(message);
+                                }
+                                Chat chat = new Chat(chatKey,nameEvent,Foto,Event, userList, messageList);
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("Chat", (Serializable) chat);
+                                Fragment nuevoFragmento = new ChatFragment();
+                                nuevoFragmento.setArguments(bundle);
+                                getFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_left_in,R.anim.slide_left_out,R.anim.slide_left_in,R.anim.slide_left_out).replace(R.id.frame_layout, nuevoFragmento).commit();
 
-                createChat();
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                }else {
+                    createChat();
+                }
 
             }
         });
+
 
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,9 +209,63 @@ public class EventDetaillFragment extends Fragment {
         });
     }
 
+    private void existe(){
+        ArrayList<String> listaFotos = new ArrayList<String>();
+        ArrayList<Chat> listaChat = new ArrayList<Chat>();
+
+        DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chats");
+
+        chatRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot chatSnapshot : snapshot.getChildren()) {
+                    String chatKey = chatSnapshot.getKey();
+                    String nameEvent = chatSnapshot.child("name").getValue().toString();
+                    String Event = chatSnapshot.child("event").getValue().toString();
+                    String Foto = chatSnapshot.child("fotoChat").getValue().toString();
+                    listaFotos.add(Foto);
+                    ArrayList<String> userList = (ArrayList<String>) chatSnapshot.child("users").getValue();
+                    ArrayList<Message> messageList = new ArrayList<>();
+                    for (DataSnapshot messageSnapshot : chatSnapshot.child("messages").getChildren()) {
+                        String sender = messageSnapshot.child("sender").getValue(String.class);
+                        String text = messageSnapshot.child("text").getValue(String.class);
+                        String time = messageSnapshot.child("time").getValue(String.class);
+                        Message message = new Message(sender, text, time, null);
+                        messageList.add(message);
+                    }
+                    Boolean telefonoexiste=false;
+                    for (String phone:userList) {
+                        if (phone.equals(getUserPhone())){
+                            telefonoexiste=true;
+                        }
+                    }
+                    Log.i("CHATNAME",nameEvent+ " " + Event);
+                    if (getEventFoto().equals(Foto)&& telefonoexiste){
+                        existe =true;
+                        existeDef=true;
+                        Log.i("EXISTE",existe.toString());
+                    }else {
+                        existe = false;
+                        Log.i("NO EXISTE",existe.toString());
+                    }
+                    Chat chat = new Chat(chatKey,nameEvent,Foto,Event, userList, messageList);
+                    listaChat.add(chat);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private String getUserName(){
         String nombreUsuario = lista.get(0);
         return nombreUsuario;
+    }
+    private String getUserPhone(){
+        String phone = lista.get(0);
+        return phone;
     }
     private String getEventName(){
         Evento event = getArguments().getParcelable("evento");

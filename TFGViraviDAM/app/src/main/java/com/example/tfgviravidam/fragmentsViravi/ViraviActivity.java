@@ -19,12 +19,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ViraviActivity extends AppCompatActivity {
 
-    HomeFragment homeFragment = new HomeFragment();
-    ExploreFragment exploreFragment = new ExploreFragment();
-    ProfileFragment profileFragment = new ProfileFragment();
-    FloatingActionButton fab;
-    FloatingActionButton Create;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

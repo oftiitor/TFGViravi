@@ -78,7 +78,6 @@ public class ChatFragment extends Fragment {
         Bundle bundle = getArguments();
         if(bundle != null){
             chat = (Chat) bundle.getSerializable("Chat");
-            Log.i("Chat",chat.toString());
             binding.tvUserName.setText(chat.getName());
             binding.tvEventName.setText(chat.getNameEvent());
             Picasso.get().load(chat.getFoto()).resize(300, 200).centerCrop().into(binding.ivProfileImage);
@@ -152,7 +151,6 @@ public class ChatFragment extends Fragment {
                 Message m = new Message(sender, text, time, false);
                 messageList.add(m);
             }
-            Log.i("mensajesChild",messageList.toString());
 
             adapter = new MessageAdapter(messageList);
 

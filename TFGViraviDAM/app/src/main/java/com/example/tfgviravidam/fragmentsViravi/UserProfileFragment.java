@@ -45,7 +45,6 @@ public class UserProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentUserProfileBinding.inflate(inflater, container, false);
         Usuario user = getArguments().getParcelable("user");
-        Log.i("UUUSER",user.toString());
         binding.txtnumEventos.setText(user.getEventosCreados().size()+"");
         binding.txtNumSeguidores.setText(user.getSeguidores().size()+"");
         binding.txtNumSeguidos.setText(user.getSeguidos().size()+"");
@@ -107,10 +106,8 @@ public class UserProfileFragment extends Fragment {
                     }
 
                     Evento evento = new Evento(nombre, descripcion, fechaInicio, fechaFin, usuarioCreador, ciudad, categoria, imagen, usuariosApuntados);
-                    Log.i("EVEN",evento.toString());
                     Usuario user = getArguments().getParcelable("user");
                     ArrayList<String> eventosCreados = user.getEventosCreados();
-                    Log.i("NUMEVEEENT",eventosCreados.toString());
 
                     for (String nombreEvento: eventosCreados) {
                         if (nombre.equals(nombreEvento)){
@@ -121,7 +118,6 @@ public class UserProfileFragment extends Fragment {
                     OtherUserEventsAdapter adapterUserEvento = new OtherUserEventsAdapter(listaEvento);
                     binding.userEvents.setAdapter(adapterUserEvento);
 
-                    Log.i("EVENTOS",listaEvento.size()+"");
 
                 }
             }

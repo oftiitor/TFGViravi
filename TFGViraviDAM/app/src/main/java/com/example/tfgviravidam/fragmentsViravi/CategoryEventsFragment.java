@@ -74,7 +74,6 @@ public class CategoryEventsFragment extends Fragment {
                     String category = getArguments().getString("category");
                     if(categoria.equals(category)){
                         eventos.add(evento);
-                        Log.i("EVENTOSCATEGORIA",eventos.toString());
                         OtherUserEventsAdapter adapter1=new OtherUserEventsAdapter(eventos);
                         binding.rvEventCategory.setAdapter(adapter1);
                     }
