@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:background="#000000"
     android:backgroundTint="#000000"
-    tools:context=".fragmentsRegister.RegisterActivity">
+    tools:context=".features.app.ui.fragments.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#000000"
         android:backgroundTint="#000000"
-        tools:context=".fragmentsRegister.RegisterActivity">
+        tools:context=".features.app.ui.fragments.RegisterActivity">
 
         <VideoView
             android:id="@+id/ivLogo"

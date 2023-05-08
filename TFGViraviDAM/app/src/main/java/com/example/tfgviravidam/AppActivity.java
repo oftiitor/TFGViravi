@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.tfgviravidam.fragmentsLogin.LoginActivity;
-import com.example.tfgviravidam.fragmentsRegister.RegisterActivity;
+import com.example.tfgviravidam.features.app.ui.fragments.LoginActivity;
+import com.example.tfgviravidam.features.app.ui.fragments.RegisterActivity;
 
 public class AppActivity extends AppCompatActivity {
 
