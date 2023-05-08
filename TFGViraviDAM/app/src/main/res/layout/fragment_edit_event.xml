@@ -32,6 +32,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_margin="15dp"
+                    android:backgroundTint="#FF4D4D"
+                    android:text="Eliminar"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/bebas_neue"
+                    android:singleLine="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
                 <ImageButton
                     android:id="@+id/btnGaleria"
                     android:layout_width="400dp"

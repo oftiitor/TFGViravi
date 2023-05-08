@@ -57,6 +57,13 @@ public class Profile2Fragment extends Fragment {
         loadUserEvents();
 
         firebaseAuth = FirebaseAuth.getInstance();
+        initListeners();
+
+        return  view;
+
+    }
+
+    private void initListeners() {
         binding.btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,9 +101,33 @@ public class Profile2Fragment extends Fragment {
                         .commitAllowingStateLoss();
             }
         });
+        binding.txtNumSeguidores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new SeguidoresFragment();
 
-        return  view;
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in,R.anim.zoom_out,R.anim.zoom_in,R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
 
+        binding.txtNumSeguidos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new SeguidosFragment();
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in,R.anim.zoom_out,R.anim.zoom_in,R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+            }
+        });
     }
 
     private void finishF() {

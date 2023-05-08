@@ -42,10 +42,11 @@ import java.util.ArrayList;
 
 public class NewEventActivity extends AppCompatActivity {
     private ActivityNewEventBinding binding;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference mRootreference = database.getReference("Eventos");
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference mRootreference = database.getReference("Eventos");
 
-    String user;
+    private Boolean photoUploaded = false;
+
     FirebaseAuth firebaseAuth;
     FirebaseStorage storage;
 
@@ -62,19 +63,7 @@ public class NewEventActivity extends AppCompatActivity {
         binding = ActivityNewEventBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        binding.txtName.addTextChangedListener(textWatcherYear);
-        binding.txtDesc.addTextChangedListener(textWatcherYear);
-        binding.txtCategory.addTextChangedListener(textWatcherYear);
-        binding.txtCity.addTextChangedListener(textWatcherYear);
 
-        /* Fecha Inicio */
-        binding.txtDayInicio.addTextChangedListener(textWatcherDayInicio);
-        binding.txtMonthInicio.addTextChangedListener(textWatcherMonthInicio);
-        binding.txtYearInicio.addTextChangedListener(textWatcherYearInicio);
-
-        /* Fecha Fin*/
-        binding.txtDayFin.addTextChangedListener(textWatcherDayFin);
-        binding.txtMonthFin.addTextChangedListener(textWatcherMonthFin);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -116,7 +105,7 @@ public class NewEventActivity extends AppCompatActivity {
                         !binding.txtYearInicio.getText().toString().isEmpty() &&
                         !binding.txtDayFin.getText().toString().isEmpty() &&
                         !binding.txtMonthFin.getText().toString().isEmpty() &&
-                        !binding.txtYearFin.getText().toString().isEmpty()) {
+                        !binding.txtYearFin.getText().toString().isEmpty() && photoUploaded ){
 
                     fechaInicio = binding.txtDayInicio.getText().toString()+"-"+binding.txtMonthInicio.getText().toString()+"-"+binding.txtYearInicio.getText().toString();
                     fechaFin = binding.txtDayFin.getText().toString()+"-"+binding.txtMonthFin.getText().toString()+"-"+binding.txtYearFin.getText().toString();
@@ -128,6 +117,18 @@ public class NewEventActivity extends AppCompatActivity {
 
             }
         });
+
+        binding.txtName.addTextChangedListener(textWatcherYear);
+        binding.txtDesc.addTextChangedListener(textWatcherYear);
+        binding.txtCategory.addTextChangedListener(textWatcherYear);
+        binding.txtCity.addTextChangedListener(textWatcherYear);
+
+        binding.txtDayInicio.addTextChangedListener(textWatcherDayInicio);
+        binding.txtMonthInicio.addTextChangedListener(textWatcherMonthInicio);
+        binding.txtYearInicio.addTextChangedListener(textWatcherYearInicio);
+
+        binding.txtDayFin.addTextChangedListener(textWatcherDayFin);
+        binding.txtMonthFin.addTextChangedListener(textWatcherMonthFin);
     }
 
     private void cargarImagen() {
@@ -150,6 +151,7 @@ public class NewEventActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             image_url=uri;
+                            photoUploaded = true;
                         }
                     });
                 }
@@ -399,6 +401,9 @@ public class NewEventActivity extends AppCompatActivity {
                     e.setImagen(image_url.toString());
                     e.setUsuariosApuntados(new ArrayList<>());
                     mRootreference.child(nombre).setValue(e);
+
+                    Intent intent = new Intent(NewEventActivity.this, ViraviActivity.class);
+                    startActivity(intent);
 
                 }
             }

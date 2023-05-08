@@ -74,6 +74,14 @@ public class EditEventFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        firebaseAuth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+        initListeners();
+        loadEvent();
+
+    }
+
+    private void loadEvent(){
         Evento event = getArguments().getParcelable("evento");
         binding.txtName.setText(event.getNombre());
         binding.txtDesc.setText(event.getDescripcion());
@@ -88,16 +96,32 @@ public class EditEventFragment extends Fragment {
         binding.txtDesc.addTextChangedListener(textWatcherYear);
         binding.txtCategory.addTextChangedListener(textWatcherYear);
         binding.txtCity.addTextChangedListener(textWatcherYear);
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
-        storage = FirebaseStorage.getInstance();
-        initListeners();
     }
 
 
 
     private void initListeners() {
+
+        binding.btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Evento event = getArguments().getParcelable("evento");
+                DatabaseReference chatsRef = FirebaseDatabase.getInstance().getReference("Events").child(event.getNombre());
+                chatsRef.removeValue();
+
+                Fragment fragment = new ProfileFragment();
+                Bundle args = new Bundle();
+                fragment.setArguments(args);
+
+                FragmentManager fragmentManager =getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .setCustomAnimations(R.anim.zoom_in,R.anim.zoom_out,R.anim.zoom_in,R.anim.zoom_out)
+                        .replace(R.id.frame_layout, fragment)
+                        .addToBackStack(null)
+                        .commitAllowingStateLoss();
+
+            }
+        });
         binding.btnGaleria.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -52,15 +52,17 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
-        // Inflate the layout for this fragment
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         loadUser();
         loadUserEvents();
-
+        initListeners();
         firebaseAuth = FirebaseAuth.getInstance();
+        return  view;
+
+    }
+
+    private void initListeners() {
         binding.btnCerrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,9 +137,6 @@ public class ProfileFragment extends Fragment {
                         .commitAllowingStateLoss();
             }
         });
-
-        return  view;
-
     }
 
     private void finishF() {

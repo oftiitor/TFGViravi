@@ -58,33 +58,15 @@ public class EventDetaillFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        firebaseAuth = FirebaseAuth.getInstance();
-        mRootreference = FirebaseDatabase.getInstance().getReference("Usuarios");
-        mRootreference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
-                    String telefono = snapshot.child("telefono").getValue(String.class);
-
-                    lista.add(0,nombreUsuario);
-                    phone.add(0,telefono);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-
-        });
+        loadUser();
+        existe();
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentEventDetaillBinding.inflate(inflater, container, false);
-        existe();
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setEnterTransition(new Fade());
         }
@@ -101,12 +83,12 @@ public class EventDetaillFragment extends Fragment {
             binding.tvCreator.setText(event.getUsuarioCreador());
             binding.tvPersonas.setText(String.valueOf(event.getUsuariosApuntados().size()));
         }
-        loadEvent(event.getNombre());
+        initListeners(event.getNombre());
         return view;
 
     }
 
-    private void loadEvent(String nombre) {
+    private void initListeners(String nombre) {
         binding.btnSign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -257,6 +239,29 @@ public class EventDetaillFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+    }
+
+    private void loadUser(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        mRootreference = FirebaseDatabase.getInstance().getReference("Usuarios");
+        mRootreference.child(firebaseAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    String nombreUsuario = snapshot.child("nombreUsuario").getValue(String.class);
+                    String telefono = snapshot.child("telefono").getValue(String.class);
+
+                    lista.add(0,nombreUsuario);
+                    phone.add(0,telefono);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
         });
     }
     private String getUserName(){

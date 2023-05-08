@@ -109,13 +109,13 @@
             app:layout_constraintTop_toBottomOf="@+id/txtNumSeguidos" />
 
 
-
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="5dp"
+            android:layout_marginTop="1dp"
             app:dividerColor="#232323"
-            app:layout_constraintTop_toBottomOf="@id/btnSeguir" />
+            app:layout_constraintTop_toBottomOf="@+id/btnDejarSeguir" />
 
         <ScrollView
             android:id="@+id/scrollView"
@@ -229,19 +229,6 @@
             app:layout_constraintTop_toBottomOf="@+id/foto" />
 
         <Button
-            android:id="@+id/btnSeguir"
-            android:layout_width="150dp"
-            android:layout_height="0dp"
-            android:fontFamily="@font/bebas_neue"
-            android:text="Seguir"
-            android:textAllCaps="false"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline119"
-            app:layout_constraintEnd_toStartOf="@+id/guideline127"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline118" />
-
-        <Button
             android:id="@+id/btnDejarSeguir"
             android:layout_width="150dp"
             android:layout_height="0dp"
@@ -251,7 +238,7 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/guideline119"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline127"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline118" />
 
         <androidx.constraintlayout.widget.Guideline
