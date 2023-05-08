@@ -77,17 +77,18 @@ public class EditProfileFragment extends Fragment {
         binding.btnListo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (fotoDone && !binding.txtName.getText().toString().isEmpty()&& !binding.txtUserName.getText().toString().isEmpty()&& !binding.txtNacimiento.getText().toString().isEmpty()&& !binding.txtTelefono.getText().toString().isEmpty()) {
-                    FirebaseAuth firebaseAuth;
-                    firebaseAuth = FirebaseAuth.getInstance();
-                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
-                    userRef.child("nombre").setValue(binding.txtName.getText().toString());
-                    userRef.child("nombreUsuario").setValue(binding.txtUserName.getText().toString());
-                    userRef.child("telefono").setValue(binding.txtTelefono.getText().toString());
-                    userRef.child("fechaNacimiento").setValue(binding.txtNacimiento.getText().toString());
-                    userRef.child("fotoPerfil").setValue(path.toString());
 
+                FirebaseAuth firebaseAuth;
+                firebaseAuth = FirebaseAuth.getInstance();
+                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseAuth.getCurrentUser().getUid());
+                userRef.child("nombre").setValue(binding.txtName.getText().toString());
+                userRef.child("nombreUsuario").setValue(binding.txtUserName.getText().toString());
+                userRef.child("telefono").setValue(binding.txtTelefono.getText().toString());
+                userRef.child("fechaNacimiento").setValue(binding.txtNacimiento.getText().toString());
+                if (fotoDone){
+                    userRef.child("fotoPerfil").setValue(path.toString());
                 }
+
                 Bundle bundle = new Bundle();
                 Fragment nuevoFragmento = new ProfileFragment();
                 nuevoFragmento.setArguments(bundle);

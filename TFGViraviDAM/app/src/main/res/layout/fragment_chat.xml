@@ -67,7 +67,7 @@
         android:id="@+id/messageList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#0F3F51B5"
+        android:background="@drawable/untitled_design"
         app:layout_constraintBottom_toTopOf="@+id/tvBackColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
