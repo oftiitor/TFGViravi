@@ -41,7 +41,6 @@ public class PassLoginFragment extends Fragment {
         btn = view.findViewById(R.id.btnPassLogin);
         passwordUsuario = view.findViewById(R.id.txtPassLogin);
         passwordUsuario.requestFocus();
-        passwordUsuario.setText("123456Ra");
 
         firebaseAuth= FirebaseAuth.getInstance();
         InputMethodManager im = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
