@@ -4,5 +4,3 @@ Autores: Víctor Henry Fall Turrientes, Raúl Arribas Canalejo, Víctor Corchado
 Centro Educativo: Innovación en Formación Profesional.
 ## Aplicación Móvil
 Red Social de Eventos.
-
-![kikorivera](https://c.tenor.com/A_IBnhx1Jh0AAAAC/kiko-rivera-paquirrin.gif)
